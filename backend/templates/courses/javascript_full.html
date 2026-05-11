@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% block title %}JavaScript Essentials - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="background:linear-gradient(135deg,#F7DF1E,#EAB308);padding:4rem 1.5rem;text-align:center;">
+    <h1 style="font-size:3rem;font-weight:900;color:#000;margin-bottom:1rem;">⚡ JavaScript Essentials</h1>
+    <p style="color:rgba(0,0,0,0.8);font-size:1.2rem;max-width:700px;margin:0 auto;">Add interactivity and functionality to websites. From variables to DOM manipulation.</p>
+    <div style="margin-top:1.5rem;">
+        <span class="badge badge-free" style="font-size:0.9rem;background:rgba(0,0,0,0.2);color:#000;">FREE COURSE</span>
+        <span style="color:rgba(0,0,0,0.7);margin-left:0.5rem;">⏱ 4 Hours • ⚡ 400 XP</span>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+    <div class="card" style="padding:2rem;margin-bottom:2rem;">
+        <h2 style="font-size:1.5rem;font-weight:700;color:white;margin-bottom:1rem;">📑 Course Outline</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;">
+            <a href="#what-is-js" style="color:#F7DF1E;text-decoration:none;">1. What is JavaScript?</a>
+            <a href="#variables" style="color:#F7DF1E;text-decoration:none;">2. Variables & Data Types</a>
+            <a href="#operators" style="color:#F7DF1E;text-decoration:none;">3. Operators</a>
+            <a href="#functions" style="color:#F7DF1E;text-decoration:none;">4. Functions</a>
+            <a href="#conditionals" style="color:#F7DF1E;text-decoration:none;">5. Conditionals</a>
+            <a href="#loops" style="color:#F7DF1E;text-decoration:none;">6. Loops</a>
+            <a href="#arrays" style="color:#F7DF1E;text-decoration:none;">7. Arrays</a>
+            <a href="#objects" style="color:#F7DF1E;text-decoration:none;">8. Objects</a>
+            <a href="#dom" style="color:#F7DF1E;text-decoration:none;">9. DOM Manipulation</a>
+            <a href="#events" style="color:#F7DF1E;text-decoration:none;">10. Events</a>
+            <a href="#best" style="color:#10b981;text-decoration:none;">✅ Best Practices</a>
+        </div>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+<!-- SECTIONS 1-10 -->
+<section id="what-is-js" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">1. What is JavaScript?</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        JavaScript is a <strong>programming language</strong> that adds interactivity, functionality, and dynamic behavior 
+        to websites. Unlike HTML and CSS which handle structure and styling, JavaScript allows you to create responsive 
+        elements that react to user actions like clicks, form submissions, and keyboard input.
+    </p>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        JavaScript is the <strong>most popular programming language in the world</strong> and runs in every modern web browser. 
+        It can be used for frontend development (with frameworks like React), backend development (with Node.js), 
+        mobile apps, desktop apps, and even machine learning.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📋 YOUR FIRST JAVASCRIPT</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>// This shows a popup message
+alert("Hello, Kenya! 🇰🇪");
+
+// This prints to the browser console (F12 to see)
+console.log("Welcome to JavaScript!");
+
+// This changes text on the page
+document.querySelector("h1").textContent = "JavaScript is awesome!";</code></pre>
+    </div>
+</section>
+
+<section id="variables" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">2. Variables & Data Types</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📦 VARIABLES & TYPES</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>// Declaring Variables (USE let and const!)
+let name = "Brian";        // Can be changed
+const PI = 3.14159;        // Cannot be changed (constant)
+var age = 25;              // OLD - don't use this!
+
+// Data Types
+let city = "Nairobi";           // String
+let score = 100;                // Number
+let price = 99.99;              // Number (decimal)
+let isActive = true;            // Boolean (true/false)
+let items = ["HTML","CSS","JS"];// Array
+let user = {name:"Brian",age:25};// Object
+let nothing = null;             // Null (intentionally empty)
+let notDefined;                 // Undefined
+
+// Template Literals (ES6)
+let greeting = `Hello, ${name}! You scored ${score}.`;
+
+// Checking types
+typeof "Hello"    // "string"
+typeof 42         // "number"
+typeof true       // "boolean"</code></pre>
+    </div>
+</section>
+
+<section id="functions" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">4. Functions</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">⚙️ FUNCTIONS</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>// Function Declaration
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+console.log(greet("Brian"));  // "Hello, Brian!"
+
+// Arrow Function (Modern ES6)
+const add = (a, b) => a + b;
+console.log(add(5, 3));  // 8
+
+// Function with default parameters
+function calculateFee(amount, rate = 0.01) {
+    return amount * rate;
+}
+console.log(calculateFee(1000));  // 10 (M-Pesa 1% fee!)
+
+// Real Example: M-Pesa Calculator
+function mpesaWithdraw(amount) {
+    const fee = amount * 0.01;
+    const total = amount - fee;
+    return {amount, fee, total};
+}
+console.log(mpesaWithdraw(1000));
+// {amount: 1000, fee: 10, total: 990}</code></pre>
+    </div>
+</section>
+
+<section id="conditionals" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">5. Conditionals</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;overflow-x:auto;"><code>// if, else if, else
+let age = 18;
+
+if (age >= 18) {
+    console.log("You can vote!");
+} else if (age >= 16) {
+    console.log("Almost there!");
+} else {
+    console.log("Too young to vote.");
+}
+
+// Ternary Operator (short form)
+let canVote = age >= 18 ? "Yes" : "No";
+
+// Switch Statement
+let day = "Monday";
+switch(day) {
+    case "Monday":
+        console.log("Start of week!");
+        break;
+    case "Friday":
+        console.log("Weekend incoming!");
+        break;
+    default:
+        console.log("Regular day");
+}</code></pre>
+    </div>
+</section>
+
+<section id="loops" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">6. Loops</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;overflow-x:auto;"><code>// For Loop
+for (let i = 0; i < 5; i++) {
+    console.log(`Count: ${i}`);
+}
+
+// While Loop
+let count = 0;
+while (count < 5) {
+    console.log(count);
+    count++;
+}
+
+// For...of (arrays)
+const colors = ["red", "green", "blue"];
+for (let color of colors) {
+    console.log(color);
+}
+
+// ForEach (array method)
+colors.forEach((color, index) => {
+    console.log(`${index}: ${color}`);
+});</code></pre>
+    </div>
+</section>
+
+<section id="dom" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">9. DOM Manipulation</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        The <strong>DOM (Document Object Model)</strong> represents your HTML as objects that JavaScript can interact with.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;overflow-x:auto;"><code>// Selecting Elements
+const title = document.getElementById("title");
+const buttons = document.getElementsByClassName("btn");
+const firstLink = document.querySelector("a");
+const allLinks = document.querySelectorAll("a");
+
+// Changing Content
+title.textContent = "New Title!";
+title.innerHTML = "<strong>Bold Title</strong>";
+title.style.color = "red";
+title.style.fontSize = "24px";
+
+// Creating Elements
+const newDiv = document.createElement("div");
+newDiv.textContent = "I am new!";
+newDiv.className = "card";
+document.body.appendChild(newDiv);
+
+// Removing Elements
+title.remove();
+
+// Adding/Removing Classes
+title.classList.add("highlight");
+title.classList.remove("old-class");
+title.classList.toggle("active");</code></pre>
+    </div>
+</section>
+
+<section id="events" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;margin-bottom:1.5rem;">10. Events</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;overflow-x:auto;"><code>// Click Event
+button.addEventListener("click", () => {
+    alert("Button clicked!");
+});
+
+// Form Submit
+form.addEventListener("submit", (e) => {
+    e.preventDefault();  // Stop page refresh
+    console.log("Form submitted!");
+});
+
+// Input Change
+input.addEventListener("input", (e) => {
+    console.log("Typing:", e.target.value);
+});
+
+// Keyboard Events
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        console.log("Enter pressed!");
+    }
+});
+
+// Real Example: Live Character Counter
+textarea.addEventListener("input", () => {
+    const count = textarea.value.length;
+    counter.textContent = `${count} characters`;
+});</code></pre>
+    </div>
+</section>
+
+<!-- BEST PRACTICES -->
+<section id="best" class="card" style="padding:2rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(247,223,30,0.05));border-color:rgba(16,185,129,0.3);">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #10b981;padding-bottom:0.5rem;margin-bottom:1.5rem;">✅ JavaScript Best Practices</h2>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
+        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:1.5rem;">
+            <strong style="color:#10b981;">✅ DO THIS</strong>
+            <ul style="color:#d1d5db;margin-top:0.75rem;font-size:0.9rem;line-height:1.8;">
+                <li>Use const and let (never var)</li>
+                <li>Use arrow functions</li>
+                <li>Use template literals</li>
+                <li>Use meaningful variable names</li>
+                <li>Keep functions small and focused</li>
+                <li>Comment complex logic</li>
+            </ul>
+        </div>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:1.5rem;">
+            <strong style="color:#ef4444;">❌ AVOID THIS</strong>
+            <ul style="color:#d1d5db;margin-top:0.75rem;font-size:0.9rem;line-height:1.8;">
+                <li>Global variables</li>
+                <li>var keyword</li>
+                <li>Magic numbers</li>
+                <li>Very long functions</li>
+                <li>Ignoring error handling</li>
+                <li>eval() function</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
+        <h3 style="color:#10b981;font-size:1.5rem;">🎉 You've Completed JavaScript!</h3>
+        <p style="color:#d1d5db;margin:0.75rem 0;">You're now a frontend developer! Ready for premium Full-Stack?</p>
+        <a href="/pricing/" class="btn btn-primary" style="margin-top:1rem;display:inline-block;text-decoration:none;background:linear-gradient(135deg,#f59e0b,#ef4444);">Upgrade to Pro 🚀</a>
+    </div>
+</section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2.5rem;font-weight:800;color:white;">{{ project.title }}</h1>
+    <p style="color:#9ca3af;margin:1rem 0;">by <strong>{{ project.user.username }}</strong></p>
+    
+    <div style="display:flex;gap:0.5rem;margin:1rem 0;flex-wrap:wrap;">
+        {% for tech in project.technologies %}
+        <span style="background:#1f2937;color:#818cf8;padding:0.3rem 0.8rem;border-radius:6px;font-size:0.8rem;">{{ tech }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="card" style="padding:2rem;margin:1.5rem 0;">
+        <p style="color:#d1d5db;line-height:1.8;">{{ project.description }}</p>
+    </div>
+    
+    {% if project.live_url or project.github_url %}
+    <div style="display:flex;gap:1rem;margin-bottom:2rem;">
+        {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank" class="btn btn-primary btn-sm">🌐 Live Demo</a>{% endif %}
+        {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" class="btn btn-outline btn-sm">📁 GitHub</a>{% endif %}
+    </div>
+    {% endif %}
+    
+    <!-- Comments Section -->
+    <h3 style="color:white;margin-top:2rem;">💬 Comments</h3>
+    {% for comment in comments %}
+    <div class="card" style="padding:1rem;margin:0.5rem 0;">
+        <strong style="color:white;">{{ comment.user.username }}</strong>
+        <p style="color:#d1d5db;margin-top:0.3rem;">{{ comment.content }}</p>
+    </div>
+    {% endfor %}
+    
+    {% if user.is_authenticated %}
+    <form method="POST" action="/projects/{{ project.slug }}/comment/" style="margin-top:1rem;">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Add a comment..." rows="2" required style="width:100%;padding:0.75rem;background:#111827;border:1px solid #374151;border-radius:8px;color:white;resize:vertical;"></textarea>
+        <button type="submit" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Post Comment</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

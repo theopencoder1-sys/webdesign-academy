@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/Desktop/webdesign_academy/backend
+source venv/bin/activate
+python manage.py runserver

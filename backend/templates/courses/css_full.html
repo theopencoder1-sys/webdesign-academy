@@ -1,0 +1,506 @@
+{% extends 'base.html' %}
+{% block title %}CSS Mastery - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="background:linear-gradient(135deg,#1572B6,#06B6D4);padding:4rem 1.5rem;text-align:center;">
+    <h1 style="font-size:3rem;font-weight:900;color:white;margin-bottom:1rem;">🎨 CSS Mastery</h1>
+    <p style="color:rgba(255,255,255,0.9);font-size:1.2rem;max-width:700px;margin:0 auto;">Transform ugly HTML into beautiful, responsive designs. Complete guide with Flexbox, Grid, and animations.</p>
+    <div style="margin-top:1.5rem;">
+        <span class="badge badge-free" style="font-size:0.9rem;">FREE COURSE</span>
+        <span style="color:rgba(255,255,255,0.8);margin-left:0.5rem;">⏱ 3 Hours • ⚡ 300 XP</span>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+    <div class="card" style="padding:2rem;margin-bottom:2rem;">
+        <h2 style="font-size:1.5rem;font-weight:700;color:white;margin-bottom:1rem;">📑 Course Outline</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;">
+            <a href="#what-is-css" style="color:#06B6D4;text-decoration:none;">1. What is CSS?</a>
+            <a href="#adding-css" style="color:#06B6D4;text-decoration:none;">2. Adding CSS to HTML</a>
+            <a href="#selectors" style="color:#06B6D4;text-decoration:none;">3. CSS Selectors</a>
+            <a href="#colors" style="color:#06B6D4;text-decoration:none;">4. Colors & Backgrounds</a>
+            <a href="#box-model" style="color:#06B6D4;text-decoration:none;">5. The Box Model</a>
+            <a href="#typography" style="color:#06B6D4;text-decoration:none;">6. Typography</a>
+            <a href="#display" style="color:#06B6D4;text-decoration:none;">7. Display & Position</a>
+            <a href="#flexbox" style="color:#06B6D4;text-decoration:none;">8. Flexbox</a>
+            <a href="#grid" style="color:#06B6D4;text-decoration:none;">9. CSS Grid</a>
+            <a href="#responsive" style="color:#06B6D4;text-decoration:none;">10. Responsive Design</a>
+            <a href="#animations" style="color:#06B6D4;text-decoration:none;">11. Animations</a>
+            <a href="#best-practices" style="color:#10b981;text-decoration:none;">✅ Best Practices</a>
+        </div>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+<!-- SECTION 1 -->
+<section id="what-is-css" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">1. What is CSS?</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        CSS stands for <strong>Cascading Style Sheets</strong>. It is a stylesheet language used to describe the presentation 
+        and visual appearance of HTML documents. While HTML creates the structure of a webpage, CSS controls how that structure 
+        looks including colors, fonts, spacing, layout, and responsiveness across different screen sizes.
+    </p>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        CSS works by selecting HTML elements and applying styles to them. The term <strong>"cascading"</strong> refers to the way 
+        CSS determines which styles to apply when multiple rules target the same element. Styles can cascade from multiple sources 
+        including browser defaults, external stylesheets, internal stylesheets, and inline styles.
+    </p>
+    
+    <div style="background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:1.5rem;margin:1rem 0;">
+        <strong style="color:#06B6D4;">🧠 The Web Development Trio:</strong><br>
+        <span style="color:#d1d5db;">🏗️ <strong>HTML</strong> = Structure (what things are)<br></span>
+        <span style="color:#d1d5db;">🎨 <strong>CSS</strong> = Presentation (how things look)<br></span>
+        <span style="color:#d1d5db;">⚡ <strong>JavaScript</strong> = Behavior (how things work)</span>
+    </div>
+</section>
+
+<!-- SECTION 2 -->
+<section id="adding-css" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">2. Adding CSS to HTML</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        There are <strong>three ways</strong> to add CSS to an HTML document. Each method has its own use case, 
+        but <strong>external CSS</strong> is considered the best practice for most projects because it separates 
+        concerns and makes code easier to maintain.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📋 THREE WAYS TO ADD CSS</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>&lt;!-- 1. INLINE CSS (inside HTML element using style attribute) --&gt;
+&lt;p style="color: red; font-size: 16px;"&gt;Red text&lt;/p&gt;
+
+&lt;!-- 2. INTERNAL CSS (inside &lt;style&gt; tag in the &lt;head&gt;) --&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+            font-size: 18px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- 3. EXTERNAL CSS (separate .css file - BEST PRACTICE!) --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+    
+    <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:1rem;margin:1rem 0;">
+        <strong style="color:#10b981;">✅ Best Practice:</strong> Always use <strong>External CSS</strong> for production websites. 
+        It keeps HTML clean, allows reuse across multiple pages, and makes maintenance easier.
+    </div>
+</section>
+
+<!-- SECTION 3 -->
+<section id="selectors" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">3. CSS Selectors</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        CSS selectors are patterns used to <strong>select and target HTML elements</strong> that you want to style. 
+        Understanding selectors is fundamental to writing effective CSS. Selectors can target elements by their tag name, 
+        class, ID, attributes, or their relationship to other elements.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">🎯 ALL SELECTOR TYPES</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>/* Universal Selector - selects everything */
+* { margin: 0; padding: 0; }
+
+/* Element Selector - selects all elements of that type */
+p { color: blue; }
+h1 { font-size: 32px; }
+
+/* Class Selector - MOST COMMON (starts with .) */
+.highlight { background: yellow; }
+.btn-primary { background: blue; color: white; }
+
+/* ID Selector - unique element (starts with #) */
+#header { height: 80px; }
+
+/* Multiple Selectors */
+h1, h2, h3 { font-family: sans-serif; }
+
+/* Descendant Selector - elements inside another */
+article p { line-height: 1.6; }
+
+/* Child Selector - direct children only */
+nav > a { text-decoration: none; }
+
+/* Pseudo-classes - element states */
+a:hover { color: red; }
+input:focus { border-color: blue; }
+li:first-child { font-weight: bold; }
+li:nth-child(odd) { background: #f0f0f0; }
+
+/* Pseudo-elements - parts of elements */
+p::first-line { font-weight: bold; }
+h1::before { content: "👉 "; }</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 4 -->
+<section id="colors" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">4. Colors & Backgrounds</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        Colors in CSS can be specified using <strong>multiple formats</strong> including named colors, hexadecimal codes, 
+        RGB, RGBA, HSL, and HSLA. Each format has advantages depending on the use case.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">🎨 COLORS & BACKGROUNDS</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>/* Named Colors */
+color: red;
+color: dodgerblue;
+color: tomato;
+
+/* Hex Codes (MOST COMMON) */
+color: #FF0000;      /* Red */
+color: #6366f1;      /* Indigo */
+color: #10b981;      /* Green */
+color: #000000;      /* Black */
+color: #FFFFFF;      /* White */
+
+/* RGB / RGBA (a = alpha/transparency 0-1) */
+color: rgb(255, 0, 0);
+color: rgba(255, 0, 0, 0.5);   /* 50% transparent red */
+
+/* HSL (Hue, Saturation, Lightness) */
+color: hsl(0, 100%, 50%);       /* Red */
+color: hsla(240, 100%, 50%, 0.7);
+
+/* Background Properties */
+background-color: #f0f0f0;
+background-image: url('image.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+/* Gradients */
+background: linear-gradient(to right, red, blue);
+background: linear-gradient(135deg, #6366f1, #8b5cf6);
+background: radial-gradient(circle, white, black);</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 5 -->
+<section id="box-model" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">5. The Box Model</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        The CSS Box Model is the <strong>foundation of layout in CSS</strong>. Every HTML element is a rectangular box 
+        consisting of four parts: content, padding, border, and margin. Understanding how these parts interact is 
+        essential for creating proper layouts.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📦 THE BOX MODEL</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>div {
+    /* Content - the actual content area */
+    width: 300px;
+    height: 200px;
+    
+    /* Padding - space between content and border */
+    padding: 20px;              /* All sides */
+    padding: 10px 20px;         /* Top/Bottom, Left/Right */
+    padding: 10px 15px 20px 25px; /* Top, Right, Bottom, Left */
+    
+    /* Border - the edge line */
+    border: 2px solid #333;
+    border-width: 2px;
+    border-style: solid;  /* solid, dashed, dotted, double */
+    border-color: #333;
+    border-radius: 8px;   /* Rounded corners! */
+    
+    /* Margin - space OUTSIDE the element */
+    margin: 30px;
+    margin: 20px auto;    /* Auto = center horizontally */
+}
+
+/* Total Width Calculation:
+   width + padding-left + padding-right + border-left + border-right + margin-left + margin-right
+=  300   + 20 + 20             + 2 + 2                    + 30 + 30
+=  404px total */
+
+/* Box-Sizing Fix (USE THIS!) */
+* {
+    box-sizing: border-box;  /* Width includes padding and border */
+}</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 6: Typography -->
+<section id="typography" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">6. Typography</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">✍️ TYPOGRAPHY PROPERTIES</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;        /* 400=normal, 700=bold, 900=black */
+    font-style: italic;
+    line-height: 1.6;         /* 1.6x the font size */
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    text-align: center;       /* left, center, right, justify */
+    text-decoration: underline;
+    text-transform: uppercase; /* uppercase, lowercase, capitalize */
+    text-indent: 20px;
+}
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 7: Display & Position -->
+<section id="display" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">7. Display & Position</h2>
+    
+    <div style="overflow-x:auto;margin:1.5rem 0;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <tr style="background:#1f2937;">
+            <th style="padding:0.75rem;color:white;">Display Value</th>
+            <th style="padding:0.75rem;color:white;">Behavior</th>
+        </tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">block</td><td style="padding:0.75rem;">Takes full width, starts new line (div, p, h1)</td></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">inline</td><td style="padding:0.75rem;">Only takes needed width (span, a, strong)</td></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">inline-block</td><td style="padding:0.75rem;">Inline but accepts width/height</td></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">none</td><td style="padding:0.75rem;">Element hidden, removed from flow</td></tr>
+        <tr><td style="padding:0.75rem;">flex / grid</td><td style="padding:0.75rem;">Modern layout systems</td></tr>
+    </table>
+    </div>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">Position values:</p>
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;overflow-x:auto;"><code>position: static;    /* Default - normal document flow */
+position: relative;  /* Offset from normal position */
+position: absolute;  /* Positioned relative to nearest positioned ancestor */
+position: fixed;     /* Stays in place when scrolling */
+position: sticky;    /* Toggles between relative and fixed */</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 8: Flexbox -->
+<section id="flexbox" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">8. Flexbox Layout</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        Flexbox is a <strong>one-dimensional layout</strong> system designed for arranging items in rows or columns. 
+        It provides powerful alignment capabilities and makes it easy to distribute space between items.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📐 FLEXBOX CHEAT SHEET</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>/* Container Properties */
+.container {
+    display: flex;
+    flex-direction: row;           /* row | column | row-reverse */
+    justify-content: center;       /* Horizontal alignment */
+    /* options: flex-start, center, flex-end, space-between, space-around, space-evenly */
+    
+    align-items: center;           /* Vertical alignment */
+    /* options: flex-start, center, flex-end, stretch, baseline */
+    
+    flex-wrap: wrap;               /* Allow items to wrap to next line */
+    gap: 20px;                     /* Space between items */
+}
+
+/* Item Properties */
+.item {
+    flex: 1;            /* Grow equally - shorthand for flex-grow */
+    flex: 2;            /* Take twice the space of other items */
+    flex-grow: 0;       /* Don't grow */
+    flex-shrink: 0;     /* Don't shrink */
+}
+
+/* PERFECT CENTERING */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;      /* Full viewport height */
+}</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 9: Grid -->
+<section id="grid" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">9. CSS Grid</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        CSS Grid is a <strong>two-dimensional layout</strong> system for rows AND columns simultaneously. 
+        It is the most powerful layout system in CSS and is perfect for complex page layouts.
+    </p>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📊 CSS GRID</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
+    grid-template-columns: repeat(3, 1fr);  /* Same as above */
+    grid-template-columns: 200px 1fr 2fr;   /* Mixed sizes */
+    
+    /* Responsive grid (auto-fit magic!) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    gap: 20px;                    /* Row and column gap */
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+/* Item Placement */
+.item {
+    grid-column: 1 / 3;           /* Start at line 1, end at line 3 (span 2) */
+    grid-column: span 2;          /* Same as above */
+    grid-row: 1 / 3;              /* Span 2 rows */
+}
+
+/* Perfect Centering with Grid */
+.center-grid {
+    display: grid;
+    place-items: center;          /* Center BOTH horizontally & vertically */
+    height: 100vh;
+}</code></pre>
+    </div>
+    
+    <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:1rem;margin:1rem 0;">
+        <strong style="color:#818cf8;">💡 When to use what:</strong><br>
+        <span style="color:#d1d5db;">Use <strong>Flexbox</strong> for 1D layouts (navbar, centering items, row of cards)<br>
+        Use <strong>Grid</strong> for 2D layouts (entire page layout, image gallery, dashboard)</span>
+    </div>
+</section>
+
+<!-- SECTION 10: Responsive Design -->
+<section id="responsive" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">10. Responsive Design</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">📱 MEDIA QUERIES</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>/* Mobile-First Approach */
+.container { width: 100%; padding: 1rem; }
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+    .container { max-width: 720px; margin: 0 auto; }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .container { max-width: 960px; }
+}
+
+/* Large screens */
+@media (min-width: 1280px) {
+    .container { max-width: 1200px; }
+}
+
+/* Responsive Grid Example */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;              /* 1 column on mobile */
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }  /* 2 columns */
+}
+
+@media (min-width: 1024px) {
+    .card-grid { grid-template-columns: repeat(3, 1fr); }  /* 3 columns */
+}</code></pre>
+    </div>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        <strong>CSS Units for Responsive Design:</strong> Use <strong>rem</strong> for fonts, <strong>%</strong> for widths, 
+        <strong>vh/vw</strong> for viewport-based sizing, and <strong>clamp()</strong> for fluid sizing.
+    </p>
+</section>
+
+<!-- SECTION 11: Animations -->
+<section id="animations" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #1572B6;padding-bottom:0.5rem;margin-bottom:1.5rem;">11. CSS Animations</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <div style="background:#1f2937;padding:0.5rem 1rem;font-size:0.8rem;color:#9ca3af;">✨ ANIMATIONS</div>
+        <pre style="padding:1rem;overflow-x:auto;"><code>/* Transitions - smooth changes */
+button {
+    background: blue;
+    transition: all 0.3s ease;
+}
+button:hover {
+    background: red;
+    transform: scale(1.1);
+}
+
+/* Keyframe Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.element {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Transforms */
+transform: rotate(45deg);
+transform: scale(1.5);
+transform: translate(50px, -20px);
+transform: skew(10deg);</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 12: Best Practices -->
+<section id="best-practices" class="card" style="padding:2rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(6,182,212,0.05));border-color:rgba(16,185,129,0.3);">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #10b981;padding-bottom:0.5rem;margin-bottom:1.5rem;">✅ CSS Best Practices</h2>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem;">
+        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:1.5rem;">
+            <strong style="color:#10b981;">✅ DO THIS</strong>
+            <ul style="color:#d1d5db;margin-top:0.75rem;font-size:0.9rem;line-height:1.8;">
+                <li>Use external stylesheets</li>
+                <li>Follow mobile-first approach</li>
+                <li>Use classes, not IDs for styling</li>
+                <li>Use Flexbox/Grid for layouts</li>
+                <li>Use rem/em for font sizes</li>
+                <li>Keep specificity low</li>
+                <li>Use CSS variables for repeated values</li>
+            </ul>
+        </div>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:1.5rem;">
+            <strong style="color:#ef4444;">❌ AVOID THIS</strong>
+            <ul style="color:#d1d5db;margin-top:0.75rem;font-size:0.9rem;line-height:1.8;">
+                <li>Inline styles</li>
+                <li>Excessive !important</li>
+                <li>Deeply nested selectors</li>
+                <li>Fixed pixel sizes everywhere</li>
+                <li>IDs for styling</li>
+                <li>Tables for layout</li>
+                <li>Deprecated properties</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
+        <h3 style="color:#10b981;font-size:1.5rem;">🎉 You've Completed CSS Mastery!</h3>
+        <p style="color:#d1d5db;margin:0.75rem 0;">Next: Add interactivity with JavaScript!</p>
+        <a href="/courses/javascript-full/" class="btn btn-primary" style="margin-top:1rem;display:inline-block;text-decoration:none;">Continue to JavaScript →</a>
+    </div>
+</section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block title %}Courses - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:1100px;margin:0 auto;padding:3rem 1.5rem;">
+    <h1 style="font-size:2.5rem;font-weight:800;color:white;margin-bottom:0.5rem;">📚 Explore Courses</h1>
+    <p style="color:var(--text-muted);font-size:1.1rem;margin-bottom:2.5rem;">Full courses. All content on one page. Zero fluff.</p>
+    
+    <!-- FREE COURSES -->
+    <h2 style="color:#10b981;font-size:1.2rem;margin-bottom:1rem;">🆓 Free Courses</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-bottom:3rem;">
+        
+        <a href="/courses/html5-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;">
+            <div style="height:120px;background:linear-gradient(135deg,#E34F26,#F97316);display:flex;align-items:center;justify-content:center;font-size:3rem;">🧱</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-free">FREE</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">HTML5 Fundamentals</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Complete HTML guide with 14 sections. Structure, tags, forms, semantic HTML.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 14 Sections</span><span>⏱ 2h</span><span>⚡ 200 XP</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="/courses/css-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;">
+            <div style="height:120px;background:linear-gradient(135deg,#1572B6,#06B6D4);display:flex;align-items:center;justify-content:center;font-size:3rem;">🎨</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-free">FREE</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">CSS Mastery</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Selectors, Flexbox, Grid, responsive design, animations.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 12 Sections</span><span>⏱ 3h</span><span>⚡ 300 XP</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="/courses/javascript-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;">
+            <div style="height:120px;background:linear-gradient(135deg,#F7DF1E,#EAB308);display:flex;align-items:center;justify-content:center;font-size:3rem;">⚡</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-free">FREE</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">JavaScript Essentials</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Variables, functions, DOM, events, ES6+, real projects.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 10 Sections</span><span>⏱ 4h</span><span>⚡ 400 XP</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <!-- PRO COURSES - LOCKED FOR FREE USERS -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h2 style="color:#f59e0b;font-size:1.2rem;">⭐ PRO Courses</h2>
+        {% if not user.is_premium %}
+        <span style="color:#f59e0b;font-size:0.85rem;">🔒 Unlock with PRO Yearly - Ksh 5,700</span>
+        {% else %}
+        <span style="color:#10b981;font-size:0.85rem;">✅ All Unlocked</span>
+        {% endif %}
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-bottom:3rem;">
+        
+        <!-- Tailwind -->
+        {% if user.is_premium %}
+        <a href="/courses/tailwind-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#06B6D4;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#06B6D4,#0891B2);display:flex;align-items:center;justify-content:center;font-size:3rem;">🌊</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">Tailwind CSS Pro</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Utility-first CSS. Build beautiful websites FAST.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 8 Sections</span><span>⏱ 2h</span><span>⚡ 250 XP</span>
+                </div>
+            </div>
+        </a>
+        
+        <!-- Full-Stack -->
+        {% if user.is_premium %}
+        <div class="card" style="padding:0;overflow:hidden;border-color:#6366f1;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:3rem;">🚀</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">Full-Stack Developer</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Django, Python, REST APIs, PostgreSQL, Deployment on Railway.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 18 Sections</span><span>⏱ 12h</span><span>⚡ 800 XP</span>
+                </div>
+            </div>
+        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        
+        <!-- UI/UX -->
+        {% if user.is_premium %}
+        <div class="card" style="padding:0;overflow:hidden;border-color:#ec4899;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#ec4899,#f97316);display:flex;align-items:center;justify-content:center;font-size:3rem;">✨</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">UI/UX Design Mastery</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Figma, wireframing, prototyping, user research, design systems.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 10 Sections</span><span>⏱ 6h</span><span>⚡ 500 XP</span>
+                </div>
+            </div>
+        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        
+        <!-- React -->
+        {% if user.is_premium %}
+        <div class="card" style="padding:0;overflow:hidden;border-color:#61dafb;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#61dafb,#2c89a0);display:flex;align-items:center;justify-content:center;font-size:3rem;">⚛️</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">React.js Masterclass</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Components, Hooks, State, Redux, Next.js, Firebase.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 15 Sections</span><span>⏱ 10h</span><span>⚡ 700 XP</span>
+                </div>
+            </div>
+        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        
+        <!-- Python -->
+        {% if user.is_premium %}
+        <div class="card" style="padding:0;overflow:hidden;border-color:#3776AB;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#3776AB,#FFD43B);display:flex;align-items:center;justify-content:center;font-size:3rem;">🐍</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">Python Programming</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">OOP, data structures, automation, web scraping, APIs.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 12 Sections</span><span>⏱ 8h</span><span>⚡ 600 XP</span>
+                </div>
+            </div>
+        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        
+        <!-- Cybersecurity -->
+        {% if user.is_premium %}
+        <div class="card" style="padding:0;overflow:hidden;border-color:#ef4444;">
+        {% else %}
+        <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
+        {% endif %}
+            {% if not user.is_premium %}
+            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center;">
+                    <div style="font-size:3rem;">🔒</div>
+                    <p style="color:white;font-weight:700;">PRO Only</p>
+                    <p style="color:#f59e0b;font-size:0.8rem;">Ksh 5,700/year</p>
+                </div>
+            </div>
+            {% endif %}
+            <div style="height:120px;background:linear-gradient(135deg,#1a1a2e,#ef4444);display:flex;align-items:center;justify-content:center;font-size:3rem;">🔐</div>
+            <div style="padding:1.5rem;">
+                <span class="badge badge-premium">PRO</span>
+                <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-top:0.5rem;">Cybersecurity Basics</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin:0.5rem 0;">Network security, ethical hacking, Kali Linux, pentesting.</p>
+                <div style="display:flex;gap:1rem;color:#6b7280;font-size:0.75rem;">
+                    <span>📄 10 Sections</span><span>⏱ 6h</span><span>⚡ 500 XP</span>
+                </div>
+            </div>
+        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+    </div>
+    
+    <!-- PRO CTA -->
+    {% if not user.is_premium and user.is_authenticated %}
+    <div class="card" style="padding:2.5rem;text-align:center;background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(99,102,241,0.1));border-color:rgba(245,158,11,0.4);">
+        <h2 style="color:white;font-size:1.8rem;">🚀 Unlock All 6 PRO Courses</h2>
+        <p style="color:#d1d5db;font-size:1.1rem;margin:0.5rem 0;">Full-Stack • UI/UX • React • Python • Tailwind • Cybersecurity</p>
+        <p style="color:#f59e0b;font-size:2rem;font-weight:800;margin:1rem 0;">Ksh 5,700<span style="font-size:1rem;color:#9ca3af;">/year</span></p>
+        <p style="color:#10b981;font-size:0.9rem;">✅ Save Ksh 1,300 vs monthly • ✅ Certificates • ✅ Code Reviews</p>
+        <a href="/pricing/" class="btn btn-primary btn-lg" style="margin-top:1.5rem;display:inline-block;text-decoration:none;background:linear-gradient(135deg,#f59e0b,#ef4444);">Upgrade to PRO Yearly 🔥</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

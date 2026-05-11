@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Certificate - {{ course.title }}{% endblock %}
+{% block content %}
+<div style="max-width:800px;margin:3rem auto;padding:2rem;">
+    <div style="border:4px solid #6366f1;border-radius:20px;padding:3rem;text-align:center;background:linear-gradient(135deg,#111827,#1a1a2e);">
+        <div style="font-size:1rem;color:#818cf8;margin-bottom:1rem;">🏆 WEB DESIGN ACADEMY</div>
+        <h1 style="font-size:2.5rem;font-weight:900;color:white;margin-bottom:0.5rem;">Certificate of Completion</h1>
+        <p style="color:#9ca3af;margin-bottom:2rem;">This certifies that</p>
+        
+        <h2 style="font-size:2rem;font-weight:800;color:#6366f1;margin-bottom:0.5rem;">{{ user.get_full_name|default:user.username }}</h2>
+        
+        <p style="color:#9ca3af;margin-bottom:2rem;">has successfully completed the course</p>
+        
+        <h2 style="font-size:1.5rem;font-weight:700;color:white;margin-bottom:2rem;">{{ course.title }}</h2>
+        
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:2rem;border-top:2px solid #1f2937;">
+            <div>
+                <p style="color:#6b7280;font-size:0.8rem;">Date Completed</p>
+                <p style="color:white;font-weight:600;">{{ date|date:"F d, Y" }}</p>
+            </div>
+            <div>
+                <p style="color:#6b7280;font-size:0.8rem;">Certificate ID</p>
+                <p style="color:#818cf8;font-size:0.85rem;">{{ cert_id }}</p>
+            </div>
+        </div>
+        
+        <div style="margin-top:2rem;color:#6b7280;font-size:0.75rem;">
+            <p>WebDesign Academy • Made in Kenya 🇰🇪</p>
+            <p>Verify at: webdesign.academy/verify/{{ cert_id }}/</p>
+        </div>
+    </div>
+    
+    <div style="text-align:center;margin-top:2rem;display:flex;gap:1rem;justify-content:center;">
+        <button onclick="window.print()" class="btn btn-primary">🖨️ Print Certificate</button>
+        <a href="/dashboard/" class="btn btn-outline">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

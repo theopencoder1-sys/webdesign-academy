@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% block title %}Playground - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="display:flex;height:calc(100vh - 64px);">
+    
+    <!-- LEFT PANEL - Code Editor -->
+    <div style="width:50%;display:flex;flex-direction:column;background:#0a0a0a;">
+        
+        <!-- Tab Bar -->
+        <div style="display:flex;background:#111827;border-bottom:1px solid #1f2937;">
+            <button onclick="switchTab('html')" id="tab-html" class="playground-tab active" style="padding:0.75rem 1.5rem;background:#0a0a0a;color:white;border:none;border-right:1px solid #1f2937;cursor:pointer;font-size:0.85rem;font-weight:600;">
+                📄 HTML
+            </button>
+            <button onclick="switchTab('css')" id="tab-css" class="playground-tab" style="padding:0.75rem 1.5rem;background:#111827;color:#9ca3af;border:none;border-right:1px solid #1f2937;cursor:pointer;font-size:0.85rem;font-weight:600;">
+                🎨 CSS
+            </button>
+            <button onclick="switchTab('js')" id="tab-js" class="playground-tab" style="padding:0.75rem 1.5rem;background:#111827;color:#9ca3af;border:none;cursor:pointer;font-size:0.85rem;font-weight:600;">
+                ⚡ JS
+            </button>
+            
+            <!-- Action Buttons -->
+            <div style="margin-left:auto;display:flex;align-items:center;gap:0.5rem;padding:0 1rem;">
+                <button onclick="runCode()" style="padding:0.5rem 1rem;background:#10b981;color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;font-size:0.8rem;">▶ Run</button>
+                <button onclick="clearAll()" style="padding:0.5rem 1rem;background:#374151;color:#d1d5db;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;">🗑 Clear</button>
+                <button onclick="downloadCode()" style="padding:0.5rem 1rem;background:#6366f1;color:white;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;">💾 Download</button>
+                <button onclick="copyCode()" style="padding:0.5rem 1rem;background:#374151;color:#d1d5db;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;">📋 Copy</button>
+            </div>
+        </div>
+        
+        <!-- Editor Area -->
+        <div style="flex:1;display:flex;position:relative;">
+            
+            <!-- HTML Editor -->
+            <div id="editor-html" class="editor-panel" style="flex:1;display:flex;">
+                <div style="width:40px;background:#111827;display:flex;flex-direction:column;align-items:center;padding-top:0.5rem;border-right:1px solid #1f2937;">
+                    <span style="color:#6b7280;font-size:0.6rem;">1</span>
+                    <span style="color:#6b7280;font-size:0.6rem;">2</span>
+                    <span style="color:#6b7280;font-size:0.6rem;">3</span>
+                </div>
+                <textarea id="htmlCode" spellcheck="false" placeholder="<!-- Write your HTML here -->" 
+                    style="flex:1;background:#0a0a0a;color:#e5e7eb;padding:0.5rem;border:none;resize:none;font-family:'Fira Code',monospace;font-size:0.85rem;line-height:1.6;outline:none;"></textarea>
+            </div>
+            
+            <!-- CSS Editor -->
+            <div id="editor-css" class="editor-panel" style="flex:1;display:none;">
+                <div style="width:40px;background:#111827;display:flex;flex-direction:column;align-items:center;padding-top:0.5rem;border-right:1px solid #1f2937;"></div>
+                <textarea id="cssCode" spellcheck="false" placeholder="/* Write your CSS here */" 
+                    style="flex:1;background:#0a0a0a;color:#e5e7eb;padding:0.5rem;border:none;resize:none;font-family:'Fira Code',monospace;font-size:0.85rem;line-height:1.6;outline:none;"></textarea>
+            </div>
+            
+            <!-- JS Editor -->
+            <div id="editor-js" class="editor-panel" style="flex:1;display:none;">
+                <div style="width:40px;background:#111827;display:flex;flex-direction:column;align-items:center;padding-top:0.5rem;border-right:1px solid #1f2937;"></div>
+                <textarea id="jsCode" spellcheck="false" placeholder="// Write your JavaScript here" 
+                    style="flex:1;background:#0a0a0a;color:#e5e7eb;padding:0.5rem;border:none;resize:none;font-family:'Fira Code',monospace;font-size:0.85rem;line-height:1.6;outline:none;"></textarea>
+            </div>
+        </div>
+        
+        <!-- Status Bar -->
+        <div style="background:#111827;border-top:1px solid #1f2937;padding:0.3rem 1rem;display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:#6b7280;">
+            <span>HTML: <span id="htmlCharCount">0</span> chars</span>
+            <span>CSS: <span id="cssCharCount">0</span> chars</span>
+            <span>JS: <span id="jsCharCount">0</span> chars</span>
+            <span id="lastRun" style="color:#10b981;"></span>
+        </div>
+    </div>
+    
+    <!-- RIGHT PANEL - Preview -->
+    <div style="width:50%;border-left:2px solid #1f2937;display:flex;flex-direction:column;">
+        
+        <!-- Preview Toolbar -->
+        <div style="display:flex;background:#111827;border-bottom:1px solid #1f2937;padding:0.5rem 1rem;align-items:center;gap:1rem;">
+            <span style="color:white;font-size:0.85rem;font-weight:600;">👁️ Preview</span>
+            <select id="viewportSelect" onchange="changeViewport()" style="background:#1f2937;color:#d1d5db;border:1px solid #374151;border-radius:4px;padding:0.3rem 0.5rem;font-size:0.8rem;">
+                <option value="100">💻 Desktop (100%)</option>
+                <option value="75">🖥️ Laptop (75%)</option>
+                <option value="50">📱 Tablet (50%)</option>
+                <option value="35">📱 Mobile (35%)</option>
+            </select>
+            <button onclick="toggleDarkPreview()" style="background:#374151;color:#d1d5db;border:none;padding:0.3rem 0.7rem;border-radius:4px;cursor:pointer;font-size:0.8rem;">🌓 Toggle BG</button>
+            <button onclick="refreshPreview()" style="margin-left:auto;background:#6366f1;color:white;border:none;padding:0.3rem 1rem;border-radius:4px;cursor:pointer;font-size:0.8rem;">🔄 Refresh</button>
+        </div>
+        
+        <!-- Preview Frame -->
+        <div style="flex:1;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;background:#1a1a2e;padding:1rem;">
+            <div id="previewContainer" style="transition:transform 0.3s;transform:scale(1);transform-origin:top center;">
+                <iframe id="output" style="width:100%;min-width:400px;height:600px;border:none;background:white;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,0.5);"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Default starter code
+const starterHTML = `<h1>Hello, Kenya! 🇰🇪</h1>
+<p>Welcome to the WebDesign Academy Playground.</p>
+<button onclick="sayHello()">Click Me</button>
+<ul>
+  <li>Edit HTML, CSS, and JS</li>
+  <li>See instant preview</li>
+  <li>Download your code</li>
+</ul>`;
+
+const starterCSS = `body {
+  font-family: system-ui, sans-serif;
+  padding: 2rem;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+h1 {
+  color: #6366f1;
+  font-size: 2.5rem;
+}
+
+p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+button {
+  padding: 12px 24px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+li {
+  padding: 0.5rem;
+  color: #555;
+}
+
+li::before {
+  content: "✅ ";
+}`;
+
+const starterJS = `function sayHello() {
+  alert('Hello from WebDesign Academy! 🚀');
+}
+
+console.log('Playground ready!');`;
+
+// Initialize
+document.getElementById('htmlCode').value = starterHTML;
+document.getElementById('cssCode').value = starterCSS;
+document.getElementById('jsCode').value = starterJS;
+updateCharCounts();
+runCode();
+
+// Tab switching
+function switchTab(tab) {
+    document.querySelectorAll('.playground-tab').forEach(t => {
+        t.style.background = '#111827';
+        t.style.color = '#9ca3af';
+        t.classList.remove('active');
+    });
+    document.querySelectorAll('.editor-panel').forEach(e => e.style.display = 'none');
+    
+    document.getElementById('tab-' + tab).style.background = '#0a0a0a';
+    document.getElementById('tab-' + tab).style.color = 'white';
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('editor-' + tab).style.display = 'flex';
+    
+    document.getElementById(tab + 'Code').focus();
+}
+
+// Run code
+function runCode() {
+    const html = document.getElementById('htmlCode').value;
+    const css = document.getElementById('cssCode').value;
+    const js = document.getElementById('jsCode').value;
+    
+    const output = document.getElementById('output');
+    const doc = output.contentDocument || output.contentWindow.document;
+    doc.open();
+    doc.write(`<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}<script>${js}<\/script></body></html>`);
+    doc.close();
+    
+    document.getElementById('lastRun').textContent = '✓ Last run: just now';
+    updateCharCounts();
+}
+
+// Update character counts
+function updateCharCounts() {
+    document.getElementById('htmlCharCount').textContent = document.getElementById('htmlCode').value.length;
+    document.getElementById('cssCharCount').textContent = document.getElementById('cssCode').value.length;
+    document.getElementById('jsCharCount').textContent = document.getElementById('jsCode').value.length;
+}
+
+// Clear all
+function clearAll() {
+    if (confirm('Clear all code?')) {
+        document.getElementById('htmlCode').value = '';
+        document.getElementById('cssCode').value = '';
+        document.getElementById('jsCode').value = '';
+        updateCharCounts();
+        runCode();
+    }
+}
+
+// Download code
+function downloadCode() {
+    const html = document.getElementById('htmlCode').value;
+    const css = document.getElementById('cssCode').value;
+    const js = document.getElementById('jsCode').value;
+    
+    const fullCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <style>
+${css}
+    </style>
+</head>
+<body>
+${html}
+<script>
+${js}
+<\/script>
+</body>
+</html>`;
+    
+    const blob = new Blob([fullCode], {type: 'text/html'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'my-project.html';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+// Copy code
+function copyCode() {
+    const code = document.getElementById('htmlCode').value;
+    navigator.clipboard.writeText(code).then(() => {
+        alert('HTML code copied!');
+    });
+}
+
+// Viewport change
+function changeViewport() {
+    const scale = document.getElementById('viewportSelect').value / 100;
+    document.getElementById('previewContainer').style.transform = `scale(${scale})`;
+}
+
+// Toggle preview background
+function toggleDarkPreview() {
+    const iframe = document.getElementById('output');
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    const body = doc.body;
+    if (body.style.background === 'rgb(26, 26, 46)') {
+        body.style.background = 'white';
+    } else {
+        body.style.background = '#1a1a2e';
+    }
+}
+
+// Refresh preview
+function refreshPreview() {
+    runCode();
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        runCode();
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        downloadCode();
+    }
+});
+
+// Auto-run on type (with debounce)
+let timeout;
+document.querySelectorAll('textarea').forEach(textarea => {
+    textarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            runCode();
+            updateCharCounts();
+        }, 500);
+    });
+});
+
+// Line numbers update
+document.querySelectorAll('textarea').forEach(textarea => {
+    textarea.addEventListener('scroll', function() {
+        const lineNumbers = this.parentElement.querySelector('div');
+        lineNumbers.scrollTop = this.scrollTop;
+    });
+});
+</script>
+
+<style>
+.playground-tab.active {
+    border-bottom: 2px solid #6366f1 !important;
+}
+.editor-panel {
+    transition: all 0.2s;
+}
+textarea::placeholder {
+    color: #4b5563;
+    font-style: italic;
+}
+textarea:focus::placeholder {
+    color: #6b7280;
+}
+</style>
+
+{% endblock %}

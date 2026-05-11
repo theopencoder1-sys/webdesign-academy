@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Premium Course - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:500px;margin:5rem auto;text-align:center;padding:2rem;">
+    <div style="font-size:5rem;">🔒</div>
+    <h1 style="font-size:2rem;font-weight:800;color:white;margin:1rem 0;">Premium Content</h1>
+    <p style="color:#9ca3af;font-size:1.1rem;margin-bottom:1.5rem;">{{ course }} is a premium course. Upgrade to PRO to unlock all content.</p>
+    <div class="card" style="padding:1.5rem;margin-bottom:2rem;text-align:left;">
+        <h3 style="color:white;margin-bottom:1rem;">PRO Includes:</h3>
+        <p style="color:#d1d5db;">✅ Tailwind CSS Pro Course</p>
+        <p style="color:#d1d5db;">✅ Full-Stack Developer Course</p>
+        <p style="color:#d1d5db;">✅ UI/UX Designer Course</p>
+        <p style="color:#d1d5db;">✅ Certificates & Badges</p>
+        <p style="color:#d1d5db;">✅ Code Reviews</p>
+    </div>
+    <a href="/pricing/" class="btn btn-primary btn-lg">Upgrade - From Ksh 500/month</a>
+    <p style="color:#6b7280;margin-top:1rem;font-size:0.85rem;">Pay with M-Pesa 🇰🇪</p>
+</div>
+{% endblock %}

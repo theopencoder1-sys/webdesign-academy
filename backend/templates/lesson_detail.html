@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}{{ lesson.title }} - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:800px;margin:0 auto;padding:2rem 1.5rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;">
+        <a href="/courses/" style="color:var(--primary);text-decoration:none;">Courses</a> / 
+        <a href="/courses/" style="color:var(--text-muted);text-decoration:none;">{{ lesson.module.course.title }}</a> / 
+        <span style="color:var(--text);">{{ lesson.module.title }}</span>
+    </div>
+    
+    <!-- Lesson Header -->
+    <div style="margin-bottom:2rem;">
+        <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;">
+            <span class="badge badge-pro">Lesson {{ lesson.order }}</span>
+            {% if lesson.is_premium %}
+            <span class="badge badge-premium">🔒 PREMIUM</span>
+            {% else %}
+            <span class="badge badge-free">FREE</span>
+            {% endif %}
+            <span style="color:var(--text-muted);font-size:0.85rem;">⏱ {{ lesson.estimated_minutes }} min</span>
+            <span style="color:var(--primary);font-size:0.85rem;">⚡ {{ lesson.xp_reward }} XP</span>
+        </div>
+        <h1 style="font-size:2.2rem;font-weight:800;color:white;line-height:1.2;">{{ lesson.title }}</h1>
+    </div>
+    
+    <!-- Premium Gate -->
+    {% if lesson.is_premium and not user.is_premium %}
+    <div class="card" style="padding:3rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(239,68,68,0.05));border-color:rgba(245,158,11,0.3);">
+        <div style="font-size:4rem;margin-bottom:1rem;">🔒</div>
+        <h2 style="font-size:1.5rem;font-weight:700;color:white;margin-bottom:1rem;">Premium Content</h2>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;max-width:400px;margin-left:auto;margin-right:auto;">
+            This lesson is part of our premium curriculum. Upgrade to unlock all advanced courses and features!
+        </p>
+        <a href="/pricing/" class="btn btn-primary" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">Upgrade to Pro ✨</a>
+        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:1rem;">Starting from Ksh 500/month</p>
+    </div>
+    {% else %}
+    
+    <!-- Lesson Content -->
+    <div class="card" style="padding:2rem;">
+        <div style="color:var(--text);line-height:1.8;font-size:1.05rem;">
+            {{ lesson.content|safe }}
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+        {% if lesson.prev_lesson %}
+        <a href="/courses/{{ lesson.module.course.slug }}/{{ lesson.prev_lesson.slug }}/" class="btn btn-outline btn-sm">← Previous</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        
+        <button onclick="completeLesson()" class="btn btn-primary btn-sm" id="complete-btn">✅ Complete Lesson</button>
+        
+        {% if lesson.next_lesson %}
+        <a href="/courses/{{ lesson.module.course.slug }}/{{ lesson.next_lesson.slug }}/" class="btn btn-outline btn-sm">Next →</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function completeLesson() {
+    const btn = document.getElementById('complete-btn');
+    btn.innerHTML = '✅ Completed! +{{ lesson.xp_reward }} XP';
+    btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    btn.disabled = true;
+}
+</script>
+{% endblock %}

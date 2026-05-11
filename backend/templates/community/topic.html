@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ topic.title }} - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
+    <h1 style="color:white;font-size:2rem;">{{ topic.title }}</h1>
+    <p style="color:#6b7280;margin:0.5rem 0;">by {{ topic.author.username }} • {{ topic.created_at|timesince }} ago</p>
+    
+    <div class="card" style="padding:2rem;margin:1.5rem 0;">
+        <p style="color:#d1d5db;line-height:1.8;">{{ topic.content }}</p>
+    </div>
+    
+    <h3 style="color:white;">💬 Replies ({{ replies.count }})</h3>
+    {% for reply in replies %}
+    <div class="card" style="padding:1rem;margin:0.5rem 0;">
+        <strong style="color:white;">{{ reply.author.username }}</strong>
+        <p style="color:#d1d5db;">{{ reply.content }}</p>
+        <span style="color:#6b7280;font-size:0.75rem;">{{ reply.created_at|timesince }} ago</span>
+    </div>
+    {% endfor %}
+    
+    {% if user.is_authenticated %}
+    <form method="POST" action="/community/topic/{{ topic.id }}/reply/" style="margin-top:1rem;">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Write a reply..." rows="3" required style="width:100%;padding:0.75rem;background:#111827;border:1px solid #374151;border-radius:8px;color:white;"></textarea>
+        <button type="submit" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Reply</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

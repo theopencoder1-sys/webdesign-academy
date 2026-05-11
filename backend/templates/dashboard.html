@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:1000px;margin:2rem auto;padding:0 1.5rem;">
+    
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+            <h1 style="font-size:2rem;font-weight:800;color:white;">Welcome, {{ user.username }}! 👋</h1>
+            <p style="color:#9ca3af;">Keep the streak alive!</p>
+        </div>
+        <a href="/courses/" class="btn btn-primary">Continue Learning →</a>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:2rem;">
+        <div class="card" style="padding:1.2rem;text-align:center;">
+            <div style="font-size:1.8rem;">🔥</div>
+            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.streak }}</div>
+            <div style="color:#9ca3af;font-size:0.75rem;">Day Streak</div>
+        </div>
+        <div class="card" style="padding:1.2rem;text-align:center;">
+            <div style="font-size:1.8rem;">⚡</div>
+            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.xp }}</div>
+            <div style="color:#9ca3af;font-size:0.75rem;">Total XP</div>
+        </div>
+        <div class="card" style="padding:1.2rem;text-align:center;">
+            <div style="font-size:1.8rem;">📚</div>
+            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ completed_courses }}</div>
+            <div style="color:#9ca3af;font-size:0.75rem;">Courses Done</div>
+        </div>
+        <div class="card" style="padding:1.2rem;text-align:center;">
+            <div style="font-size:1.8rem;">🎨</div>
+            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user_projects }}</div>
+            <div style="color:#9ca3af;font-size:0.75rem;">Projects</div>
+        </div>
+        <div class="card" style="padding:1.2rem;text-align:center;">
+            <div style="font-size:1.8rem;">🏆</div>
+            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.earned_badges.count }}</div>
+            <div style="color:#9ca3af;font-size:0.75rem;">Badges</div>
+        </div>
+        {% if user.is_premium %}
+        <div class="card" style="padding:1.2rem;text-align:center;border-color:#f59e0b;">
+            <div style="font-size:1.8rem;">⭐</div>
+            <div style="font-size:1.2rem;font-weight:800;color:#f59e0b;">PRO</div>
+            <div style="color:#f59e0b;font-size:0.75rem;">Member</div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;">
+        <div>
+            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+                <h3 style="color:white;margin-bottom:1rem;">📊 Recent Activity</h3>
+                {% if recent_activities %}
+                {% for activity in recent_activities %}
+                <div style="padding:0.5rem 0.75rem;background:#0a0a0a;border-radius:8px;margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;">
+                    <span style="color:#d1d5db;">{{ activity.description }}</span>
+                    <span style="color:#6b7280;font-size:0.7rem;margin-left:auto;">{{ activity.created_at|timesince }} ago</span>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p style="color:#6b7280;">Start learning to see activity!</p>
+                {% endif %}
+            </div>
+            
+            <div class="card" style="padding:1.5rem;">
+                <h3 style="color:white;margin-bottom:1rem;">📚 Your Courses</h3>
+                <a href="/courses/html5-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">🧱 HTML5 <span style="color:#10b981;">FREE</span></a>
+                <a href="/courses/css-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">🎨 CSS <span style="color:#10b981;">FREE</span></a>
+                <a href="/courses/javascript-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">⚡ JavaScript <span style="color:#10b981;">FREE</span></a>
+                <a href="/courses/tailwind-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;text-decoration:none;">🌊 Tailwind {% if user.is_premium %}<span style="color:#10b981;">UNLOCKED</span>{% else %}<span style="color:#f59e0b;">🔒 PRO</span>{% endif %}</a>
+            </div>
+        </div>
+        
+        <div>
+            {% if not user.is_premium %}
+            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1));border-color:rgba(99,102,241,0.3);">
+                <h3 style="color:white;margin-bottom:0.5rem;">🚀 Go Premium</h3>
+                <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:1rem;">Unlock all courses, certificates & more</p>
+                <a href="/pricing/" class="btn btn-primary" style="width:100%;justify-content:center;text-decoration:none;">Upgrade - Ksh 500</a>
+            </div>
+            {% endif %}
+            
+            {% if payments %}
+            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+                <h3 style="color:white;margin-bottom:1rem;">💳 M-Pesa Payments</h3>
+                {% for p in payments %}
+                <div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid #1f2937;font-size:0.85rem;">
+                    <span style="color:#10b981;">Ksh {{ p.amount }}</span>
+                    <span style="color:#6b7280;">{{ p.created_at|date:"M d" }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

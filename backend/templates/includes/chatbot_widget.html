@@ -1,0 +1,151 @@
+<!-- Floating Chatbot Button -->
+<div id="chatbotWidget" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+    
+    <!-- Chat Window -->
+    <div id="chatWindow" style="display:none;width:380px;height:500px;background:#111827;border:1px solid #374151;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);flex-direction:column;overflow:hidden;margin-bottom:1rem;">
+        
+        <!-- Chat Header -->
+        <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:1rem;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:32px;height:32px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🤖</div>
+                <div>
+                    <p style="color:white;font-weight:700;font-size:0.9rem;">WebDesign Assistant</p>
+                    <p style="color:rgba(255,255,255,0.7);font-size:0.7rem;">🟢 Online</p>
+                </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;">
+                <button onclick="toggleExpand()" id="expandBtn" style="background:rgba(255,255,255,0.2);color:white;border:none;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:0.9rem;">🗖</button>
+                <button onclick="closeChat()" style="background:rgba(255,255,255,0.2);color:white;border:none;width:28px;height:28px;border-radius:6px;cursor:pointer;">✕</button>
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chatMessages" style="flex:1;overflow-y:auto;padding:1rem;background:#0a0a0a;">
+            <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;">
+                <div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">🤖</div>
+                <div style="background:#1f2937;padding:0.6rem 0.8rem;border-radius:12px;color:#d1d5db;font-size:0.85rem;max-width:85%;">
+                    Hey! 👋 Ask me about HTML, CSS, JavaScript, or our courses!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Suggestions -->
+        <div id="suggestions" style="padding:0.5rem 0.75rem;background:#0a0a0a;display:flex;gap:0.4rem;flex-wrap:wrap;border-top:1px solid #1f2937;">
+            <button onclick="sendSuggestion('What is HTML?')" style="padding:0.3rem 0.6rem;background:#1f2937;color:#d1d5db;border:1px solid #374151;border-radius:15px;cursor:pointer;font-size:0.7rem;">HTML?</button>
+            <button onclick="sendSuggestion('CSS Flexbox')" style="padding:0.3rem 0.6rem;background:#1f2937;color:#d1d5db;border:1px solid #374151;border-radius:15px;cursor:pointer;font-size:0.7rem;">Flexbox</button>
+            <button onclick="sendSuggestion('Pricing')" style="padding:0.3rem 0.6rem;background:#1f2937;color:#d1d5db;border:1px solid #374151;border-radius:15px;cursor:pointer;font-size:0.7rem;">💰 Pricing</button>
+            <button onclick="sendSuggestion('JavaScript basics')" style="padding:0.3rem 0.6rem;background:#1f2937;color:#d1d5db;border:1px solid #374151;border-radius:15px;cursor:pointer;font-size:0.7rem;">JS</button>
+        </div>
+        
+        <!-- Input -->
+        <div style="padding:0.75rem;background:#111827;display:flex;gap:0.5rem;border-top:1px solid #1f2937;">
+            <input type="text" id="chatInput" placeholder="Type a message..." 
+                   style="flex:1;padding:0.6rem 0.8rem;background:#0a0a0a;border:1px solid #374151;border-radius:20px;color:white;font-size:0.85rem;outline:none;"
+                   onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()" style="width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border:none;border-radius:50%;cursor:pointer;font-size:1rem;">➤</button>
+        </div>
+    </div>
+    
+    <!-- Floating Button -->
+    <button onclick="openChat()" id="chatButton" style="width:56px;height:56px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border:none;border-radius:50%;cursor:pointer;font-size:1.5rem;box-shadow:0 4px 20px rgba(99,102,241,0.4);transition:transform 0.2s;display:flex;align-items:center;justify-content:center;">
+        💬
+    </button>
+</div>
+
+<style>
+#chatbotWidget * {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+#chatMessages::-webkit-scrollbar {
+    width: 4px;
+}
+#chatMessages::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 2px;
+}
+#chatButton:hover {
+    transform: scale(1.1);
+}
+.chat-expanded {
+    width: 600px !important;
+    height: 600px !important;
+}
+</style>
+
+<script>
+let isExpanded = false;
+
+function openChat() {
+    document.getElementById('chatWindow').style.display = 'flex';
+    document.getElementById('chatButton').style.display = 'none';
+    document.getElementById('chatInput').focus();
+}
+
+function closeChat() {
+    document.getElementById('chatWindow').style.display = 'none';
+    document.getElementById('chatButton').style.display = 'flex';
+    isExpanded = false;
+    document.getElementById('chatWindow').classList.remove('chat-expanded');
+    document.getElementById('expandBtn').textContent = '🗖';
+}
+
+function toggleExpand() {
+    isExpanded = !isExpanded;
+    const window = document.getElementById('chatWindow');
+    const btn = document.getElementById('expandBtn');
+    if (isExpanded) {
+        window.classList.add('chat-expanded');
+        btn.textContent = '🗗';
+    } else {
+        window.classList.remove('chat-expanded');
+        btn.textContent = '🗖';
+    }
+}
+
+function addMessage(text, isUser = false) {
+    const messages = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.style.cssText = `display:flex;gap:0.5rem;margin-bottom:0.75rem;${isUser ? 'justify-content:flex-end;' : ''}`;
+    
+    if (isUser) {
+        div.innerHTML = `
+            <div style="background:#6366f1;padding:0.6rem 0.8rem;border-radius:12px;color:white;font-size:0.85rem;max-width:85%;">${text}</div>
+            <div style="width:28px;height:28px;background:#374151;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">👤</div>
+        `;
+    } else {
+        div.innerHTML = `
+            <div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">🤖</div>
+            <div style="background:#1f2937;padding:0.6rem 0.8rem;border-radius:12px;color:#d1d5db;font-size:0.85rem;max-width:85%;">${text}</div>
+        `;
+    }
+    
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    addMessage(message, true);
+    input.value = '';
+    
+    fetch('/chatbot/api/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: 'message=' + encodeURIComponent(message)
+    })
+    .then(res => res.json())
+    .then(data => addMessage(data.response))
+    .catch(() => addMessage('Sorry, something went wrong!'));
+}
+
+function sendSuggestion(text) {
+    document.getElementById('chatInput').value = text;
+    sendMessage();
+}
+</script>

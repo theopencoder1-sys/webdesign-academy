@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background:#030712;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}WebDesign Academy{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #030712;
+            --card: #111827;
+            --border: #1f2937;
+            --text: #f3f4f6;
+            --text-muted: #9ca3af;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Inter',system-ui,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            min-height:100vh;
+            line-height:1.6;
+        }
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:#0a0a0a}
+        ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+        ::selection{background:var(--primary);color:white}
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(30px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity:0; }
+            to { opacity:1; }
+        }
+        @keyframes pulse {
+            0%,100% { opacity:1; }
+            50% { opacity:0.5; }
+        }
+        @keyframes slideInRight {
+            from { opacity:0; transform:translateX(50px); }
+            to { opacity:1; transform:translateX(0); }
+        }
+        @keyframes glow {
+            0%,100% { box-shadow:0 0 20px rgba(99,102,241,0.3); }
+            50% { box-shadow:0 0 40px rgba(99,102,241,0.6); }
+        }
+        
+        .animate-fade-in-up { animation:fadeInUp 0.6s ease forwards; }
+        .animate-fade-in { animation:fadeIn 0.8s ease forwards; }
+        .animate-slide-right { animation:slideInRight 0.5s ease forwards; }
+        .animate-glow { animation:glow 2s infinite; }
+        .animate-pulse-slow { animation:pulse 3s infinite; }
+        
+        .stagger-1 { animation-delay:0.1s; opacity:0; }
+        .stagger-2 { animation-delay:0.2s; opacity:0; }
+        .stagger-3 { animation-delay:0.3s; opacity:0; }
+        .stagger-4 { animation-delay:0.4s; opacity:0; }
+        
+        .gradient-text {
+            background:linear-gradient(135deg,#6366f1,#a855f7,#ec4899);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .glass {
+            background:rgba(17,24,39,0.9);
+            backdrop-filter:blur(16px);
+            -webkit-backdrop-filter:blur(16px);
+            border-bottom:1px solid var(--border);
+        }
+        .card {
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            transition:all 0.3s ease;
+        }
+        .card:hover {
+            border-color:var(--primary);
+            transform:translateY(-4px);
+            box-shadow:0 20px 40px rgba(99,102,241,0.1);
+        }
+        .btn {
+            padding:0.75rem 1.5rem;
+            border-radius:12px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.2s ease;
+            border:none;
+            font-size:0.95rem;
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            text-decoration:none;
+        }
+        .btn-primary {
+            background:linear-gradient(135deg,var(--primary),#8b5cf6);
+            color:white;
+        }
+        .btn-primary:hover {
+            box-shadow:0 0 30px rgba(99,102,241,0.5);
+            transform:translateY(-2px);
+        }
+        .btn-outline {
+            background:transparent;
+            border:1px solid var(--border);
+            color:var(--text-muted);
+        }
+        .btn-outline:hover {
+            background:var(--card);
+            color:white;
+            border-color:var(--primary);
+        }
+        .btn-sm { padding:0.5rem 1rem; font-size:0.85rem; }
+        .btn-lg { padding:1rem 2rem; font-size:1.1rem; }
+        
+        input, textarea {
+            transition:all 0.2s ease;
+            font-family:inherit;
+        }
+        input:focus, textarea:focus {
+            outline:none;
+            border-color:var(--primary)!important;
+            box-shadow:0 0 0 3px rgba(99,102,241,0.2);
+        }
+        
+        .badge {
+            display:inline-flex;
+            align-items:center;
+            padding:0.25rem 0.75rem;
+            border-radius:9999px;
+            font-size:0.75rem;
+            font-weight:600;
+        }
+        .badge-free { background:rgba(16,185,129,0.1); color:var(--success); }
+        .badge-premium { background:rgba(245,158,11,0.1); color:var(--warning); }
+        .badge-pro { background:rgba(99,102,241,0.1); color:var(--primary); }
+        
+        @media (max-width:768px) {
+            .hide-mobile { display:none!important; }
+            .mobile-stack { flex-direction:column!important; }
+            .mobile-full { width:100%!important; }
+            h1 { font-size:1.8rem!important; }
+            h2 { font-size:1.4rem!important; }
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+{% csrf_token %}
+    {% include 'includes/navbar.html' %}
+    <!-- Navbar -->
+    <nav class="glass" style="position:fixed;top:0;left:0;right:0;z-index:1000;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;">
+        <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:0.5rem;">
+            <div style="width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;">WD</div>
+            <span style="font-size:1.2rem;font-weight:800;" class="hide-mobile">
+                <span class="gradient-text">WebDesign</span><span style="color:white;">Academy</span>
+            </span>
+        </a>
+        <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+            <a href="/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Home</a>
+            <a href="/courses/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Courses</a>
+            <a href="/playground/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Playground</a>
+            <a href="/projects/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Projects</a>
+            <a href="/community/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Community</a>
+            {% if user.is_authenticated %}
+            <a href="/dashboard/" style="color:#d1d5db;font-size:0.85rem;font-weight:500;text-decoration:none;">Dashboard</a>
+            {% if user.is_premium or user.is_staff %}
+            <a href="/courses/certificate/html5-fundamentals/" style="color:#f59e0b;font-size:0.85rem;font-weight:600;text-decoration:none;">🏆</a>
+            {% endif %}
+            <span style="color:#f59e0b;font-size:0.8rem;">🔥 {{ user.streak }}</span>
+            <span style="color:#d1d5db;font-size:0.8rem;">⚡ {{ user.xp }} XP</span>
+            <a href="/auth/logout/" class="btn btn-outline btn-sm">Logout</a>
+            {% else %}
+            <a href="/auth/login/" class="btn btn-outline btn-sm">Login</a>
+            <a href="/auth/signup/" class="btn btn-primary btn-sm">Get Started Free</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+    
+    <div style="height:64px;"></div>
+    
+    <!-- Main Content -->
+    <main style="min-height:calc(100vh - 160px);">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer style="border-top:1px solid var(--border);padding:3rem 1.5rem;margin-top:4rem;">
+        <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;">
+            <div>
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
+                    <div style="width:32px;height:32px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.8rem;">WD</div>
+                    <span style="font-weight:700;color:white;">WebDesign Academy</span>
+                </div>
+                <p style="color:var(--text-muted);font-size:0.85rem;">Master web design with hands-on projects. Built in Kenya 🇰🇪</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:600;margin-bottom:0.75rem;">Learn</h4>
+                <p style="margin:0.3rem 0;"><a href="/courses/" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">HTML & CSS</a></p>
+                <p style="margin:0.3rem 0;"><a href="#" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">JavaScript</a></p>
+                <p style="margin:0.3rem 0;"><a href="#" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">React</a></p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:600;margin-bottom:0.75rem;">Resources</h4>
+                <p style="margin:0.3rem 0;"><a href="/playground/" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">Playground</a></p>
+                <p style="margin:0.3rem 0;"><a href="#" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">Blog</a></p>
+                <p style="margin:0.3rem 0;"><a href="#" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">Community</a></p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:600;margin-bottom:0.75rem;">Company</h4>
+                <p style="margin:0.3rem 0;"><a href="#" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">About</a></p>
+                <p style="margin:0.3rem 0;"><a href="/pricing/" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">Pricing</a></p>
+                <p style="margin:0.3rem 0;"><a href="mailto:hello@webdesign.academy" style="color:var(--text-muted);font-size:0.85rem;text-decoration:none;">Contact</a></p>
+            </div>
+        </div>
+        <div style="max-width:1200px;margin:2rem auto 0;padding-top:2rem;border-top:1px solid var(--border);text-align:center;">
+            <p style="color:var(--text-muted);font-size:0.8rem;">© 2025 WebDesign Academy. Made with ❤️ in Kenya 🇰🇪</p>
+        </div>
+    </footer>
+    
+    {% block extra_scripts %}{% endblock %}
+
+{% include 'includes/chatbot_widget.html' %}
+</body>
+</html>

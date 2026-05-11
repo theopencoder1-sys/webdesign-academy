@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block title %}Pricing - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:1100px;margin:0 auto;padding:4rem 1.5rem;">
+    <div style="text-align:center;margin-bottom:3rem;">
+        <h1 style="font-size:2.5rem;font-weight:800;color:white;margin-bottom:0.5rem;">Choose Your Plan</h1>
+        <p style="color:var(--text-muted);font-size:1.1rem;">Start free, upgrade when ready. Pay with M-Pesa 🇰🇪</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+        
+        {% for plan in plans %}
+        <!-- Free Plan -->
+        {% if plan.plan_type == 'free' %}
+        <div class="card" style="padding:2rem;">
+            <h3 style="font-size:1.3rem;font-weight:700;color:white;">{{ plan.name }}</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;margin-bottom:1rem;">{{ plan.description }}</p>
+            <div style="margin-bottom:1.5rem;">
+                <span style="font-size:2.5rem;font-weight:800;color:white;">Free</span>
+                <span style="color:#6b7280;"> forever</span>
+            </div>
+            <ul style="list-style:none;margin-bottom:1.5rem;">
+                {% for feature in plan.features %}
+                <li style="color:#d1d5db;font-size:0.9rem;padding:0.3rem 0;">✅ {{ feature }}</li>
+                {% endfor %}
+            </ul>
+            <a href="/auth/signup/" class="btn btn-outline" style="width:100%;justify-content:center;text-decoration:none;">Get Started Free</a>
+        </div>
+        
+        <!-- Pro Monthly -->
+        {% elif plan.plan_type == 'pro_monthly' %}
+        <div class="card" style="padding:2rem;">
+            <h3 style="font-size:1.3rem;font-weight:700;color:white;">{{ plan.name }}</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;margin-bottom:1rem;">{{ plan.description }}</p>
+            <div style="margin-bottom:1.5rem;">
+                <span style="font-size:2.5rem;font-weight:800;color:white;">Ksh {{ plan.price|floatformat:0 }}</span>
+                <span style="color:#6b7280;">/month</span>
+            </div>
+            <ul style="list-style:none;margin-bottom:1.5rem;">
+                {% for feature in plan.features %}
+                <li style="color:#d1d5db;font-size:0.9rem;padding:0.3rem 0;">✅ {{ feature }}</li>
+                {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+            <button onclick="showMpesaModal('{{ plan.id }}', {{ plan.price }})" class="btn" style="width:100%;background:#4CAF50;color:white;justify-content:center;">Pay with M-Pesa 📱</button>
+            {% else %}
+            <a href="/auth/signup/" class="btn btn-primary" style="width:100%;justify-content:center;text-decoration:none;">Sign Up First</a>
+            {% endif %}
+        </div>
+        
+        <!-- Pro Yearly - BEST VALUE -->
+        {% elif plan.plan_type == 'pro_yearly' %}
+        <div class="card" style="padding:2rem;position:relative;border-color:#f59e0b;transform:scale(1.03);background:linear-gradient(135deg,rgba(245,158,11,0.05),rgba(99,102,241,0.05));">
+            <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f59e0b,#ef4444);color:white;padding:0.4rem 1.5rem;border-radius:9999px;font-size:0.8rem;font-weight:700;">🔥 BEST VALUE</div>
+            <div style="position:absolute;top:3rem;right:1rem;background:rgba(16,185,129,0.2);color:#10b981;padding:0.2rem 0.8rem;border-radius:9999px;font-size:0.7rem;font-weight:600;">SAVE Ksh 1,300</div>
+            
+            <h3 style="font-size:1.3rem;font-weight:700;color:#f59e0b;">{{ plan.name }}</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;margin-bottom:1rem;">{{ plan.description }}</p>
+            <div style="margin-bottom:1rem;">
+                <span style="font-size:2.5rem;font-weight:800;color:white;">Ksh {{ plan.price|floatformat:0 }}</span>
+                <span style="color:#6b7280;">/year</span>
+                <p style="color:#10b981;font-size:0.8rem;margin-top:0.25rem;">Only Ksh 475/month when billed yearly!</p>
+            </div>
+            <ul style="list-style:none;margin-bottom:1.5rem;">
+                {% for feature in plan.features %}
+                <li style="color:#d1d5db;font-size:0.9rem;padding:0.3rem 0;">✅ {{ feature }}</li>
+                {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+            <button onclick="showMpesaModal('{{ plan.id }}', {{ plan.price }})" class="btn" style="width:100%;background:linear-gradient(135deg,#f59e0b,#ef4444);color:white;justify-content:center;font-size:1.05rem;">Upgrade to PRO 🔥</button>
+            {% else %}
+            <a href="/auth/signup/" class="btn" style="width:100%;background:linear-gradient(135deg,#f59e0b,#ef4444);color:white;justify-content:center;text-decoration:none;font-size:1.05rem;">Sign Up & Upgrade 🔥</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- All PRO Courses Included -->
+    <div class="card" style="padding:2rem;margin-top:3rem;text-align:center;">
+        <h2 style="color:white;font-size:1.5rem;margin-bottom:1.5rem;">📚 All PRO Courses Included</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;">
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">🌊</div>
+                <p style="color:white;font-weight:600;">Tailwind CSS</p>
+            </div>
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">🚀</div>
+                <p style="color:white;font-weight:600;">Full-Stack Dev</p>
+            </div>
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">✨</div>
+                <p style="color:white;font-weight:600;">UI/UX Design</p>
+            </div>
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">⚛️</div>
+                <p style="color:white;font-weight:600;">React.js</p>
+            </div>
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">🐍</div>
+                <p style="color:white;font-weight:600;">Python</p>
+            </div>
+            <div style="text-align:center;padding:1rem;background:#0a0a0a;border-radius:12px;">
+                <div style="font-size:2rem;">🔐</div>
+                <p style="color:white;font-weight:600;">Cybersecurity</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- M-Pesa Modal -->
+<div id="mpesaModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;">
+    <div class="card" style="max-width:420px;padding:2rem;">
+        <h3 style="font-size:1.3rem;font-weight:700;color:white;margin-bottom:0.5rem;">📱 Pay with M-Pesa</h3>
+        <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:1.5rem;">Enter your M-Pesa phone number. You'll receive an STK push to enter your PIN.</p>
+        
+        <div id="paymentSteps">
+            <form onsubmit="submitMpesa(event)">
+                <input type="hidden" id="selectedPlan">
+                <input type="hidden" id="selectedAmount">
+                <label style="color:#9ca3af;font-size:0.85rem;">Phone Number</label>
+                <input type="tel" id="phoneNumber" placeholder="0712 345 678" required 
+                       style="width:100%;padding:0.85rem;background:#0a0a0a;border:1px solid #374151;border-radius:8px;color:white;margin:0.5rem 0 1rem 0;font-size:1rem;">
+                <div style="display:flex;gap:0.75rem;">
+                    <button type="button" onclick="closeMpesaModal()" class="btn btn-outline" style="flex:1;">Cancel</button>
+                    <button type="submit" id="payBtn" class="btn" style="flex:1;background:#4CAF50;color:white;">Pay Ksh <span id="displayAmount"></span></button>
+                </div>
+            </form>
+        </div>
+        <div id="paymentStatus" style="display:none;text-align:center;"></div>
+    </div>
+</div>
+
+<script>
+function showMpesaModal(planId, amount) {
+    document.getElementById('selectedPlan').value = planId;
+    document.getElementById('selectedAmount').value = amount;
+    document.getElementById('displayAmount').textContent = amount;
+    document.getElementById('paymentSteps').style.display = 'block';
+    document.getElementById('paymentStatus').style.display = 'none';
+    document.getElementById('mpesaModal').style.display = 'flex';
+}
+function closeMpesaModal() { document.getElementById('mpesaModal').style.display = 'none'; }
+async function submitMpesa(e) {
+    e.preventDefault();
+    const btn = document.getElementById('payBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    const formData = new FormData();
+    formData.append('phone', document.getElementById('phoneNumber').value);
+    formData.append('amount', document.getElementById('selectedAmount').value);
+    formData.append('plan_id', document.getElementById('selectedPlan').value);
+    try {
+        const response = await fetch('/mpesa/stk-push/', { method: 'POST', body: formData, headers: {'X-CSRFToken': '{{ csrf_token }}'} });
+        const data = await response.json();
+        if (data.success) {
+                    // Auto-close on simulation
+                    if (data.simulated) {
+                        document.getElementById('paymentSteps').style.display = 'none';
+                        document.getElementById('paymentStatus').style.display = 'block';
+                        document.getElementById('paymentStatus').innerHTML = '<div style="font-size:3rem;">✅</div><p style="color:#4ade80;font-weight:600;font-size:1.2rem;">Payment Successful! (Test Mode)</p><p style="color:#9ca3af;font-size:0.9rem;">Your PRO subscription is now active!</p><a href="/dashboard/" class="btn btn-primary" style="margin-top:1rem;display:inline-block;text-decoration:none;">Go to Dashboard →</a>';
+                        return;
+                    }
+            document.getElementById('paymentSteps').style.display = 'none';
+            document.getElementById('paymentStatus').style.display = 'block';
+            document.getElementById('paymentStatus').innerHTML = '<div style="font-size:3rem;">📱</div><p style="color:#4ade80;font-weight:600;">STK Push Sent!</p><p style="color:#9ca3af;font-size:0.9rem;">Check your phone and enter M-Pesa PIN</p><p style="color:#6b7280;font-size:0.8rem;margin-top:0.5rem;">Waiting for confirmation...</p>';
+            let attempts = 0;
+            const interval = setInterval(async () => {
+                attempts++;
+                const statusRes = await fetch('/mpesa/status/' + data.payment_id + '/');
+                const statusData = await statusRes.json();
+                if (statusData.status === 'completed') {
+                    clearInterval(interval);
+                    document.getElementById('paymentStatus').innerHTML = '<div style="font-size:3rem;">✅</div><p style="color:#4ade80;font-weight:600;font-size:1.2rem;">Payment Successful!</p><a href="/dashboard/" class="btn btn-primary" style="margin-top:1rem;">Go to Dashboard →</a>';
+                } else if (statusData.status === 'failed' || attempts > 20) {
+                    clearInterval(interval);
+                    document.getElementById('paymentStatus').innerHTML = '<p style="color:#ef4444;">Payment failed. Try again.</p><button onclick="closeMpesaModal()" class="btn btn-outline" style="margin-top:1rem;">Close</button>';
+                }
+            }, 3000);
+        } else {
+            document.getElementById('paymentStatus').style.display = 'block';
+            document.getElementById('paymentStatus').innerHTML = '<p style="color:#ef4444;">❌ ' + data.message + '</p>';
+            btn.disabled = false;
+        }
+    } catch (error) {
+        document.getElementById('paymentStatus').style.display = 'block';
+        document.getElementById('paymentStatus').innerHTML = '<p style="color:#ef4444;">Network error.</p>';
+        btn.disabled = false;
+    }
+}
+</script>
+
+{% endblock %}

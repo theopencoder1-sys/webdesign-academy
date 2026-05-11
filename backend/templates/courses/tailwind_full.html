@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% block title %}Tailwind CSS Pro - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="background:linear-gradient(135deg,#06B6D4,#0891B2);padding:4rem 1.5rem;text-align:center;">
+    <h1 style="font-size:3rem;font-weight:900;color:white;margin-bottom:1rem;">🌊 Tailwind CSS Pro</h1>
+    <p style="color:rgba(255,255,255,0.9);font-size:1.2rem;max-width:700px;margin:0 auto;">Build beautiful websites FAST with utility-first CSS framework.</p>
+    <div style="margin-top:1.5rem;">
+        <span class="badge badge-premium" style="font-size:0.9rem;">🔒 PREMIUM COURSE</span>
+        <span style="color:rgba(255,255,255,0.8);margin-left:0.5rem;">⏱ 2 Hours • ⚡ 250 XP</span>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+    <div class="card" style="padding:2rem;margin-bottom:2rem;">
+        <h2 style="font-size:1.5rem;font-weight:700;color:white;margin-bottom:1rem;">📑 Course Outline</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;">
+            <a href="#why-tailwind" style="color:#06B6D4;text-decoration:none;">1. Why Tailwind?</a>
+            <a href="#setup" style="color:#06B6D4;text-decoration:none;">2. Setup & Install</a>
+            <a href="#colors" style="color:#06B6D4;text-decoration:none;">3. Colors & Typography</a>
+            <a href="#spacing" style="color:#06B6D4;text-decoration:none;">4. Spacing & Sizing</a>
+            <a href="#flexbox" style="color:#06B6D4;text-decoration:none;">5. Flexbox & Grid</a>
+            <a href="#responsive" style="color:#06B6D4;text-decoration:none;">6. Responsive Design</a>
+            <a href="#components" style="color:#06B6D4;text-decoration:none;">7. Components</a>
+            <a href="#project" style="color:#10b981;text-decoration:none;">🎯 Final Project</a>
+        </div>
+    </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+<!-- SECTION 1 -->
+<section id="why-tailwind" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">1. Why Tailwind CSS?</h2>
+    
+    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">
+        Tailwind CSS is a <strong>utility-first CSS framework</strong> that lets you build modern websites 
+        directly in your HTML without writing custom CSS. Instead of naming classes, you use pre-built utility classes.
+    </p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;">
+        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:1rem;">
+            <strong style="color:#10b981;">✅ With Tailwind</strong>
+            <pre style="font-size:0.8rem;margin-top:0.5rem;"><code>&lt;button class="bg-blue-500 
+  text-white 
+  px-6 py-3 
+  rounded-lg 
+  hover:bg-blue-600"&gt;
+  Click Me
+&lt;/button&gt;</code></pre>
+        </div>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:1rem;">
+            <strong style="color:#ef4444;">❌ Without Tailwind</strong>
+            <pre style="font-size:0.8rem;margin-top:0.5rem;"><code>&lt;button class="btn-primary"&gt;
+  Click Me
+&lt;/button&gt;
+
+/* Separate CSS file */
+.btn-primary {
+  background: blue;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+.btn-primary:hover {
+  background: darkblue;
+}</code></pre>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2 -->
+<section id="setup" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">2. Setup & Installation</h2>
+    
+    <h3 style="color:white;">Quick Start (CDN - Easiest!)</h3>
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 class="text-3xl font-bold text-blue-600"&gt;
+        Hello Tailwind!
+    &lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 3 -->
+<section id="colors" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">3. Colors & Typography</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>&lt;!-- Text Colors --&gt;
+&lt;p class="text-red-500"&gt;Red text&lt;/p&gt;
+&lt;p class="text-blue-600"&gt;Blue text&lt;/p&gt;
+&lt;p class="text-green-400"&gt;Green text&lt;/p&gt;
+
+&lt;!-- Background Colors --&gt;
+&lt;div class="bg-gray-800"&gt;Dark background&lt;/div&gt;
+&lt;div class="bg-indigo-500"&gt;Indigo background&lt;/div&gt;
+
+&lt;!-- Typography --&gt;
+&lt;h1 class="text-4xl font-bold"&gt;Big Bold Heading&lt;/h1&gt;
+&lt;p class="text-lg font-medium"&gt;Medium paragraph&lt;/p&gt;
+&lt;p class="text-sm text-gray-500"&gt;Small gray text&lt;/p&gt;
+
+&lt;!-- Font weights --&gt;
+&lt;span class="font-light"&gt;Light&lt;/span&gt;
+&lt;span class="font-normal"&gt;Normal&lt;/span&gt;
+&lt;span class="font-semibold"&gt;Semi Bold&lt;/span&gt;
+&lt;span class="font-bold"&gt;Bold&lt;/span&gt;
+&lt;span class="font-black"&gt;Black&lt;/span&gt;</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 4 -->
+<section id="spacing" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">4. Spacing & Sizing</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>&lt;!-- Padding (p-) --&gt;
+&lt;div class="p-4"&gt;Padding all sides&lt;/div&gt;
+&lt;div class="px-6 py-3"&gt;Horizontal & vertical&lt;/div&gt;
+&lt;div class="pt-8 pb-4 pl-2 pr-2"&gt;Each side&lt;/div&gt;
+
+&lt;!-- Margin (m-) --&gt;
+&lt;div class="m-4"&gt;Margin all sides&lt;/div&gt;
+&lt;div class="mx-auto"&gt;Center horizontally!&lt;/div&gt;
+&lt;div class="mt-8"&gt;Margin top only&lt;/div&gt;
+
+&lt;!-- Width & Height --&gt;
+&lt;div class="w-full"&gt;Full width&lt;/div&gt;
+&lt;div class="w-1/2"&gt;Half width&lt;/div&gt;
+&lt;div class="h-screen"&gt;Full screen height&lt;/div&gt;
+&lt;div class="max-w-4xl mx-auto"&gt;Max width + centered&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 5 -->
+<section id="flexbox" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">5. Flexbox & Grid</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>&lt;!-- Flexbox --&gt;
+&lt;div class="flex justify-center items-center gap-4"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Perfect Centering --&gt;
+&lt;div class="flex justify-center items-center h-screen"&gt;
+    &lt;h1&gt;Perfectly Centered!&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;!-- Grid --&gt;
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+    &lt;div&gt;Col 1&lt;/div&gt;
+    &lt;div&gt;Col 2&lt;/div&gt;
+    &lt;div&gt;Col 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Responsive Grid --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+    &lt;!-- Cards go here --&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+<!-- SECTION 6 -->
+<section id="responsive" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">6. Responsive Design</h2>
+    
+    <p style="color:#d1d5db;line-height:1.9;">Tailwind is <strong>mobile-first</strong>. Prefix classes with breakpoints:</p>
+    
+    <div style="overflow-x:auto;margin:1rem 0;">
+    <table style="width:100%;border-collapse:collapse;">
+        <tr style="background:#1f2937;"><th style="padding:0.75rem;color:white;">Prefix</th><th style="padding:0.75rem;color:white;">Screen Size</th><th style="padding:0.75rem;color:white;">Example</th></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">(none)</td><td style="padding:0.75rem;">Mobile first</td><td style="padding:0.75rem;"><code>text-sm</code></td></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">sm:</td><td style="padding:0.75rem;">640px+</td><td style="padding:0.75rem;"><code>sm:text-base</code></td></tr>
+        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">md:</td><td style="padding:0.75rem;">768px+</td><td style="padding:0.75rem;"><code>md:flex</code></td></tr>
+        <tr><td style="padding:0.75rem;">lg:</td><td style="padding:0.75rem;">1024px+</td><td style="padding:0.75rem;"><code>lg:grid-cols-3</code></td></tr>
+    </table>
+    </div>
+</section>
+
+<!-- SECTION 7 -->
+<section id="components" class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #06B6D4;padding-bottom:0.5rem;margin-bottom:1.5rem;">7. Building Components</h2>
+    
+    <h3 style="color:white;">Card Component:</h3>
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>&lt;div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 
+            hover:border-indigo-500 transition-all"&gt;
+    &lt;h3 class="text-xl font-bold text-white mb-2"&gt;Card Title&lt;/h3&gt;
+    &lt;p class="text-gray-400 mb-4"&gt;Card description here&lt;/p&gt;
+    &lt;button class="bg-indigo-500 text-white px-4 py-2 rounded-lg 
+                   hover:bg-indigo-600 transition-all"&gt;
+        Learn More
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+<!-- FINAL PROJECT -->
+<section id="project" class="card" style="padding:2rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(6,182,212,0.05));border-color:rgba(16,185,129,0.3);">
+    <h2 style="font-size:2rem;font-weight:800;color:white;border-bottom:2px solid #10b981;padding-bottom:0.5rem;margin-bottom:1.5rem;">🎯 Final Project: Landing Page</h2>
+    
+    <div style="background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;margin:1.5rem 0;overflow:hidden;">
+        <pre style="padding:1rem;font-size:0.8rem;"><code>&lt;body class="bg-gray-900 text-white"&gt;
+  &lt;nav class="flex justify-between items-center px-8 py-4"&gt;
+    &lt;h1 class="text-2xl font-bold text-indigo-400"&gt;MyBrand&lt;/h1&gt;
+    &lt;div class="flex gap-6"&gt;
+      &lt;a href="#" class="hover:text-indigo-400"&gt;Home&lt;/a&gt;
+      &lt;a href="#" class="hover:text-indigo-400"&gt;About&lt;/a&gt;
+      &lt;a href="#" class="hover:text-indigo-400"&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;main class="text-center py-20 px-4"&gt;
+    &lt;h2 class="text-5xl font-black mb-4"&gt;
+      Build Faster with &lt;span class="text-indigo-400"&gt;Tailwind&lt;/span&gt;
+    &lt;/h2&gt;
+    &lt;p class="text-gray-400 text-xl mb-8"&gt;
+      Utility-first CSS for rapid development
+    &lt;/p&gt;
+    &lt;button class="bg-indigo-500 text-white px-8 py-3 rounded-xl 
+                   font-semibold hover:bg-indigo-600"&gt;
+      Get Started 🚀
+    &lt;/button&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+    </div>
+    
+    <div style="background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
+        <h3 style="color:#10b981;font-size:1.5rem;">🎉 You've Completed Tailwind CSS Pro!</h3>
+        <p style="color:#d1d5db;margin:0.75rem 0;">You can now build beautiful websites in minutes!</p>
+        {% if user.is_premium or user.is_staff %}
+        <a href="/courses/certificate/tailwind-css-quick-start/" class="btn btn-primary" style="margin-top:1rem;display:inline-block;text-decoration:none;">🏆 Get Certificate</a>
+        {% endif %}
+    </div>
+</section>
+
+</div>
+{% endblock %}
