@@ -87,7 +87,7 @@
         
         <!-- Full-Stack -->
         {% if user.is_premium %}
-        <div class="card" style="padding:0;overflow:hidden;border-color:#6366f1;">
+        <a href="/courses/fullstack-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#6366f1;">
         {% else %}
         <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
         {% endif %}
@@ -109,11 +109,11 @@
                     <span>📄 18 Sections</span><span>⏱ 12h</span><span>⚡ 800 XP</span>
                 </div>
             </div>
-        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        {% endif %}</a>
         
         <!-- UI/UX -->
         {% if user.is_premium %}
-        <div class="card" style="padding:0;overflow:hidden;border-color:#ec4899;">
+        <a href="/courses/uiux-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#ec4899;">
         {% else %}
         <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
         {% endif %}
@@ -135,11 +135,11 @@
                     <span>📄 10 Sections</span><span>⏱ 6h</span><span>⚡ 500 XP</span>
                 </div>
             </div>
-        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        {% endif %}</a>
         
         <!-- React -->
         {% if user.is_premium %}
-        <div class="card" style="padding:0;overflow:hidden;border-color:#61dafb;">
+        <a href="/courses/react-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#61dafb;">
         {% else %}
         <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
         {% endif %}
@@ -161,11 +161,11 @@
                     <span>📄 15 Sections</span><span>⏱ 10h</span><span>⚡ 700 XP</span>
                 </div>
             </div>
-        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        {% endif %}</a>
         
         <!-- Python -->
         {% if user.is_premium %}
-        <div class="card" style="padding:0;overflow:hidden;border-color:#3776AB;">
+        <a href="/courses/python-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#3776AB;">
         {% else %}
         <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
         {% endif %}
@@ -187,11 +187,11 @@
                     <span>📄 12 Sections</span><span>⏱ 8h</span><span>⚡ 600 XP</span>
                 </div>
             </div>
-        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        {% endif %}</a>
         
         <!-- Cybersecurity -->
         {% if user.is_premium %}
-        <div class="card" style="padding:0;overflow:hidden;border-color:#ef4444;">
+        <a href="/courses/cybersecurity-full/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;border-color:#ef4444;">
         {% else %}
         <a href="/pricing/" class="card" style="padding:0;text-decoration:none;display:block;overflow:hidden;position:relative;">
         {% endif %}
@@ -213,7 +213,7 @@
                     <span>📄 10 Sections</span><span>⏱ 6h</span><span>⚡ 500 XP</span>
                 </div>
             </div>
-        {% if not user.is_premium %}</a>{% else %}</div>{% endif %}
+        {% endif %}</a>
     </div>
     
     <!-- PRO CTA -->
