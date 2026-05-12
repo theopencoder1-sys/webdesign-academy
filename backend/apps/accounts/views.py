@@ -51,6 +51,9 @@ def signup_view(request):
         
         gmail_url = f'https://mail.google.com/mail/u/0/#search/{email}'
         
+        login(request, user)
+        messages.success(request, 'Account created! Check your email to verify.')
+        return redirect('dashboard')
         return render(request, 'auth/check_email.html', {
             'email': email,
             'gmail_url': gmail_url,
@@ -80,9 +83,6 @@ def login_view(request):
         password = request.POST.get('password', '')
         user = authenticate(request, email=email, password=password)
         if user:
-            if not user.email_verified:
-                messages.error(request, 'Please verify your email first. Check your inbox!')
-                return render(request, 'auth/login.html')
             login(request, user)
             user.update_streak()
             return redirect('dashboard')
@@ -109,7 +109,10 @@ def resend_verification(request):
         send_mail('Verify Email', f'Click: {verify_link}', settings.DEFAULT_FROM_EMAIL, [request.user.email])
     except:
         pass
-    return render(request, 'auth/check_email.html', {'email': request.user.email, 'gmail_url': f'https://mail.google.com/mail/u/0/#search/{request.user.email}', 'verify_link': verify_link})
+    login(request, user)
+        messages.success(request, 'Account created! Check your email to verify.')
+        return redirect('dashboard')
+        return render(request, 'auth/check_email.html', {'email': request.user.email, 'gmail_url': f'https://mail.google.com/mail/u/0/#search/{request.user.email}', 'verify_link': verify_link})
 
 def forgot_password(request):
     if request.method == 'POST':
