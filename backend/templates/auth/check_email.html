@@ -7,19 +7,25 @@
     <p style="color:#9ca3af;font-size:1.1rem;">Verification link sent to:</p>
     <p style="color:#818cf8;font-size:1.2rem;font-weight:600;">{{ email }}</p>
     
-    <p style="color:#10b981;margin:1.5rem 0;">✅ Gmail opened in a new tab. Check your inbox!</p>
-    <p style="color:#6b7280;font-size:0.85rem;">Click the verification link in the email to activate your account.</p>
+    <div style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:12px;padding:1rem;margin:1.5rem 0;">
+        <p style="color:#f59e0b;font-weight:600;">⚠️ Check your SPAM folder!</p>
+        <p style="color:#d1d5db;font-size:0.85rem;">If you don't see the email, check spam and mark as "Not Spam"</p>
+    </div>
     
-    <a href="{{ gmail_url }}" target="_blank" id="gmailLink"
-       style="display:inline-block;margin:1.5rem 0;padding:1rem 2rem;background:#ea4335;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-size:1.1rem;">
-       📧 Open Gmail Again
+    <a href="{{ gmail_url }}" target="_blank"
+       style="display:inline-block;margin:1rem 0;padding:1rem 2rem;background:#ea4335;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-size:1.1rem;">
+       📧 Open Gmail
     </a>
     
-    <p style="color:#6b7280;font-size:0.8rem;">Didn't receive it? Check spam folder.</p>
+    {% if verify_link %}
+    <div style="margin-top:2rem;padding:1rem;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;">
+        <p style="color:#10b981;font-size:0.8rem;">🔧 Quick Verify:</p>
+        <a href="{{ verify_link }}" style="color:#818cf8;font-size:0.85rem;">Click here to verify directly</a>
+    </div>
+    {% endif %}
 </div>
 
 <script>
-// Auto-open Gmail in new tab
 window.open('{{ gmail_url }}', '_blank');
 </script>
 {% endblock %}
