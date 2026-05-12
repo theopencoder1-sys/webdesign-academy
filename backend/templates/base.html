@@ -154,6 +154,8 @@
         }
     </style>
     {% block extra_head %}{% endblock %}
+
+    <link rel="stylesheet" href="/static/css/responsive.css">
 </head>
 <body>
 {% csrf_token %}
@@ -188,6 +190,26 @@
         </div>
     </div>
 </nav>
+
+<!-- Mobile Menu Button -->
+<button class="nav-mobile" onclick="toggleMobileMenu()" style="display:none;position:fixed;top:16px;right:16px;z-index:1001;background:#6366f1;color:white;border:none;width:44px;height:44px;border-radius:12px;font-size:1.5rem;cursor:pointer;">
+    ☰
+</button>
+
+<script>
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav-links');
+    const btn = document.querySelector('.nav-mobile');
+    if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+        btn.textContent = '☰';
+    } else {
+        nav.style.display = 'flex';
+        btn.textContent = '✕';
+    }
+}
+</script>
+
     
     <div style="height:64px;"></div>
     

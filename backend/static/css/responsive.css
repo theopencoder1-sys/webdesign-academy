@@ -1,0 +1,198 @@
+/* ==========================================
+   WEBDESIGN ACADEMY - Responsive Styles
+   ========================================== */
+
+/* Mobile First Breakpoints */
+/* Small phones: 0 - 480px */
+/* Large phones: 481px - 768px */
+/* Tablets: 769px - 1024px */
+/* Laptops: 1025px - 1440px */
+/* Desktop: 1441px+ */
+
+/* ===== MOBILE STYLES (default) ===== */
+
+/* Make all cards full width on mobile */
+.card {
+    width: 100%;
+}
+
+/* Responsive Grid */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+/* Navbar Mobile */
+@media (max-width: 768px) {
+    /* Hide desktop nav items */
+    .nav-desktop { display: none !important; }
+    
+    /* Show mobile menu button */
+    .nav-mobile { display: flex !important; }
+    
+    /* Smaller logo */
+    .logo-text { font-size: 1rem !important; }
+    
+    /* Stack nav links */
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+    
+    /* Full width buttons */
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Smaller headings */
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.4rem !important; }
+    h3 { font-size: 1.1rem !important; }
+    
+    /* Padding adjustments */
+    section {
+        padding: 2rem 1rem !important;
+    }
+    
+    /* Hero section */
+    .hero-title {
+        font-size: 2rem !important;
+    }
+    
+    /* Course cards */
+    .course-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Dashboard */
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Stats cards */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Hide sidebar */
+    .sidebar { display: none !important; }
+    
+    /* Chatbot widget */
+    #chatWindow {
+        width: 100% !important;
+        height: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    /* Pricing cards */
+    .pricing-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Form inputs */
+    input, textarea, select {
+        font-size: 16px !important; /* Prevent iOS zoom */
+    }
+    
+    /* Footer */
+    footer {
+        text-align: center;
+    }
+    
+    footer .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ===== TABLET STYLES ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .course-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    h1 { font-size: 2.2rem !important; }
+}
+
+/* ===== LAPTOP/DESKTOP STYLES ===== */
+@media (min-width: 1025px) {
+    .course-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.hide-mobile {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .hide-mobile { display: block; }
+    .show-mobile { display: none !important; }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Touch-friendly buttons */
+@media (max-width: 768px) {
+    .btn, button {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+    
+    a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* Prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 0.5rem !important;
+    }
+}
