@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}Python Programming - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="background:linear-gradient(135deg,#3776AB,#FFD43B);padding:4rem 1.5rem;text-align:center;">
+    <h1 style="font-size:3rem;font-weight:900;color:white;margin-bottom:1rem;">🐍 Python Programming</h1>
+    <p style="color:rgba(255,255,255,0.9);font-size:1.2rem;">OOP, data structures, automation, web scraping, APIs.</p>
+    <span class="badge badge-premium" style="font-size:0.9rem;">🔒 PRO COURSE</span>
+</div>
+
+<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+
+<section class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="color:white;font-size:2rem;border-bottom:2px solid #3776AB;padding-bottom:0.5rem;">Python Basics</h2>
+    
+    <div style="background:#0a0a0a;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code># Variables & Data Types
+name = "Brian"          # String
+age = 25                # Integer
+price = 99.99          # Float
+is_student = True      # Boolean
+skills = ["HTML", "CSS", "Python"]  # List
+user = {"name": "Brian", "city": "Nairobi"}  # Dictionary
+
+# Functions
+def greet(name):
+    return f"Hello, {name}! Welcome to Python."
+
+print(greet("Brian"))  # Hello, Brian! Welcome to Python.
+
+# Classes (OOP)
+class WebDeveloper:
+    def __init__(self, name, stack):
+        self.name = name
+        self.stack = stack
+    
+    def code(self):
+        return f"{self.name} is coding in {self.stack}"
+
+dev = WebDeveloper("Brian", "Python/Django")
+print(dev.code())  # Brian is coding in Python/Django
+
+# List Comprehension
+squares = [x**2 for x in range(10)]  # [0,1,4,9,16,25,36,49,64,81]
+
+# File Handling
+with open('data.txt', 'w') as f:
+    f.write('Hello from Python!')
+
+# Error Handling
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")</code></pre>
+    </div>
+</section>
+
+<section class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="color:white;font-size:2rem;border-bottom:2px solid #3776AB;padding-bottom:0.5rem;">Web Scraping with Python</h2>
+    
+    <div style="background:#0a0a0a;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code>import requests
+from bs4 import BeautifulSoup
+
+# Scrape a website
+url = "https://example.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Find all headings
+headings = soup.find_all(['h1', 'h2', 'h3'])
+for h in headings:
+    print(h.text.strip())
+
+# Find all links
+links = soup.find_all('a')
+for link in links:
+    print(link.get('href'))
+
+# Scrape job listings
+jobs = soup.find_all('div', class_='job-listing')
+for job in jobs:
+    title = job.find('h3').text
+    company = job.find('span', class_='company').text
+    print(f"{title} at {company}")</code></pre>
+    </div>
+</section>
+
+<section class="card" style="padding:2rem;margin-bottom:2rem;">
+    <h2 style="color:white;font-size:2rem;border-bottom:2px solid #3776AB;padding-bottom:0.5rem;">Automation with Python</h2>
+    
+    <div style="background:#0a0a0a;border-radius:12px;margin:1rem 0;overflow:hidden;">
+        <pre style="padding:1rem;"><code># Automate file organization
+import os
+import shutil
+
+def organize_files(folder):
+    for filename in os.listdir(folder):
+        ext = filename.split('.')[-1]
+        ext_folder = os.path.join(folder, ext)
+        if not os.path.exists(ext_folder):
+            os.makedirs(ext_folder)
+        shutil.move(
+            os.path.join(folder, filename),
+            os.path.join(ext_folder, filename)
+        )
+
+# Send automated emails
+import smtplib
+from email.mime.text import MIMEText
+
+def send_email(to, subject, body):
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = 'you@gmail.com'
+    msg['To'] = to
+    
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        server.starttls()
+        server.login('you@gmail.com', 'app-password')
+        server.send_message(msg)
+
+# Automate Excel/CSV
+import pandas as pd
+data = pd.read_csv('data.csv')
+data['total'] = data['price'] * data['quantity']
+data.to_excel('report.xlsx', index=False)</code></pre>
+    </div>
+</section>
+
+<div style="background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);border-radius:12px;padding:2rem;text-align:center;margin:2rem 0;">
+    <h3 style="color:#10b981;font-size:1.5rem;">🎉 Course Complete!</h3>
+    <p style="color:#d1d5db;">You now know Python for web development, automation, and data!</p>
+</div>
+</div>
+{% endblock %}

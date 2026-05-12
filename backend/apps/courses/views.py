@@ -55,3 +55,33 @@ def certificate(request, course_slug):
         'date': today,
         'cert_id': cert_id
     })
+
+@login_required
+def fullstack_full(request):
+    if not request.user.is_premium:
+        return render(request, 'courses/premium_gate.html', {'course': 'Full-Stack Developer'})
+    return render(request, 'courses/pro/fullstack.html')
+
+@login_required
+def python_full(request):
+    if not request.user.is_premium:
+        return render(request, 'courses/premium_gate.html', {'course': 'Python Programming'})
+    return render(request, 'courses/pro/python.html')
+
+@login_required
+def react_full(request):
+    if not request.user.is_premium:
+        return render(request, 'courses/premium_gate.html', {'course': 'React.js Masterclass'})
+    return render(request, 'courses/pro/react.html')
+
+@login_required
+def uiux_full(request):
+    if not request.user.is_premium:
+        return render(request, 'courses/premium_gate.html', {'course': 'UI/UX Design'})
+    return render(request, 'courses/pro/uiux.html')
+
+@login_required
+def cybersecurity_full(request):
+    if not request.user.is_premium:
+        return render(request, 'courses/premium_gate.html', {'course': 'Cybersecurity'})
+    return render(request, 'courses/pro/cybersecurity.html')

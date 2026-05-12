@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}React.js Masterclass - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="background:linear-gradient(135deg,#61dafb,#2c89a0);padding:4rem 1.5rem;text-align:center;">
+    <h1 style="font-size:3rem;font-weight:900;color:#000;margin-bottom:1rem;">⚛️ React.js Masterclass</h1>
+    <p style="color:rgba(0,0,0,0.8);font-size:1.2rem;">Components, Hooks, State, Redux, Next.js, Firebase.</p>
+    <span class="badge badge-premium" style="font-size:0.9rem;">🔒 PRO COURSE</span>
+</div>
+
+<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+    <div class="card" style="padding:2rem;margin-bottom:2rem;">
+        <h2 style="color:white;">React Components & JSX</h2>
+        <div style="background:#0a0a0a;border-radius:12px;margin:1rem 0;overflow:hidden;">
+            <pre style="padding:1rem;"><code>// Functional Component
+function Welcome({ name }) {
+    return <h1>Hello, {name}!</h1>;
+}
+
+// Component with State (useState Hook)
+import { useState } from 'react';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>+</button>
+        </div>
+    );
+}
+
+// useEffect Hook (API calls)
+import { useState, useEffect } from 'react';
+
+function UserList() {
+    const [users, setUsers] = useState([]);
+    
+    useEffect(() => {
+        fetch('/api/users/')
+            .then(res => res.json())
+            .then(data => setUsers(data));
+    }, []);
+    
+    return (
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>{user.name}</li>
+            ))}
+        </ul>
+    );
+}</code></pre>
+        </div>
+    </div>
+    
+    <div style="background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);border-radius:12px;padding:2rem;text-align:center;margin:2rem 0;">
+        <h3 style="color:#10b981;">🎉 React Mastery!</h3>
+        <p style="color:#d1d5db;">Build modern, interactive user interfaces!</p>
+    </div>
+</div>
+{% endblock %}
