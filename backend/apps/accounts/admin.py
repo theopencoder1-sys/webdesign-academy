@@ -6,10 +6,18 @@ from django.http import HttpResponseRedirect
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ['email', 'username', 'email_verified', 'is_active', 'is_premium', 'xp', 'date_joined']
-    list_filter = ['email_verified', 'is_active', 'is_premium', 'date_joined']
+    list_display = ['email', 'username', 'email_verified', 'is_active', 'xp', 'streak', 'date_joined']
+    list_filter = ['email_verified', 'is_active', 'is_staff', 'date_joined']
     search_fields = ['email', 'username']
     ordering = ['-date_joined']
+    
+    fieldsets = BaseUserAdmin.fieldsets + (
+        ('Verification', {'fields': ('email_verified', 'email_verified_at', 'verification_token')}),
+        ('Gamification', {'fields': ('xp', 'level', 'streak', 'longest_streak')}),
+        ('Profile', {'fields': ('bio', 'avatar', 'title', 'website', 'github_username')}),
+    )
+    
+    readonly_fields = ['email_verified_at']
     
     actions = ['verify_users', 'delete_with_goodbye']
     
