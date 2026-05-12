@@ -30,7 +30,7 @@ def signup_view(request):
             return render(request, 'auth/signup.html')
         
         user = User.objects.create_user(email=email, username=username, password=password)
-        user.is_active = True
+        user.is_active = False
         user.verification_token = str(uuid.uuid4())
         user.save()
         
@@ -63,6 +63,7 @@ def verify_email(request, token):
     try:
         user = User.objects.get(verification_token=token)
         user.email_verified = True
+        user.is_active = True
         user.verification_token = None
         user.email_verified_at = timezone.now()
         user.save()
@@ -79,6 +80,9 @@ def login_view(request):
         password = request.POST.get('password', '')
         user = authenticate(request, email=email, password=password)
         if user:
+            if not user.email_verified:
+                messages.error(request, 'Please verify your email first. Check your inbox!')
+                return render(request, 'auth/login.html')
             login(request, user)
             user.update_streak()
             return redirect('dashboard')
