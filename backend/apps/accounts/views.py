@@ -151,3 +151,7 @@ def reset_password(request, token):
         messages.success(request, 'Password reset! Please login.')
         return redirect('login')
     return render(request, 'auth/reset_password.html', {'token': token})
+
+
+def goodbye(request):
+    return render(request, 'auth/goodbye.html')

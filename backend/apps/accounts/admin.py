@@ -17,3 +17,13 @@ class BadgeAdmin(admin.ModelAdmin):
 @admin.register(UserBadge)
 class UserBadgeAdmin(admin.ModelAdmin):
     list_display = ['user', 'badge', 'earned_at']
+
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
+def delete_user_and_redirect(modeladmin, request, queryset):
+    for user in queryset:
+        user.delete()
+    return HttpResponseRedirect(reverse('goodbye'))
+
+delete_user_and_redirect.short_description = "Delete selected users & show goodbye"
