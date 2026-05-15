@@ -22,6 +22,7 @@ urlpatterns = [
     path('career/freelance/', TemplateView.as_view(template_name='career/freelance.html'), name='freelance_guide'),
     path('career/pro-hub/', TemplateView.as_view(template_name='career/pro_hub.html'), name='pro_hub'),
 
+    path('quiz/', include('apps.quiz.urls')),
     path('community/', include('apps.community.urls')),
 ]
 

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Results - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:600px;margin:3rem auto;padding:2rem;text-align:center;">
+    
+    {% if passed %}
+    <div style="font-size:5rem;">🎉</div>
+    <h1 style="font-size:2rem;font-weight:800;color:#10b981;margin:1rem 0;">Congratulations! You Passed!</h1>
+    {% else %}
+    <div style="font-size:5rem;">📚</div>
+    <h1 style="font-size:2rem;font-weight:800;color:#f59e0b;margin:1rem 0;">Keep Practicing!</h1>
+    <p style="color:#9ca3af;">You need {{ quiz.passing_score }}% to pass. Try again!</p>
+    {% endif %}
+    
+    <div class="card" style="padding:2rem;margin:2rem 0;">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+            <div>
+                <div style="font-size:2rem;font-weight:800;color:white;">{{ score }}%</div>
+                <div style="color:#9ca3af;font-size:0.85rem;">Score</div>
+            </div>
+            <div>
+                <div style="font-size:2rem;font-weight:800;color:white;">{{ correct }}/{{ total }}</div>
+                <div style="color:#9ca3af;font-size:0.85rem;">Correct</div>
+            </div>
+            <div>
+                <div style="font-size:2rem;font-weight:800;color:#818cf8;">+{% if passed %}50{% else %}10{% endif %} XP</div>
+                <div style="color:#9ca3af;font-size:0.85rem;">Earned</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/quiz/take/{{ quiz.id }}/" class="btn btn-primary">Retake Quiz 🔄</a>
+        <a href="/quiz/" class="btn btn-outline">More Quizzes 📝</a>
+        <a href="/dashboard/" class="btn btn-outline">Dashboard 📊</a>
+    </div>
+</div>
+{% endblock %}

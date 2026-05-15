@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Self-Assessment Quizzes - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:1000px;margin:3rem auto;padding:0 1.5rem;">
+    <div style="text-align:center;margin-bottom:3rem;">
+        <h1 style="font-size:2.5rem;font-weight:800;color:white;">🧠 Self-Assessment Quizzes</h1>
+        <p style="color:#9ca3af;font-size:1.1rem;">Test your knowledge. Track your progress. Get certified!</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+        {% for quiz in quizzes %}
+        <a href="/quiz/take/{{ quiz.id }}/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2rem;">📝</div>
+            <h3 style="color:white;margin:1rem 0 0.5rem;">{{ quiz.title }}</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;margin-bottom:1rem;">{{ quiz.description }}</p>
+            <div style="display:flex;gap:1rem;font-size:0.8rem;">
+                <span style="background:#1f2937;color:#818cf8;padding:0.3rem 0.8rem;border-radius:20px;">{{ quiz.get_difficulty_display }}</span>
+                <span style="background:#1f2937;color:#9ca3af;padding:0.3rem 0.8rem;border-radius:20px;">📄 {{ quiz.question_count }} Questions</span>
+                <span style="background:#1f2937;color:#9ca3af;padding:0.3rem 0.8rem;border-radius:20px;">✅ {{ quiz.passing_score }}% Pass</span>
+            </div>
+        </a>
+        {% empty %}
+        <p style="color:#9ca3af;">No quizzes available yet. Check back soon!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

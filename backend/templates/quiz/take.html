@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}{{ quiz.title }} - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2rem;font-weight:800;color:white;margin-bottom:0.5rem;">📝 {{ quiz.title }}</h1>
+    <p style="color:#9ca3af;margin-bottom:2rem;">{{ quiz.question_count }} Questions • Passing Score: {{ quiz.passing_score }}%</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        {% for question in questions %}
+        <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+            <h3 style="color:white;margin-bottom:1rem;">{{ forloop.counter }}. {{ question.text }}</h3>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                {% for choice in question.choices.all %}
+                <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:#0a0a0a;border:1px solid #1f2937;border-radius:8px;cursor:pointer;transition:all 0.2s;" 
+                       onmouseover="this.style.borderColor='#6366f1'" onmouseout="this.style.borderColor='#1f2937'">
+                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required 
+                           style="accent-color:#6366f1;width:18px;height:18px;">
+                    <span style="color:#d1d5db;">{{ choice.text }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Answers 📤</button>
+    </form>
+</div>
+{% endblock %}
