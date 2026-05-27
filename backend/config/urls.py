@@ -3,6 +3,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from apps.courses import search_views
+from apps.accounts import leaderboard_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +25,9 @@ urlpatterns = [
     path('career/pro-hub/', TemplateView.as_view(template_name='career/pro_hub.html'), name='pro_hub'),
 
     path('quiz/', include('apps.quiz.urls')),
+    path('leaderboard/', leaderboard_views.leaderboard, name='leaderboard'),
+    path('cheatsheets/', TemplateView.as_view(template_name='cheatsheets.html'), name='cheatsheets'),
+    path('search/', search_views.search, name='search'),
     path('community/', include('apps.community.urls')),
 ]
 

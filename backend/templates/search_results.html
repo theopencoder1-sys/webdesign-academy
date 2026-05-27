@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Search Results - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+    <form method="GET" action="/search/" style="margin-bottom:2rem;">
+        <div style="display:flex;gap:0.5rem;">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search courses, lessons, projects..." 
+                   style="flex:1;padding:1rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1.1rem;">
+            <button type="submit" class="btn btn-primary" style="padding:1rem 2rem;">🔍 Search</button>
+        </div>
+    </form>
+    
+    {% if query %}
+    <p style="color:#9ca3af;margin-bottom:1.5rem;">Found {{ total }} results for "{{ query }}"</p>
+    
+    {% if results.courses %}
+    <h2 style="color:white;margin-bottom:1rem;">📚 Courses</h2>
+    {% for course in results.courses %}
+    <a href="/courses/{{ course.slug }}/" class="card" style="padding:1.5rem;margin-bottom:0.75rem;display:block;text-decoration:none;">
+        <h3 style="color:white;">{{ course.title }}</h3>
+        <p style="color:#9ca3af;">{{ course.short_description }}</p>
+    </a>
+    {% endfor %}
+    {% endif %}
+    
+    {% if results.lessons %}
+    <h2 style="color:white;margin:1.5rem 0 1rem;">📝 Lessons</h2>
+    {% for lesson in results.lessons %}
+    <a href="/courses/{{ lesson.module.course.slug }}/{{ lesson.slug }}/" class="card" style="padding:1rem;margin-bottom:0.5rem;display:block;text-decoration:none;">
+        <p style="color:white;">{{ lesson.title }}</p>
+        <p style="color:#6b7280;font-size:0.85rem;">{{ lesson.module.course.title }} → {{ lesson.module.title }}</p>
+    </a>
+    {% endfor %}
+    {% endif %}
+    
+    {% if results.projects %}
+    <h2 style="color:white;margin:1.5rem 0 1rem;">🎨 Projects</h2>
+    {% for project in results.projects %}
+    <a href="/projects/{{ project.slug }}/" class="card" style="padding:1rem;margin-bottom:0.5rem;display:block;text-decoration:none;">
+        <p style="color:white;">{{ project.title }}</p>
+        <p style="color:#9ca3af;font-size:0.85rem;">by {{ project.user.username }}</p>
+    </a>
+    {% endfor %}
+    {% endif %}
+    
+    {% if total == 0 %}
+    <p style="color:#9ca3af;text-align:center;padding:3rem;">No results found. Try different keywords!</p>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

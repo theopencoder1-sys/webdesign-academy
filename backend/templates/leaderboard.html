@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Leaderboard - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2.5rem;font-weight:800;color:white;text-align:center;margin-bottom:2rem;">🏆 Leaderboard</h1>
+    <p style="color:#9ca3af;text-align:center;margin-bottom:2rem;">Top 50 learners by XP</p>
+    
+    {% for user in top_learners %}
+    <div class="card" style="padding:1rem 1.5rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:1rem;">
+        <div style="font-size:1.5rem;font-weight:800;color:{% if forloop.counter == 1 %}#f59e0b{% elif forloop.counter == 2 %}#9ca3af{% elif forloop.counter == 3 %}#cd7f32{% else %}#6b7280{% endif %};width:40px;">
+            #{{ forloop.counter }}
+        </div>
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;">
+            {{ user.username|slice:":1"|upper }}
+        </div>
+        <div style="flex:1;">
+            <p style="color:white;font-weight:600;">{{ user.username }}</p>
+            <p style="color:#9ca3af;font-size:0.8rem;">Level {{ user.level }} • {{ user.earned_badges.count }} badges</p>
+        </div>
+        <div style="text-align:right;">
+            <p style="color:#f59e0b;font-weight:700;">⚡ {{ user.xp }} XP</p>
+            <p style="color:#9ca3af;font-size:0.75rem;">🔥 {{ user.streak }} day streak</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

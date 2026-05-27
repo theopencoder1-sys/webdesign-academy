@@ -156,6 +156,28 @@
     {% block extra_head %}{% endblock %}
 
     <link rel="stylesheet" href="/static/css/responsive.css">
+
+<style>
+:root {
+    --bg: #030712;
+    --card: #111827;
+    --border: #1f2937;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+}
+.light-mode {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --text-muted: #6b7280;
+}
+.light-mode body { background: var(--bg); color: var(--text); }
+.light-mode .card { background: var(--card); border-color: var(--border); }
+.light-mode input, .light-mode textarea, .light-mode select { background: #f3f4f6; color: #111; border-color: #d1d5db; }
+.light-mode .glass { background: rgba(255,255,255,0.9); border-bottom: 1px solid #e5e7eb; }
+</style>
+
 </head>
 <body>
 {% csrf_token %}
@@ -189,6 +211,9 @@
             {% endif %}
         </div>
     </div>
+
+<button onclick="toggleTheme()" id="themeToggle" style="background:#1f2937;color:#f59e0b;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;">🌙</button>
+
 </nav>
 
 <!-- Mobile Menu Button -->
@@ -255,5 +280,25 @@ function toggleMobileMenu() {
     {% block extra_scripts %}{% endblock %}
 
 {% include 'includes/chatbot_widget.html' %}
+
+<script>
+function toggleTheme() {
+    document.documentElement.classList.toggle('light-mode');
+    const btn = document.getElementById('themeToggle');
+    if (document.documentElement.classList.contains('light-mode')) {
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+// Load saved theme
+if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.classList.add('light-mode');
+    document.getElementById('themeToggle').textContent = '☀️';
+}
+</script>
+
 </body>
 </html>
