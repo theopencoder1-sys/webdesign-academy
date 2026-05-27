@@ -27,6 +27,7 @@ urlpatterns = [
     path('quiz/', include('apps.quiz.urls')),
     path('leaderboard/', leaderboard_views.leaderboard, name='leaderboard'),
     path('cheatsheets/', TemplateView.as_view(template_name='cheatsheets.html'), name='cheatsheets'),
+    path('blog/', TemplateView.as_view(template_name='blog/list.html'), name='blog'),
     path('search/', search_views.search, name='search'),
     path('community/', include('apps.community.urls')),
 ]

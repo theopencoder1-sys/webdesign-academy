@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -12,6 +13,12 @@ def quiz_list(request):
 @login_required
 def take_quiz(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id, is_published=True)
+    
+    # PRO-only gate for advanced quizzes
+    if quiz.difficulty == 'advanced' and not request.user.is_premium:
+        messages.error(request, 'Advanced quizzes are for PRO members only! Upgrade now!')
+        return redirect('pricing')
+    
     questions = quiz.questions.all().prefetch_related('choices')
     
     if request.method == 'POST':
