@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Certificate Verification - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:600px;margin:4rem auto;padding:2rem;text-align:center;">
+    <div style="font-size:4rem;">🔍</div>
+    <h1 style="font-size:2rem;font-weight:800;color:white;margin:1rem 0;">Certificate Verification</h1>
+    <p style="color:#9ca3af;margin-bottom:2rem;">Enter a certificate ID to verify its authenticity.</p>
+    
+    <form method="GET" action="/verify-certificate/">
+        <input type="text" name="cert_id" placeholder="e.g., WD-HTML-1-20250512" required 
+               style="width:100%;padding:1rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1.1rem;text-align:center;margin-bottom:1rem;">
+        <button type="submit" class="btn btn-primary" style="width:100%;">Verify Certificate 🔍</button>
+    </form>
+    
+    {% if cert_info %}
+    <div class="card" style="padding:2rem;margin-top:2rem;background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3);">
+        <div style="font-size:3rem;">✅</div>
+        <h2 style="color:#10b981;margin:1rem 0;">Certificate Valid!</h2>
+        <p style="color:white;"><strong>Student:</strong> {{ cert_info.user }}</p>
+        <p style="color:white;"><strong>Course:</strong> {{ cert_info.course }}</p>
+        <p style="color:white;"><strong>Date:</strong> {{ cert_info.date }}</p>
+        <p style="color:white;"><strong>ID:</strong> {{ cert_info.id }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

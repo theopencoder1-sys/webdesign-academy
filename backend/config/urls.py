@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from apps.courses import search_views
 from apps.accounts import leaderboard_views
+from apps.mentorship import views as mentorship_views
 from apps.accounts import broadcast_views
 
 urlpatterns = [
@@ -27,6 +28,8 @@ urlpatterns = [
 
     path('quiz/', include('apps.quiz.urls')),
     path('admin/broadcast/', broadcast_views.broadcast_email, name='broadcast_email'),
+    path('verify-certificate/', TemplateView.as_view(template_name='certificate_verify.html'), name='verify_certificate'),
+    path('mentorship/', include('apps.mentorship.urls')),
     path('leaderboard/', leaderboard_views.leaderboard, name='leaderboard'),
     path('cheatsheets/', TemplateView.as_view(template_name='cheatsheets.html'), name='cheatsheets'),
     path('blog/', TemplateView.as_view(template_name='blog/list.html'), name='blog'),

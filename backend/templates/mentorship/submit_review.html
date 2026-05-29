@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Submit Code for Review - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:600px;margin:3rem auto;padding:2rem;">
+    <h1 style="font-size:2rem;font-weight:800;color:white;">🔍 Submit Code for Review</h1>
+    <form method="POST" class="card" style="padding:2rem;margin-top:1rem;">
+        {% csrf_token %}
+        <label style="color:#9ca3af;">Project Title</label>
+        <input type="text" name="title" placeholder="My Portfolio Website" required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        <label style="color:#9ca3af;">Description</label>
+        <textarea name="description" rows="3" placeholder="What does your project do? What technologies?" style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;"></textarea>
+        <label style="color:#9ca3af;">GitHub / Code Link</label>
+        <input type="url" name="code_link" placeholder="https://github.com/yourname/project" required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit for Review 🚀</button>
+    </form>
+</div>
+{% endblock %}
