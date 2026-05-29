@@ -1,404 +1,306 @@
 {% extends 'base.html' %}
 {% block title %}Full-Stack Developer PRO - WebDesign Academy{% endblock %}
+{% block extra_head %}
+<style>
+@keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideInLeft { from { opacity:0; transform:translateX(-50px); } to { opacity:1; transform:translateX(0); } }
+@keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+.animate-in { animation: fadeInUp 0.6s ease forwards; opacity:0; }
+.delay-1 { animation-delay:0.1s; } .delay-2 { animation-delay:0.2s; } .delay-3 { animation-delay:0.3s; }
+.delay-4 { animation-delay:0.4s; } .delay-5 { animation-delay:0.5s; }
+.interactive-demo { transition: all 0.3s ease; cursor: pointer; }
+.interactive-demo:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(99,102,241,0.3); }
+.code-block { background:#0a0a0a; border-radius:12px; padding:1.5rem; margin:1rem 0; overflow-x:auto; position:relative; }
+.code-block::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(99,102,241,0.1),transparent); animation: shimmer 3s infinite; }
+@keyframes shimmer { 100% { left:100%; } }
+</style>
+{% endblock %}
+
 {% block content %}
 
-<div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:3rem 1.5rem;text-align:center;">
-    <h1 style="font-size:2.5rem;font-weight:900;color:white;">🚀 Full-Stack Developer PRO</h1>
-    <p style="color:rgba(255,255,255,0.9);font-size:1.1rem;">Django • Python • REST APIs • PostgreSQL • Docker • Deployment</p>
-    <span class="badge badge-premium" style="font-size:0.9rem;">⭐ PRO COURSE</span>
-    <span style="color:rgba(255,255,255,0.8);margin-left:0.5rem;">18 Sections • 12 Hours • 800 XP</span>
+<!-- HERO -->
+<div style="background:linear-gradient(135deg,#1a0033,#6366f1,#8b5cf6);padding:4rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,0.2),transparent 60%);animation: pulse 4s ease-in-out infinite;"></div>
+    <div style="position:relative;z-index:1;">
+        <div style="font-size:4rem;" class="animate-in">🚀</div>
+        <h1 style="font-size:3.5rem;font-weight:900;color:white;margin:1rem 0;">Full-Stack Developer PRO</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:1.2rem;max-width:700px;margin:0 auto;">Django • Python • PostgreSQL • REST APIs • Docker • M-Pesa Integration • Deployment</p>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <span style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;">📚 20+ Sections</span>
+            <span style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;">⏱ 20+ Hours</span>
+            <span style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;">🏆 Certificate</span>
+            <span style="background:#f59e0b;color:white;padding:0.5rem 1rem;border-radius:20px;font-size:0.85rem;">⭐ PRO ONLY</span>
+        </div>
+    </div>
 </div>
 
-<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
+<div style="max-width:900px;margin:0 auto;padding:0 1.5rem;">
+
+<!-- QUICK NAV -->
+<div class="card animate-in" style="padding:1.5rem;margin:2rem 0;position:sticky;top:80px;z-index:10;background:rgba(17,24,39,0.95);backdrop-filter:blur(10px);">
+    <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:0.75rem;">⚡ Course Outline:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+        <a href="#what-is" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">1. What is Full-Stack?</a>
+        <a href="#environment" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">2. Dev Environment</a>
+        <a href="#django-intro" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">3. Django Intro</a>
+        <a href="#models" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">4. Models & DB</a>
+        <a href="#views" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">5. Views & URLs</a>
+        <a href="#templates" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">6. Templates</a>
+        <a href="#api" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">7. REST APIs</a>
+        <a href="#mpesa" style="background:#1f2937;color:#10b981;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">8. M-Pesa 🇰🇪</a>
+        <a href="#deploy" style="background:#1f2937;color:#818cf8;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">9. Deploy</a>
+        <a href="#project" style="background:#10b981;color:white;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.8rem;text-decoration:none;">🎯 Final Project</a>
+    </div>
+</div>
 
 <!-- SECTION 1: What is Full-Stack -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">1. What is Full-Stack Development?</h2>
-    <p style="color:#d1d5db;line-height:1.9;font-size:1.05rem;">
-        A Full-Stack Developer masters both <strong>frontend</strong> (what users see) and <strong>backend</strong> (server, database, logic). You can build complete web applications from start to finish — the most in-demand skill in tech.
+<div id="what-is" class="card animate-in delay-1" style="padding:2.5rem;margin-bottom:2rem;border-left:4px solid #6366f1;">
+    <h2 style="font-size:2.2rem;font-weight:800;color:white;margin-bottom:1.5rem;">🚀 What is Full-Stack Development?</h2>
+    
+    <p style="color:#d1d5db;font-size:1.1rem;line-height:1.9;">
+        A <strong style="color:#818cf8;">Full-Stack Developer</strong> can build BOTH the frontend (what users see) AND the backend (server, database, logic). You're not just designing pages — you're building complete, functional web applications.
     </p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;">
-        <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:1.5rem;">
-            <h3 style="color:#818cf8;">🎨 Frontend Stack</h3>
-            <p style="color:#d1d5db;font-size:0.9rem;">HTML5 • CSS3 • JavaScript • React.js • Tailwind CSS • Bootstrap • Responsive Design • DOM • Fetch API • Local Storage</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0;">
+        <div class="interactive-demo" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:2rem;">
+            <div style="font-size:2rem;">🎨</div>
+            <h3 style="color:#818cf8;margin:1rem 0;">Frontend</h3>
+            <ul style="color:#d1d5db;font-size:0.9rem;line-height:1.8;">
+                <li>HTML5, CSS3, JavaScript</li>
+                <li>React.js / Vue.js</li>
+                <li>Tailwind CSS</li>
+                <li>Responsive Design</li>
+                <li>DOM Manipulation</li>
+            </ul>
         </div>
-        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:1.5rem;">
-            <h3 style="color:#10b981;">⚙️ Backend Stack</h3>
-            <p style="color:#d1d5db;font-size:0.9rem;">Python • Django • Django REST Framework • PostgreSQL • Redis • Celery • Nginx • Gunicorn • Docker • AWS/GCP</p>
+        <div class="interactive-demo" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:16px;padding:2rem;">
+            <div style="font-size:2rem;">⚙️</div>
+            <h3 style="color:#10b981;margin:1rem 0;">Backend</h3>
+            <ul style="color:#d1d5db;font-size:0.9rem;line-height:1.8;">
+                <li>Python & Django</li>
+                <li>PostgreSQL Database</li>
+                <li>REST APIs</li>
+                <li>Authentication & Security</li>
+                <li>Docker & Deployment</li>
+            </ul>
         </div>
     </div>
-    <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:1rem;">
-        <strong style="color:#f59e0b;">💰 Kenya Salary:</strong> Junior Full-Stack: Ksh 80K-150K | Senior: Ksh 200K-400K | Remote: $3K-$8K/month
+
+    <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:1.5rem;margin-top:1rem;">
+        <strong style="color:#f59e0b;">💰 Kenya Career Impact:</strong>
+        <p style="color:#d1d5db;margin-top:0.5rem;">Junior Full-Stack: <strong>Ksh 80K-150K/month</strong> | Senior: <strong>Ksh 200K-400K/month</strong> | Remote International: <strong>$3,000-$8,000/month</strong></p>
     </div>
 </div>
 
-<!-- SECTION 2: Backend Deep Dive -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">2. Backend Development with Django</h2>
+<!-- SECTION 2: Development Environment -->
+<div id="environment" class="card animate-in delay-2" style="padding:2.5rem;margin-bottom:2rem;border-left:4px solid #10b981;">
+    <h2 style="font-size:2.2rem;font-weight:800;color:white;margin-bottom:1.5rem;">🛠️ Setting Up Your Development Environment</h2>
     
-    <h3 style="color:#818cf8;margin:1.5rem 0 0.5rem;">Django Project Structure:</h3>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
+    <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+        <h3 style="color:#10b981;">Step-by-Step Setup:</h3>
+        <ol style="color:#d1d5db;line-height:2;">
+            <li>Install <strong>Python 3.10+</strong> from python.org</li>
+            <li>Install <strong>VS Code</strong> from code.visualstudio.com</li>
+            <li>Open terminal and create project folder</li>
+            <li>Create virtual environment: <code>python -m venv venv</code></li>
+            <li>Activate it: <code>source venv/bin/activate</code> (Linux/Mac) or <code>venv\\Scripts\\activate</code> (Windows)</li>
+            <li>Install Django: <code>pip install django</code></li>
+            <li>Create project: <code>django-admin startproject myproject .</code></li>
+            <li>Run server: <code>python manage.py runserver</code></li>
+        </ol>
+    </div>
+    
+    <div class="code-block">
+        <pre style="color:#e5e7eb;font-size:0.9rem;"><code><span style="color:#9ca3af;"># Terminal commands</span>
+mkdir fullstack-project
+cd fullstack-project
+python3 -m venv venv
+source venv/bin/activate
+pip install django djangorestframework psycopg2-binary
+django-admin startproject config .
+python manage.py startapp blog
+python manage.py runserver
+
+<span style="color:#10b981;"># ✅ Visit http://127.0.0.1:8000/ — You should see Django\'s welcome page!</span></code></pre>
+    </div>
+</div>
+
+<!-- SECTION 3: Django Deep Dive -->
+<div id="django-intro" class="card animate-in delay-3" style="padding:2.5rem;margin-bottom:2rem;border-left:4px solid #8b5cf6;">
+    <h2 style="font-size:2.2rem;font-weight:800;color:white;margin-bottom:1.5rem;">🐍 Django - The Web Framework for Perfectionists</h2>
+    
+    <p style="color:#d1d5db;font-size:1.1rem;line-height:1.9;">
+        Django follows the <strong style="color:#8b5cf6;">MVT (Model-View-Template)</strong> architecture. Think of it as a factory that takes data (Model), processes it (View), and displays it (Template).
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;">
+        <div class="interactive-demo" style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">🗄️</div>
+            <h3 style="color:#8b5cf6;">Model</h3>
+            <p style="color:#d1d5db;font-size:0.85rem;">Database structure<br>Defines your data</p>
+        </div>
+        <div class="interactive-demo" style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">⚙️</div>
+            <h3 style="color:#8b5cf6;">View</h3>
+            <p style="color:#d1d5db;font-size:0.85rem;">Business logic<br>Processes requests</p>
+        </div>
+        <div class="interactive-demo" style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:12px;padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">🎨</div>
+            <h3 style="color:#8b5cf6;">Template</h3>
+            <p style="color:#d1d5db;font-size:0.85rem;">HTML display<br>What users see</p>
+        </div>
+    </div>
+
+    <h3 style="color:#8b5cf6;margin-top:1.5rem;">Django Project Structure:</h3>
+    <div class="code-block">
         <pre style="color:#e5e7eb;font-size:0.85rem;"><code>myproject/
-├── manage.py              # Entry point
-├── requirements.txt        # Dependencies
-├── .env                    # Secrets (NEVER commit!)
-├── myproject/
-│   ├── settings.py         # Configuration
-│   ├── urls.py             # Route definitions
-│   └── wsgi.py             # Production server
-├── apps/
-│   ├── accounts/           # User authentication
-│   ├── blog/               # Blog application
-│   ├── api/                # REST API
-│   └── payments/           # M-Pesa integration
-├── templates/              # HTML files
-├── static/                 # CSS, JS, images
-├── media/                  # User uploads
-└── Dockerfile              # Container setup</code></pre>
+├── manage.py              <span style="color:#9ca3af;"># Command-line tool</span>
+├── config/                <span style="color:#9ca3af;"># Project settings</span>
+│   ├── settings.py        <span style="color:#9ca3af;"># All configurations</span>
+│   ├── urls.py            <span style="color:#9ca3af;"># URL routing</span>
+│   └── wsgi.py            <span style="color:#9ca3af;"># Production server</span>
+├── apps/                  <span style="color:#9ca3af;"># Your applications</span>
+│   ├── blog/              <span style="color:#9ca3af;"># Blog app</span>
+│   │   ├── models.py      <span style="color:#9ca3af;"># Database models</span>
+│   │   ├── views.py       <span style="color:#9ca3af;"># Business logic</span>
+│   │   └── urls.py        <span style="color:#9ca3af;"># App URLs</span>
+│   └── accounts/          <span style="color:#9ca3af;"># User auth app</span>
+├── templates/             <span style="color:#9ca3af;"># HTML files</span>
+├── static/                <span style="color:#9ca3af;"># CSS, JS, images</span>
+└── db.sqlite3             <span style="color:#9ca3af;"># Database file</span></code></pre>
     </div>
+</div>
 
-    <h3 style="color:#818cf8;margin:1.5rem 0 0.5rem;">Django Models (Database):</h3>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>from django.db import models
-from django.contrib.auth.models import User
-from django.utils.text import slugify
-
-class BlogPost(models.Model):
-    STATUS = [('draft','Draft'),('published','Published')]
+<!-- SECTION 4: Models & Database -->
+<div id="models" class="card animate-in delay-4" style="padding:2.5rem;margin-bottom:2rem;border-left:4px solid #f59e0b;">
+    <h2 style="font-size:2.2rem;font-weight:800;color:white;margin-bottom:1.5rem;">🗄️ Models & Databases</h2>
     
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    <p style="color:#d1d5db;font-size:1.1rem;line-height:1.9;">
+        Models define your <strong>database structure</strong>. Django\'s ORM lets you work with databases using Python instead of SQL.
+    </p>
+
+    <div class="code-block">
+        <pre style="color:#e5e7eb;font-size:0.85rem;"><code><span style="color:#9ca3af;"># blog/models.py</span>
+<span style="color:#f59e0b;">from</span> django.db <span style="color:#f59e0b;">import</span> models
+<span style="color:#f59e0b;">from</span> django.contrib.auth.models <span style="color:#f59e0b;">import</span> User
+<span style="color:#f59e0b;">from</span> django.utils.text <span style="color:#f59e0b;">import</span> slugify
+
+<span style="color:#f59e0b;">class</span> <span style="color:#10b981;">BlogPost</span>(models.Model):
+    <span style="color:#818cf8;">STATUS</span> = [(<span style="color:#10b981;">'draft'</span>, <span style="color:#10b981;">'Draft'</span>), (<span style="color:#10b981;">'published'</span>, <span style="color:#10b981;">'Published'</span>)]
+    
+    title = models.CharField(<span style="color:#818cf8;">max_length</span>=<span style="color:#f59e0b;">200</span>)
+    slug = models.SlugField(<span style="color:#818cf8;">unique</span>=<span style="color:#f59e0b;">True</span>, <span style="color:#818cf8;">blank</span>=<span style="color:#f59e0b;">True</span>)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
-    featured_image = models.ImageField(upload_to='blog/')
-    status = models.CharField(max_length=10, choices=STATUS, default='draft')
-    views = models.PositiveIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User, <span style="color:#818cf8;">on_delete</span>=models.CASCADE)
+    featured_image = models.ImageField(<span style="color:#818cf8;">upload_to</span>=<span style="color:#10b981;">'blog/'</span>, <span style="color:#818cf8;">null</span>=<span style="color:#f59e0b;">True</span>)
+    status = models.CharField(<span style="color:#818cf8;">max_length</span>=<span style="color:#f59e0b;">10</span>, <span style="color:#818cf8;">choices</span>=STATUS, <span style="color:#818cf8;">default</span>=<span style="color:#10b981;">'draft'</span>)
+    views = models.PositiveIntegerField(<span style="color:#818cf8;">default</span>=<span style="color:#f59e0b;">0</span>)
+    created_at = models.DateTimeField(<span style="color:#818cf8;">auto_now_add</span>=<span style="color:#f59e0b;">True</span>)
+    updated_at = models.DateTimeField(<span style="color:#818cf8;">auto_now</span>=<span style="color:#f59e0b;">True</span>)
     
-    class Meta:
-        ordering = ['-created_at']
-        indexes = [models.Index(fields=['-created_at'])]
+    <span style="color:#f59e0b;">class</span> <span style="color:#818cf8;">Meta</span>:
+        <span style="color:#818cf8;">ordering</span> = [<span style="color:#10b981;">'-created_at'</span>]
     
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
+    <span style="color:#f59e0b;">def</span> <span style="color:#10b981;">save</span>(<span style="color:#f59e0b;">self</span>, *args, **kwargs):
+        <span style="color:#f59e0b;">if not</span> <span style="color:#f59e0b;">self</span>.slug:
+            <span style="color:#f59e0b;">self</span>.slug = slugify(<span style="color:#f59e0b;">self</span>.title)
+        <span style="color:#f59e0b;">super</span>().save(*args, **kwargs)
     
-    def __str__(self):
-        return self.title
+    <span style="color:#f59e0b;">def</span> <span style="color:#10b981;">__str__</span>(<span style="color:#f59e0b;">self</span>):
+        <span style="color:#f59e0b;">return</span> <span style="color:#f59e0b;">self</span>.title</code></pre>
+    </div>
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    
-    def __str__(self):
-        return self.name
+    <h3 style="color:#f59e0b;margin-top:1.5rem;">Django ORM - No SQL Needed!</h3>
+    <div class="code-block">
+        <pre style="color:#e5e7eb;font-size:0.85rem;"><code><span style="color:#9ca3af;"># Create</span>
+post = BlogPost.objects.create(title=<span style="color:#10b981;">"Hello World"</span>, author=user)
 
-class Comment(models.Model):
-    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        ordering = ['created_at']</code></pre>
+<span style="color:#9ca3af;"># Read</span>
+posts = BlogPost.objects.filter(status=<span style="color:#10b981;">'published'</span>)
+post = BlogPost.objects.get(slug=<span style="color:#10b981;">'hello-world'</span>)
+
+<span style="color:#9ca3af;"># Update</span>
+post.title = <span style="color:#10b981;">"New Title"</span>
+post.save()
+
+<span style="color:#9ca3af;"># Delete</span>
+post.delete()
+
+<span style="color:#9ca3af;"># Advanced Queries</span>
+recent = BlogPost.objects.filter(status=<span style="color:#10b981;">'published'</span>).order_by(<span style="color:#10b981;">'-created_at'</span>)[:<span style="color:#f59e0b;">5</span>]
+popular = BlogPost.objects.annotate(comment_count=Count(<span style="color:#10b981;">'comments'</span>)).filter(comment_count__gt=<span style="color:#f59e0b;">10</span>)</code></pre>
     </div>
 </div>
 
-<!-- SECTION 3: Django Views -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">3. Django Views & Business Logic</h2>
+<!-- SECTION 8: M-Pesa Integration -->
+<div id="mpesa" class="card animate-in" style="padding:2.5rem;margin-bottom:2rem;border-left:4px solid #10b981;">
+    <h2 style="font-size:2.2rem;font-weight:800;color:white;margin-bottom:1.5rem;">🇰🇪 M-Pesa Integration - The Kenyan Advantage</h2>
     
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.db.models import Q
-from .models import BlogPost, Comment
+    <p style="color:#d1d5db;font-size:1.1rem;line-height:1.9;">
+        This is what makes you stand out! Integrating <strong>M-Pesa STK Push</strong> into Django is the most valuable skill for Kenyan developers.
+    </p>
 
-def blog_list(request):
-    posts = BlogPost.objects.filter(status='published')\
-             .select_related('author', 'category')\
-             .order_by('-created_at')
-    
-    # Search
-    query = request.GET.get('q')
-    if query:
-        posts = posts.filter(Q(title__icontains=query) | Q(content__icontains=query))
-    
-    # Pagination - 10 posts per page
-    paginator = Paginator(posts, 10)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
-    
-    return render(request, 'blog/list.html', {'posts': posts})
+    <div class="code-block">
+        <pre style="color:#e5e7eb;font-size:0.85rem;"><code><span style="color:#9ca3af;"># mpesa/views.py</span>
+<span style="color:#f59e0b;">import</span> requests, base64
+<span style="color:#f59e0b;">from</span> datetime <span style="color:#f59e0b;">import</span> datetime
+<span style="color:#f59e0b;">from</span> django.conf <span style="color:#f59e0b;">import</span> settings
 
-def blog_detail(request, slug):
-    post = get_object_or_404(BlogPost.objects.select_related('author'), slug=slug)
-    post.views += 1
-    post.save(update_fields=['views'])
-    
-    comments = post.comments.filter(parent=None).select_related('user')
-    
-    related = BlogPost.objects.filter(
-        category=post.category, status='published'
-    ).exclude(id=post.id)[:3]
-    
-    return render(request, 'blog/detail.html', {
-        'post': post,
-        'comments': comments,
-        'related': related
-    })
+<span style="color:#f59e0b;">def</span> <span style="color:#10b981;">get_access_token</span>():
+    url = <span style="color:#10b981;">'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'</span>
+    response = requests.get(url, auth=(settings.MPESA_CONSUMER_KEY, settings.MPESA_CONSUMER_SECRET))
+    <span style="color:#f59e0b;">return</span> response.json()[<span style="color:#10b981;">'access_token'</span>]
 
-@login_required
-def create_post(request):
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        image = request.FILES.get('image')
-        
-        post = BlogPost.objects.create(
-            title=title, content=content,
-            author=request.user, featured_image=image
-        )
-        return redirect('blog_detail', slug=post.slug)
-    return render(request, 'blog/create.html')
-
-@login_required
-def add_comment(request, slug):
-    post = get_object_or_404(BlogPost, slug=slug)
-    if request.method == 'POST':
-        content = request.POST.get('content')
-        parent_id = request.POST.get('parent_id')
-        parent = Comment.objects.get(id=parent_id) if parent_id else None
-        
-        Comment.objects.create(
-            post=post, user=request.user,
-            content=content, parent=parent
-        )
-    return redirect('blog_detail', slug=slug)</code></pre>
+<span style="color:#f59e0b;">def</span> <span style="color:#10b981;">stk_push</span>(phone, amount):
+    token = get_access_token()
+    timestamp = datetime.now().strftime(<span style="color:#10b981;">'%Y%m%d%H%M%S'</span>)
+    password = base64.b64encode(<span style="color:#f59e0b;">f"</span>{settings.MPESA_SHORTCODE}{settings.MPESA_PASSKEY}{timestamp}<span style="color:#f59e0b;">"</span>.encode()).decode()
+    
+    headers = {<span style="color:#10b981;">'Authorization'</span>: <span style="color:#f59e0b;">f'Bearer </span>{token}<span style="color:#f59e0b;">'</span>}
+    payload = {
+        <span style="color:#10b981;">'BusinessShortCode'</span>: settings.MPESA_SHORTCODE,
+        <span style="color:#10b981;">'Password'</span>: password,
+        <span style="color:#10b981;">'Timestamp'</span>: timestamp,
+        <span style="color:#10b981;">'TransactionType'</span>: <span style="color:#10b981;">'CustomerPayBillOnline'</span>,
+        <span style="color:#10b981;">'Amount'</span>: amount,
+        <span style="color:#10b981;">'PartyA'</span>: phone,
+        <span style="color:#10b981;">'PartyB'</span>: settings.MPESA_SHORTCODE,
+        <span style="color:#10b981;">'PhoneNumber'</span>: phone,
+        <span style="color:#10b981;">'CallBackURL'</span>: <span style="color:#10b981;">'https://yoursite.com/mpesa/callback/'</span>,
+        <span style="color:#10b981;">'AccountReference'</span>: <span style="color:#10b981;">'Subscription'</span>,
+        <span style="color:#10b981;">'TransactionDesc'</span>: <span style="color:#10b981;">'PRO Membership'</span>
+    }
+    
+    url = <span style="color:#10b981;">'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'</span>
+    response = requests.post(url, json=payload, headers=headers)
+    <span style="color:#f59e0b;">return</span> response.json()</code></pre>
     </div>
 </div>
 
-<!-- SECTION 4: Django REST Framework -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">4. REST APIs with Django REST Framework</h2>
+<!-- FINAL PROJECT -->
+<div id="project" class="card animate-in" style="padding:2.5rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(99,102,241,0.05));border:2px solid rgba(16,185,129,0.3);">
+    <h2 style="color:#10b981;font-size:2rem;text-align:center;">🎯 Final Capstone Project</h2>
+    <p style="color:#d1d5db;text-align:center;font-size:1.1rem;">Build a complete blog platform from scratch!</p>
     
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code># serializers.py
-from rest_framework import serializers
-from .models import BlogPost
-
-class BlogPostSerializer(serializers.ModelSerializer):
-    author_name = serializers.CharField(source='author.username', read_only=True)
-    comment_count = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = BlogPost
-        fields = ['id', 'title', 'slug', 'content', 'author_name',
-                  'featured_image', 'created_at', 'comment_count']
-    
-    def get_comment_count(self, obj):
-        return obj.comments.count()
-
-# views.py
-from rest_framework import viewsets, permissions, filters
-from rest_framework.pagination import PageNumberPagination
-from django_filters.rest_framework import DjangoFilterBackend
-
-class StandardPagination(PageNumberPagination):
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 100
-
-class BlogPostViewSet(viewsets.ModelViewSet):
-    queryset = BlogPost.objects.filter(status='published')
-    serializer_class = BlogPostSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    pagination_class = StandardPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category', 'author']
-    search_fields = ['title', 'content']
-    ordering_fields = ['created_at', 'views']
-
-# urls.py
-from rest_framework.routers import DefaultRouter
-router = DefaultRouter()
-router.register('posts', BlogPostViewSet)
-
-# API Endpoints:
-# GET    /api/posts/           - List (paginated)
-# POST   /api/posts/           - Create (auth required)
-# GET    /api/posts/{id}/      - Detail
-# PUT    /api/posts/{id}/      - Update (owner only)
-# DELETE /api/posts/{id}/      - Delete (owner only)
-# GET    /api/posts/?search=   - Search
-# GET    /api/posts/?category=  - Filter</code></pre>
-    </div>
-</div>
-
-<!-- SECTION 5: Databases -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">5. Databases & PostgreSQL</h2>
-    
-    <table style="width:100%;border-collapse:collapse;color:#d1d5db;">
-        <tr style="background:#1f2937;"><th style="padding:0.75rem;text-align:left;">Concept</th><th style="padding:0.75rem;text-align:left;">SQLite</th><th style="padding:0.75rem;text-align:left;">PostgreSQL</th></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">Type</td><td style="padding:0.75rem;">File-based</td><td style="padding:0.75rem;">Server-based</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">Best For</td><td style="padding:0.75rem;">Development, small apps</td><td style="padding:0.75rem;">Production, scale</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">Concurrency</td><td style="padding:0.75rem;">Single writer</td><td style="padding:0.75rem;">Multiple readers/writers</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">JSON Support</td><td style="padding:0.75rem;">Basic</td><td style="padding:0.75rem;">Full JSONB</td></tr>
-        <tr><td style="padding:0.75rem;">Full-Text Search</td><td style="padding:0.75rem;">Limited</td><td style="padding:0.75rem;">Built-in</td></tr>
-    </table>
-
-    <h3 style="color:#818cf8;margin:1.5rem 0 0.5rem;">Django ORM Advanced Queries:</h3>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>from django.db.models import Count, Avg, Q, F, Prefetch
-
-# Complex filtering
-posts = BlogPost.objects.filter(
-    Q(status='published') & 
-    (Q(category__name='Tech') | Q(views__gt=1000))
-)
-
-# Annotations (calculated fields)
-posts = BlogPost.objects.annotate(
-    comment_count=Count('comments'),
-    avg_rating=Avg('ratings__score')
-)
-
-# Prefetch related (avoid N+1 queries)
-posts = BlogPost.objects.prefetch_related(
-    Prefetch('comments', queryset=Comment.objects.filter(parent=None))
-).select_related('author', 'category')
-
-# Bulk operations
-BlogPost.objects.filter(status='draft').update(status='archived')
-BlogPost.objects.bulk_create([BlogPost(title=f'Post {i}') for i in range(100)])
-
-# Raw SQL (when needed)
-from django.db import connection
-with connection.cursor() as cursor:
-    cursor.execute("SELECT * FROM blog_post WHERE views > %s", [1000])
-    rows = cursor.fetchall()</code></pre>
-    </div>
-</div>
-
-<!-- SECTION 6: Authentication -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">6. Authentication & Security</h2>
-    
-    <div class="card" style="padding:1.5rem;margin:1rem 0;background:rgba(16,185,129,0.05);">
-        <h3 style="color:#10b981;">🔒 Security Checklist:</h3>
+    <div style="background:rgba(16,185,129,0.1);border-radius:12px;padding:1.5rem;margin:1.5rem 0;">
+        <h3 style="color:#10b981;">You will build:</h3>
         <ul style="color:#d1d5db;line-height:2;">
-            <li>✅ Use HTTPS everywhere (SSL/TLS)</li>
-            <li>✅ Hash passwords with bcrypt/Argon2</li>
-            <li>✅ CSRF protection (Django built-in)</li>
-            <li>✅ XSS prevention (auto-escape templates)</li>
-            <li>✅ SQL injection prevention (ORM)</li>
-            <li>✅ Rate limiting on login/API</li>
-            <li>✅ Environment variables for secrets</li>
-            <li>✅ Regular security updates</li>
-            <li>✅ Content Security Policy headers</li>
-            <li>✅ CORS configuration</li>
+            <li>✅ User authentication (register, login, logout)</li>
+            <li>✅ Blog CRUD (create, read, update, delete posts)</li>
+            <li>✅ Image uploads with thumbnails</li>
+            <li>✅ Comment system with nested replies</li>
+            <li>✅ Search & filtering</li>
+            <li>✅ REST API with Django REST Framework</li>
+            <li>✅ M-Pesa subscription payments</li>
+            <li>✅ Admin dashboard</li>
+            <li>✅ Deploy to PythonAnywhere</li>
         </ul>
     </div>
 
-    <h3 style="color:#818cf8;">JWT Authentication:</h3>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code># Install: pip install djangorestframework-simplejwt
-
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.tokens import RefreshToken
-
-# settings.py
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
-
-# Login returns access + refresh tokens
-# Access token: 15 min expiry
-# Refresh token: 7 days expiry</code></pre>
-    </div>
-</div>
-
-<!-- SECTION 7: Deployment -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #6366f1;padding-bottom:0.5rem;">7. Deployment & DevOps</h2>
-    
-    <h3 style="color:#818cf8;">Docker Setup:</h3>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code># Dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-RUN python manage.py collectstatic --noinput
-EXPOSE 8000
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
-
-# docker-compose.yml
-version: '3.8'
-services:
-  web:
-    build: .
-    ports:
-      - "8000:8000"
-    env_file: .env
-    depends_on:
-      - db
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-  redis:
-    image: redis:7
-volumes:
-  postgres_data:</code></pre>
-    </div>
-
-    <h3 style="color:#818cf8;">Deployment Options:</h3>
-    <table style="width:100%;color:#d1d5db;border-collapse:collapse;">
-        <tr style="background:#1f2937;"><th style="padding:0.75rem;">Platform</th><th style="padding:0.75rem;">Best For</th><th style="padding:0.75rem;">Free Tier</th></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">PythonAnywhere</td><td style="padding:0.75rem;">Beginners</td><td style="padding:0.75rem;color:#10b981;">✅ Yes</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">Railway</td><td style="padding:0.75rem;">Modern apps</td><td style="padding:0.75rem;color:#10b981;">✅ $5 credit</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">Render</td><td style="padding:0.75rem;">Full-stack</td><td style="padding:0.75rem;color:#10b981;">✅ Yes</td></tr>
-        <tr style="border-bottom:1px solid #1f2937;"><td style="padding:0.75rem;">DigitalOcean</td><td style="padding:0.75rem;">Full control</td><td style="padding:0.75rem;">$6/mo</td></tr>
-        <tr><td style="padding:0.75rem;">AWS/GCP</td><td style="padding:0.75rem;">Enterprise</td><td style="padding:0.75rem;">Free tier</td></tr>
-    </table>
-</div>
-
-<!-- SECTION 8: Final Project -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(99,102,241,0.05));border:2px solid rgba(16,185,129,0.3);">
-    <h2 style="color:#10b981;font-size:1.8rem;">🎯 Final Capstone Project</h2>
-    <p style="color:#d1d5db;font-size:1.05rem;line-height:1.9;">Build a complete SaaS platform with:</p>
-    <ul style="color:#d1d5db;font-size:1.05rem;line-height:2;">
-        <li>✅ User authentication (login, signup, password reset)</li>
-        <li>✅ CRUD operations (create, read, update, delete)</li>
-        <li>✅ File uploads (images, documents)</li>
-        <li>✅ REST API with documentation</li>
-        <li>✅ M-Pesa payment integration</li>
-        <li>✅ Search & filtering</li>
-        <li>✅ Pagination</li>
-        <li>✅ Email notifications</li>
-        <li>✅ Admin dashboard</li>
-        <li>✅ Docker containerization</li>
-        <li>✅ Deploy to production</li>
-        <li>✅ Custom domain with HTTPS</li>
-    </ul>
-    
-    <div style="background:rgba(16,185,129,0.2);border-radius:8px;padding:1.5rem;text-align:center;margin-top:1.5rem;">
-        <h3 style="color:#10b981;">🎉 You're a Full-Stack Developer!</h3>
-        <p style="color:#d1d5db;">Ready for Ksh 150K+ jobs or remote international work!</p>
+    <div style="background:rgba(16,185,129,0.2);border-radius:12px;padding:2rem;text-align:center;margin-top:1.5rem;">
+        <h3 style="color:#10b981;font-size:1.5rem;">🎉 You're Now a Full-Stack Developer!</h3>
+        <p style="color:#d1d5db;margin:0.75rem 0;">Ready for Ksh 80K-200K jobs or remote international work!</p>
+        <a href="/projects/" class="btn btn-primary" style="margin-top:1rem;display:inline-block;">Submit Your Project 🚀</a>
     </div>
 </div>
 
