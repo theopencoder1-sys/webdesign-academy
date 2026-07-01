@@ -118,3 +118,14 @@ def reset_password(request, token):
 
 def goodbye(request):
     return render(request, 'auth/goodbye.html')
+
+from .cv_builder import generate_cv
+
+@login_required
+def download_cv(request):
+    """Generate and download CV"""
+    cv_content = generate_cv(request.user)
+    
+    response = HttpResponse(cv_content, content_type='text/plain')
+    response['Content-Disposition'] = f'attachment; filename="{request.user.username}_cv.txt"'
+    return response

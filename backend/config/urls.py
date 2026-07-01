@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from apps.courses import search_views
 from apps.accounts import leaderboard_views
 from apps.mentorship import views as mentorship_views
-from apps.accounts import broadcast_views
+from apps.accounts import broadcast_views, broadcast_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
