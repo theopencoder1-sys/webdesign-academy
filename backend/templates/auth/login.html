@@ -6,25 +6,30 @@
     <p style="color:#9ca3af;text-align:center;margin-bottom:2rem;">Login to continue learning</p>
     
     {% if messages %}
+    <div id="messagesContainer">
     {% for message in messages %}
-    <div style="padding:0.75rem 1rem;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);border-radius:12px;color:#ef4444;font-size:0.9rem;margin-bottom:1rem;">
+    <div class="message-toast {% if 'success' in message.tags or 'created' in message.message|lower or 'recorded' in message.message|lower or 'sent' in message.message|lower %}success{% else %}error{% endif %}" 
+         style="padding:0.75rem 1rem;border-radius:10px;font-size:0.85rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;animation: slideIn 0.3s ease;">
+        <span>{% if 'success' in message.tags or 'created' in message.message|lower or 'recorded' in message.message|lower or 'sent' in message.message|lower %}✅{% else %}❌{% endif %}</span>
         {{ message }}
+        <button onclick="this.parentElement.remove()" style="margin-left:auto;background:none;border:none;color:inherit;cursor:pointer;opacity:0.6;">✕</button>
     </div>
     {% endfor %}
+    </div>
     {% endif %}
     
     <form method="POST" style="display:flex;flex-direction:column;gap:1rem;">
         {% csrf_token %}
         <div>
             <label style="color:#9ca3af;font-size:0.85rem;">Email</label>
-            <input type="email" name="email" placeholder="brian@example.com" required 
-                   style="width:100%;padding:0.85rem 1rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1rem;margin-top:0.3rem;">
+            <input type="email" name="email" placeholder="you@example.com" required autocomplete="off"
+                   style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1rem;margin-top:0.3rem;">
         </div>
         <div style="position:relative;">
             <label style="color:#9ca3af;font-size:0.85rem;">Password</label>
-            <input type="password" name="password" id="loginPassword" placeholder="Enter password" required 
-                   style="width:100%;padding:0.85rem 1rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1rem;margin-top:0.3rem;padding-right:3rem;">
-            <button type="button" onclick="togglePassword('loginPassword', 'loginEye')" 
+            <input type="password" name="password" id="loginPassword" placeholder="Enter password" required autocomplete="off"
+                   style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;font-size:1rem;margin-top:0.3rem;padding-right:3rem;">
+            <button type="button" onclick="togglePassword()" 
                     style="position:absolute;right:12px;top:38px;background:none;border:none;color:#6b7280;cursor:pointer;font-size:1.2rem;" id="loginEye">
                 👁️
             </button>
@@ -42,10 +47,35 @@
     </p>
 </div>
 
+<style>
+.message-toast {
+    position: relative;
+    overflow: hidden;
+}
+.message-toast.success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
+}
+.message-toast.error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(20px); }
+}
+</style>
+
 <script>
-function togglePassword(inputId, eyeId) {
-    const input = document.getElementById(inputId);
-    const eye = document.getElementById(eyeId);
+function togglePassword() {
+    var input = document.getElementById('loginPassword');
+    var eye = document.getElementById('loginEye');
     if (input.type === 'password') {
         input.type = 'text';
         eye.textContent = '🙈';
@@ -54,5 +84,13 @@ function togglePassword(inputId, eyeId) {
         eye.textContent = '👁️';
     }
 }
+
+// Auto-dismiss messages after 5 seconds
+document.querySelectorAll('.message-toast').forEach(function(msg) {
+    setTimeout(function() {
+        msg.style.animation = 'slideOut 0.3s ease forwards';
+        setTimeout(function() { msg.remove(); }, 300);
+    }, 5000);
+});
 </script>
 {% endblock %}

@@ -47,3 +47,15 @@ class BadgeAdmin(admin.ModelAdmin):
 @admin.register(UserBadge)
 class UserBadgeAdmin(admin.ModelAdmin):
     list_display = ['user', 'badge', 'earned_at']
+
+from django.core.mail import send_mail
+from django.conf import settings
+
+def email_user(self, request, queryset):
+    # This opens a page to compose email to selected users
+    user_emails = ','.join([u.email for u in queryset])
+    return redirect(f'/broadcast/?emails={user_emails}')
+email_user.short_description = "📧 Email selected users"
+
+# Add to UserAdmin actions
+UserAdmin.actions = list(UserAdmin.actions) + ['email_user']

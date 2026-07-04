@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Analytics Dashboard - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:1100px;margin:2rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2rem;font-weight:800;color:white;margin-bottom:0.5rem;">📊 Analytics Dashboard</h1>
+    <p style="color:#9ca3af;margin-bottom:2rem;">Real-time page views and user activity</p>
+    
+    <!-- Stats Cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem;">
+        <div class="card" style="padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">👁️</div>
+            <div style="font-size:2rem;font-weight:800;color:white;">{{ today_views }}</div>
+            <div style="color:#9ca3af;font-size:0.8rem;">Views Today</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">👥</div>
+            <div style="font-size:2rem;font-weight:800;color:white;">{{ today_visitors }}</div>
+            <div style="color:#9ca3af;font-size:0.8rem;">Unique Visitors</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">👤</div>
+            <div style="font-size:2rem;font-weight:800;color:white;">{{ total_users }}</div>
+            <div style="color:#9ca3af;font-size:0.8rem;">Total Users</div>
+        </div>
+        <div class="card" style="padding:1.5rem;text-align:center;">
+            <div style="font-size:2rem;">📱</div>
+            <div style="font-size:2rem;font-weight:800;color:white;">{{ devices|length }}</div>
+            <div style="color:#9ca3af;font-size:0.8rem;">Device Types</div>
+        </div>
+    </div>
+    
+    <!-- Recent Activity -->
+    <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
+        <h2 style="color:white;font-size:1.1rem;margin-bottom:1rem;">🕐 Recent Page Views</h2>
+        <div style="overflow-x:auto;">
+        <table style="width:100%;color:#d1d5db;font-size:0.85rem;">
+            <tr style="background:#1f2937;text-align:left;">
+                <th style="padding:0.5rem;">Time</th><th style="padding:0.5rem;">User</th><th style="padding:0.5rem;">Page</th><th style="padding:0.5rem;">Device</th>
+            </tr>
+            {% for view in recent_views %}
+            <tr style="border-bottom:1px solid #1f2937;">
+                <td style="padding:0.5rem;">{{ view.created_at|date:"H:i:s" }}</td>
+                <td style="padding:0.5rem;">{{ view.user.username|default:"Anonymous" }}</td>
+                <td style="padding:0.5rem;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ view.page_url }}</td>
+                <td style="padding:0.5rem;">{{ view.device_type }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

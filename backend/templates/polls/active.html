@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Polls - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:700px;margin:3rem auto;padding:0 1.5rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
+        <h1 style="font-size:2rem;font-weight:800;color:white;">📊 Polls</h1>
+        {% if user.is_staff %}
+        <a href="/polls/create/" class="btn btn-primary btn-sm">+ Create Poll</a>
+        {% endif %}
+    </div>
+
+    {% for poll in polls %}
+    <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+        <h3 style="color:white;font-size:1.2rem;margin-bottom:1.5rem;">{{ poll.question }}</h3>
+        
+        {% if user.is_authenticated %}
+        <form method="POST" action="/polls/vote/{{ poll.id }}/">
+            {% csrf_token %}
+            {% for option in poll.options.all %}
+            <button type="submit" name="option_id" value="{{ option.id }}" 
+                    style="width:100%;padding:0.85rem;margin-bottom:0.5rem;background:#111827;border:1px solid #374151;border-radius:10px;color:white;cursor:pointer;text-align:left;transition:all 0.2s;"
+                    onmouseover="this.style.borderColor='#6366f1'" onmouseout="this.style.borderColor='#374151'">
+                {{ option.text }}
+                <span style="float:right;color:#6366f1;">{{ option.percentage }}%</span>
+                <div style="height:4px;background:#1f2937;border-radius:2px;margin-top:0.5rem;">
+                    <div style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:2px;width:{{ option.percentage }}%;"></div>
+                </div>
+            </button>
+            {% endfor %}
+        </form>
+        {% else %}
+        <p style="color:#9ca3af;"><a href="/auth/login/" style="color:#818cf8;">Login</a> to vote</p>
+        {% endif %}
+        
+        <p style="color:#6b7280;font-size:0.8rem;margin-top:1rem;">{{ poll.total_votes }} votes</p>
+    </div>
+    {% empty %}
+    <p style="color:#9ca3af;text-align:center;">No active polls. Check back soon!</p>
+    {% endfor %}
+</div>
+{% endblock %}

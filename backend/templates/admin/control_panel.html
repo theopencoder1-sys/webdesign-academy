@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Admin Control Panel - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:1100px;margin:2rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2.5rem;font-weight:800;color:white;margin-bottom:2rem;">🛡️ Admin Control Panel</h1>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+        
+        <a href="/admin/accounts/user/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">👥</div>
+            <h3 style="color:white;margin:1rem 0;">Manage Users</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">View, edit, delete, verify users</p>
+        </a>
+        
+        <a href="/analytics/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">📊</div>
+            <h3 style="color:white;margin:1rem 0;">Analytics Dashboard</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Page views, visitors, devices</p>
+        </a>
+        
+        <a href="/analytics/visitors/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">👁️</div>
+            <h3 style="color:white;margin:1rem 0;">Visitor Log</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Every person & device</p>
+        </a>
+        
+        <a href="/broadcast/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">📧</div>
+            <h3 style="color:white;margin:1rem 0;">Email Broadcast</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Send to all or individual users</p>
+        </a>
+        
+        <a href="/materials/admin/upload/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">📤</div>
+            <h3 style="color:white;margin:1rem 0;">Upload Materials</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">PDFs, videos, files for courses</p>
+        </a>
+        
+        <a href="/admin/mentorship/mentorshipsession/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">⭐</div>
+            <h3 style="color:white;margin:1rem 0;">Mentorship Sessions</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Approve/reject bookings</p>
+        </a>
+        
+        <a href="/admin/courses/course/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">📚</div>
+            <h3 style="color:white;margin:1rem 0;">Manage Courses</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Add/edit courses & lessons</p>
+        </a>
+        
+        <a href="/admin/quiz/quiz/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">🧠</div>
+            <h3 style="color:white;margin:1rem 0;">Manage Quizzes</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Add questions & answers</p>
+        </a>
+        
+        <a href="/admin/subscriptions/plan/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">💰</div>
+            <h3 style="color:white;margin:1rem 0;">Pricing Plans</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Edit pricing & features</p>
+        </a>
+        
+        <a href="/admin/mpesa/mpesapayment/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">📱</div>
+            <h3 style="color:white;margin:1rem 0;">M-Pesa Payments</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">View transactions</p>
+        </a>
+        
+        <a href="/admin/projects/project/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:2.5rem;">🎨</div>
+            <h3 style="color:white;margin:1rem 0;">Manage Projects</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Review student projects</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

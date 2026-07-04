@@ -33,5 +33,5 @@ class ChallengeSubmission(models.Model):
     
     class Meta:
         app_label = 'challenges'
-        db_table = 'challenge_submissions'
+        db_table = 'daily_challenge_submissions'
         unique_together = ['user', 'challenge']

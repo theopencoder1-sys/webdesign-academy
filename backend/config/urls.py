@@ -9,6 +9,10 @@ from apps.mentorship import views as mentorship_views
 from apps.accounts import broadcast_views, broadcast_api
 
 urlpatterns = [
+    path('materials/', include('apps.materials.urls')),
+    path('polls/', include('apps.polls.urls')),
+    path('analytics/', include('apps.analytics.urls')),
+    path('control-panel/', TemplateView.as_view(template_name='admin/control_panel.html'), name='control_panel'),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('courses/', include('apps.courses.urls')),
@@ -27,13 +31,15 @@ urlpatterns = [
     path('career/pro-hub/', TemplateView.as_view(template_name='career/pro_hub.html'), name='pro_hub'),
 
     path('quiz/', include('apps.quiz.urls')),
-    path('admin/broadcast/', broadcast_views.broadcast_email, name='broadcast_email'),
+    
+    path('broadcast/', broadcast_views.broadcast_email, name='broadcast_email'),
     path('verify-certificate/', TemplateView.as_view(template_name='certificate_verify.html'), name='verify_certificate'),
     path('mentorship/', include('apps.mentorship.urls')),
     path('leaderboard/', leaderboard_views.leaderboard, name='leaderboard'),
     path('cheatsheets/', TemplateView.as_view(template_name='cheatsheets.html'), name='cheatsheets'),
     path('blog/', TemplateView.as_view(template_name='blog/list.html'), name='blog'),
     path('search/', search_views.search, name='search'),
+    path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('community/', include('apps.community.urls')),
 ]
 

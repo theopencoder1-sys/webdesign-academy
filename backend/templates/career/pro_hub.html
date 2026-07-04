@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}PRO Resources - WebDesign Academy{% endblock %}
+{% block content %}
+
+<div style="max-width:1100px;margin:3rem auto;padding:0 1.5rem;">
+    <div style="background:linear-gradient(135deg,#f59e0b,#ef4444);padding:3rem 2rem;border-radius:16px;text-align:center;margin-bottom:2rem;">
+        <h1 style="font-size:2.5rem;font-weight:900;color:white;">⭐ PRO Resources Hub</h1>
+        <p style="color:rgba(255,255,255,0.9);">Exclusive tools, guides, and resources for PRO members</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+        
+        <!-- Career Roadmap -->
+        <a href="/career/roadmap/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">🗺️</div>
+            <h3 style="color:white;margin:1rem 0;">Career Roadmap</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Complete path from beginner to senior dev with salary guides (Kenya).</p>
+            <span style="color:#818cf8;">Explore →</span>
+        </a>
+        
+        <!-- Interview Prep -->
+        <a href="/career/interview/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">🎯</div>
+            <h3 style="color:white;margin:1rem 0;">Interview Preparation</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">100+ interview questions with answers. HTML, CSS, JS, Python, Django.</p>
+            <span style="color:#818cf8;">Prepare →</span>
+        </a>
+        
+        <!-- Resume Templates -->
+        <a href="/career/resume/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">📄</div>
+            <h3 style="color:white;margin:1rem 0;">CV/Resume Templates</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Developer-specific resume templates that get interviews.</p>
+            <span style="color:#818cf8;">Download →</span>
+        </a>
+        
+        <!-- Freelancing Guide -->
+        <a href="/career/freelance/" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">💼</div>
+            <h3 style="color:white;margin:1rem 0;">Freelancing Starter Guide</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">How to get your first client, pricing, contracts, M-Pesa invoicing.</p>
+            <span style="color:#818cf8;">Start Earning →</span>
+        </a>
+        
+        <!-- Cheat Sheets -->
+        <a href="#" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">📋</div>
+            <h3 style="color:white;margin:1rem 0;">Cheat Sheets Bundle</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">HTML, CSS, JS, Python, Git, Linux commands. Downloadable PDFs.</p>
+            <span style="color:#f59e0b;">🔜 Coming Soon</span>
+        </a>
+        
+        <!-- Code Challenges -->
+        <a href="#" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">🏆</div>
+            <h3 style="color:white;margin:1rem 0;">Weekly Code Challenges</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Bug fixing, algorithms, build challenges. Compete with peers.</p>
+            <span style="color:#f59e0b;">🔜 Coming Soon</span>
+        </a>
+        
+        <!-- Source Code Bundle -->
+        <a href="#" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">📦</div>
+            <h3 style="color:white;margin:1rem 0;">Source Code Bundle</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Complete project source codes. E-commerce, blog, portfolio, APIs.</p>
+            <span style="color:#f59e0b;">🔜 Coming Soon</span>
+        </a>
+        
+        <!-- UI/UX Assets -->
+        <a href="#" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">🎨</div>
+            <h3 style="color:white;margin:1rem 0;">UI/UX Design Kit</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Figma templates, icon sets, color palettes, component libraries.</p>
+            <span style="color:#f59e0b;">🔜 Coming Soon</span>
+        </a>
+        
+        <!-- Mentorship -->
+        <a href="#" class="card" style="padding:2rem;text-decoration:none;">
+            <div style="font-size:3rem;">👨‍🏫</div>
+            <h3 style="color:white;margin:1rem 0;">Mentor Sessions</h3>
+            <p style="color:#9ca3af;font-size:0.9rem;">Monthly 1-on-1 mentor calls. Code reviews, career advice.</p>
+            <span style="color:#f59e0b;">🔜 Coming Soon</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Materials - {{ course.title }}{% endblock %}
+{% block content %}
+<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+    <h1 style="font-size:2rem;font-weight:800;color:white;">📦 {{ course.title }} - Resources</h1>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:2rem;">
+        {% for m in materials %}
+        <div class="card" style="padding:1.5rem;">
+            <div style="font-size:1.5rem;">
+                {% if m.material_type == 'pdf' %}📄
+                {% elif m.material_type == 'video' %}🎬
+                {% elif m.material_type == 'code' %}💻
+                {% elif m.material_type == 'slides' %}📊
+                {% elif m.material_type == 'cheatsheet' %}📋
+                {% else %}📁{% endif %}
+            </div>
+            <h3 style="color:white;margin:0.5rem 0;">{{ m.title }}</h3>
+            <p style="color:#9ca3af;font-size:0.85rem;">{{ m.description|truncatewords:15 }}</p>
+            <span style="background:#1f2937;color:#818cf8;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;">{{ m.get_material_type_display }}</span>
+            {% if m.file %}
+            <a href="{{ m.file.url }}" download class="btn btn-primary btn-sm" style="margin-top:0.75rem;">📥 Download</a>
+            {% endif %}
+            {% if m.video_url %}
+            <a href="{{ m.video_url }}" target="_blank" class="btn btn-outline btn-sm" style="margin-top:0.75rem;">▶ Watch</a>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p style="color:#9ca3af;">No materials yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

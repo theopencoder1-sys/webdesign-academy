@@ -2,30 +2,161 @@
 {% block title %}HTML5 Complete Mastery{% endblock %}
 {% block extra_head %}
 <style>
-    .course-hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem 2rem 4rem; }
-    .course-content { max-width: 900px; margin: 0 auto; width: 100%; }
-    .section-block { padding: 5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .section-block h2 { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 2rem; color: #f0f0f0; }
-    .section-block p { font-size: 1.25rem; line-height: 1.8; color: #c0c0c0; max-width: 700px; }
-    .code-showcase { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; font-family: 'Fira Code', monospace; font-size: 0.95rem; line-height: 1.8; color: #b0b0b0; overflow-x: auto; margin: 2rem 0; }
-    @media (max-width: 768px) { .section-block h2 { font-size: 2rem; } .section-block p { font-size: 1.05rem; } .course-hero { padding: 4rem 1rem 2rem; min-height: auto; } .section-block { padding: 3rem 1rem; } }
+    :root {
+        --text: #ffffff;
+        --text-secondary: #f0f0f0;
+        --heading: #ffffff;
+        --accent: #60a5fa;
+        --code-bg: rgba(0,0,0,0.4);
+        --code-border: rgba(255,255,255,0.12);
+        --section-gap: 3rem;
+    }
+
+    .course-hero {
+        padding: 5rem 2rem 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .course-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Section blocks */
+    .section-block {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .section-block h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+        color: var(--heading);
+    }
+    .section-block h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin: 2rem 0 0.75rem;
+    }
+    .section-block p {
+        font-size: 1.15rem;
+        line-height: 1.9;
+        color: #f0f0f0;
+        margin-bottom: 1.25rem;
+    }
+    .section-block ul, .section-block ol {
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #f0f0f0;
+        margin: 1.25rem 0 1.25rem 1.5rem;
+    }
+    .section-block li {
+        margin-bottom: 0.5rem;
+    }
+    .section-block strong {
+        color: var(--text);
+        font-weight: 700;
+    }
+
+    /* Code blocks */
+    .code-showcase {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #f5f5f5;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+    .code-showcase code {
+        background: none !important;
+        padding: 0 !important;
+        color: inherit !important;
+    }
+
+    /* Inline code */
+    code {
+        color: #60a5fa;
+        background: rgba(96,165,250,0.1);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9em;
+    }
+
+    /* Tables */
+    .section-block table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 1.05rem;
+    }
+    .section-block table th {
+        background: rgba(255,255,255,0.08);
+        color: var(--heading);
+        font-weight: 600;
+        padding: 0.8rem;
+        text-align: left;
+        border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+    .section-block table td {
+        padding: 0.8rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        color: #f0f0f0;
+    }
+
+    /* Section dividers */
+    .chapter-badge {
+        display: inline-block;
+        background: rgba(96,165,250,0.12);
+        color: var(--accent);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-block { padding: 2rem 1rem; }
+        .section-block h2 { font-size: 1.6rem; }
+        .section-block h3 { font-size: 1.2rem; }
+        .section-block p, .section-block li { font-size: 1rem; }
+        .course-hero { padding: 3rem 1rem 2rem; }
+        .course-hero h1 { font-size: 2.5rem !important; }
+    }
 </style>
 {% endblock %}
+
 {% block content %}
+
 <div class="course-hero">
     <div class="course-content">
-        <p style="color:#60a5fa;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:0.85rem;">Free Course · 50+ Sections · 8 Hours</p>
-        <h1 style="font-size:4.5rem;font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin:1rem 0;color:#f0f0f0;">HTML5<br>Complete Mastery</h1>
-        <p style="font-size:1.3rem;color:#b0b0b0;max-width:600px;">From your first tag to building professional websites. Every concept explained clearly. No prior experience needed.</p>
+        <span class="chapter-badge">Free Course · 15 Chapters · 8+ Hours</span>
+        <h1 style="font-size:4rem;font-weight:800;letter-spacing:-0.04em;line-height:1.1;margin:1rem 0;color:#ffffff;">HTML5 Complete Mastery</h1>
+        <p style="font-size:1.25rem;color:#f8f8f8;max-width:700px;">From your first tag to building professional websites. Every concept explained clearly. No prior experience needed.</p>
     </div>
 </div>
 
-<!-- Chapter 1 -->
+<!-- CHAPTER 1 -->
 <section class="section-block">
     <div class="course-content">
-        <span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;">Chapter 1: What is HTML?</span>
-        <h2>Introduction to the Web's Foundation</h2>
-        <p>HTML (HyperText Markup Language) is the cornerstone technology of the World Wide Web. Since its creation by Tim Berners-Lee in 1991, HTML has evolved through multiple versions, with HTML5 being the current standard released in 2014. Every website, web application, and digital experience you encounter online is ultimately rendered through HTML.</p>
+        <span class="chapter-badge">Chapter 1</span>
+        <h2>What is HTML?</h2>
+        <h3>Introduction to the Web's Foundation</h3>
+        <p>HTML (HyperText Markup Language) is the cornerstone technology of the World Wide Web. Since its creation by <strong>Tim Berners-Lee in 1991</strong>, HTML has evolved through multiple versions, with <strong>HTML5 being the current standard</strong> released in 2014. Every website, web application, and digital experience you encounter online is ultimately rendered through HTML.</p>
         
         <h3>Understanding the Technology Stack</h3>
         <p>To understand where HTML fits, imagine building a house:</p>
@@ -74,29 +205,10 @@
     &lt;p&gt;This is my first HTML document. I'm learning how to build websites!&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-        <p><strong>Code Explanation:</strong></p>
-        <ul>
-            <li><code>&lt;!DOCTYPE html&gt;</code>: Declares this as an HTML5 document</li>
-            <li><code>&lt;html&gt;</code>: The root element containing all content</li>
-            <li><code>&lt;head&gt;</code>: Contains metadata, title, and external references</li>
-            <li><code>&lt;body&gt;</code>: Contains all visible content on the page</li>
-        </ul>
-
-        <h3>HTML's Role in Modern Web Development</h3>
-        <table style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
-            <thead><tr><th>Technology</th><th>Purpose</th><th>Relationship to HTML</th></tr></thead>
-            <tbody>
-                <tr><td>CSS</td><td>Styling</td><td>Enhances HTML appearance</td></tr>
-                <tr><td>JavaScript</td><td>Interactivity</td><td>Manipulates HTML elements</td></tr>
-                <tr><td>React/Angular</td><td>Component frameworks</td><td>Generate HTML dynamically</td></tr>
-                <tr><td>Node.js</td><td>Server-side</td><td>Serves HTML content</td></tr>
-                <tr><td>WordPress/CMS</td><td>Content management</td><td>Generates HTML from templates</td></tr>
-            </tbody>
-        </table>
-
+        
         <h3>Setting Up Your Development Environment</h3>
-        <p><strong>Step 1: Choose a Code Editor</strong><br>Popular options: Visual Studio Code (recommended), Sublime Text, Notepad++, VSCodium.</p>
-        <p><strong>Step 2: Install VS Code Extensions</strong><br>Essential HTML extensions: HTML CSS Support, Live Server, Prettier, Auto Close Tag, HTML Snippets.</p>
+        <p><strong>Step 1: Choose a Code Editor</strong> — <strong>Visual Studio Code</strong> (free, recommended), Sublime Text, or Notepad++.</p>
+        <p><strong>Step 2: Install Extensions</strong> — Live Server, Prettier, HTML CSS Support, Auto Close Tag.</p>
         <p><strong>Step 3: Create Your Project Folder</strong></p>
         <pre class="code-showcase"><code>my-website/
 ├── index.html
@@ -107,75 +219,324 @@
 └── images/
     ├── logo.png
     └── hero.jpg</code></pre>
-        <p><strong>Step 4: Open in Browser</strong></p>
-        <ul>
-            <li>Double-click the file</li>
-            <li>Drag and drop into browser window</li>
-            <li>Use VS Code's Live Server extension for automatic refreshing</li>
-        </ul>
     </div>
 </section>
 
-<!-- Chapter 2 -->
+<!-- CHAPTER 2 -->
 <section class="section-block">
     <div class="course-content">
-        <span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;">Chapter 2: Document Structure &amp; Meta Information</span>
-        <h2>The Anatomy of an HTML Document</h2>
-        <p>Every HTML document follows a specific structure that browsers understand.</p>
+        <span class="chapter-badge">Chapter 2</span>
+        <h2>Document Structure &amp; Meta Information</h2>
         <h3>The DOCTYPE Declaration</h3>
-        <pre class="code-showcase"><code>&lt;!DOCTYPE html&gt; &lt;!-- HTML5 - Modern standard --&gt;</code></pre>
+        <pre class="code-showcase"><code>&lt;!DOCTYPE html&gt;  &lt;!-- HTML5 --&gt;</code></pre>
+        
         <h3>The HTML Element</h3>
-        <pre class="code-showcase"><code>&lt;html lang="en"&gt; &lt;!-- English --&gt;
-&lt;html lang="sw"&gt; &lt;!-- Swahili --&gt;</code></pre>
-        <h3>The Head Section</h3>
-        <p>The &lt;head&gt; contains metadata and resources. It's invisible to users but crucial for browsers, search engines, and social media.</p>
+        <pre class="code-showcase"><code>&lt;html lang="en"&gt;  &lt;!-- English --&gt;
+&lt;html lang="sw"&gt;  &lt;!-- Swahili --&gt;</code></pre>
+
         <h3>Required Meta Tags</h3>
         <pre class="code-showcase"><code>&lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;My Amazing Website&lt;/title&gt;
 &lt;/head&gt;</code></pre>
+
         <h3>SEO Meta Tags</h3>
         <pre class="code-showcase"><code>&lt;meta name="description" content="Learn HTML5 from scratch..."&gt;
 &lt;meta name="keywords" content="HTML, CSS, web development"&gt;
 &lt;meta name="author" content="Jane Doe"&gt;
 &lt;meta name="robots" content="index, follow"&gt;</code></pre>
-        <h3>Open Graph Tags (Social Media Sharing)</h3>
+
+        <h3>Open Graph Tags (Social Media)</h3>
         <pre class="code-showcase"><code>&lt;meta property="og:title" content="HTML5 Complete Mastery"&gt;
-&lt;meta property="og:description" content="Learn HTML from scratch to professional level."&gt;
-&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
-&lt;meta property="og:url" content="https://example.com/course"&gt;</code></pre>
-        <h3>Favicons (Browser Tab Icons)</h3>
-        <pre class="code-showcase"><code>&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
-&lt;link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"&gt;
-&lt;link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"&gt;</code></pre>
-        <h3>The Body Element</h3>
-        <pre class="code-showcase"><code>&lt;body&gt;
-    &lt;header&gt;&lt;h1&gt;Page Title&lt;/h1&gt;&lt;/header&gt;
-    &lt;main&gt;&lt;article&gt;&lt;h2&gt;Content&lt;/h2&gt;&lt;p&gt;Your main content...&lt;/p&gt;&lt;/article&gt;&lt;/main&gt;
-    &lt;footer&gt;&lt;p&gt;Copyright 2024&lt;/p&gt;&lt;/footer&gt;
-&lt;/body&gt;</code></pre>
+&lt;meta property="og:description" content="Learn HTML from scratch."&gt;
+&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;</code></pre>
+
         <h3>Complete Document Template</h3>
         <pre class="code-showcase"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Professional Website Title&lt;/title&gt;
-    &lt;meta name="description" content="Your comprehensive website description for SEO"&gt;
-    &lt;meta property="og:title" content="Professional Website Title"&gt;
+    &lt;title&gt;Professional Website&lt;/title&gt;
+    &lt;meta name="description" content="Your website description"&gt;
     &lt;link rel="stylesheet" href="styles/style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;header&gt;&lt;nav&gt;&lt;!-- Navigation --&gt;&lt;/nav&gt;&lt;/header&gt;
-    &lt;main&gt;&lt;section&gt;&lt;h1&gt;Welcome&lt;/h1&gt;&lt;p&gt;Your content here.&lt;/p&gt;&lt;/section&gt;&lt;/main&gt;
-    &lt;footer&gt;&lt;p&gt;&amp;copy; 2024 Your Name.&lt;/p&gt;&lt;/footer&gt;
-    &lt;script src="scripts/main.js"&gt;&lt;/script&gt;
+    &lt;header&gt;&lt;nav&gt;...&lt;/nav&gt;&lt;/header&gt;
+    &lt;main&gt;&lt;h1&gt;Welcome&lt;/h1&gt;&lt;/main&gt;
+    &lt;footer&gt;&lt;p&gt;&copy; 2024&lt;/p&gt;&lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     </div>
 </section>
 
-<!-- Additional chapters would continue in the same structure... -->
+<!-- CHAPTER 3 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 3</span>
+        <h2>Headings &amp; Text</h2>
+        <h3>Heading Levels</h3>
+        <pre class="code-showcase"><code>&lt;h1&gt;Main Title&lt;/h1&gt;    &lt;!-- Use ONCE per page --&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Sub-section&lt;/h3&gt;
+&lt;h4&gt;Smaller&lt;/h4&gt;
+&lt;h5&gt;Even Smaller&lt;/h5&gt;
+&lt;h6&gt;Smallest&lt;/h6&gt;</code></pre>
+
+        <h3>Text Formatting</h3>
+        <table>
+            <tr><th>Tag</th><th>Effect</th><th>Semantic?</th></tr>
+            <tr><td>&lt;b&gt;</td><td><b>Bold</b></td><td>No</td></tr>
+            <tr><td>&lt;strong&gt;</td><td><strong>Important</strong></td><td>Yes</td></tr>
+            <tr><td>&lt;i&gt;</td><td><i>Italic</i></td><td>No</td></tr>
+            <tr><td>&lt;em&gt;</td><td><em>Emphasized</em></td><td>Yes</td></tr>
+            <tr><td>&lt;mark&gt;</td><td><mark>Highlighted</mark></td><td>Yes</td></tr>
+            <tr><td>&lt;sub&gt;</td><td>H<sub>2</sub>O</td><td>Yes</td></tr>
+            <tr><td>&lt;sup&gt;</td><td>x<sup>2</sup></td><td>Yes</td></tr>
+        </table>
+    </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 4</span>
+        <h2>Links &amp; Navigation</h2>
+        <pre class="code-showcase"><code>&lt;!-- External Link --&gt;
+&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;
+
+&lt;!-- Open in New Tab --&gt;
+&lt;a href="page.html" target="_blank" rel="noopener noreferrer"&gt;New Tab&lt;/a&gt;
+
+&lt;!-- Email Link --&gt;
+&lt;a href="mailto:hello@example.com"&gt;Send Email&lt;/a&gt;
+
+&lt;!-- Phone Link --&gt;
+&lt;a href="tel:+254700123456"&gt;Call Us&lt;/a&gt;
+
+&lt;!-- Download Link --&gt;
+&lt;a href="document.pdf" download&gt;Download PDF&lt;/a&gt;</code></pre>
+
+        <h3>Navigation Menu</h3>
+        <pre class="code-showcase"><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 5</span>
+        <h2>Images &amp; Media</h2>
+        <pre class="code-showcase"><code>&lt;!-- Basic Image --&gt;
+&lt;img src="photo.jpg" alt="Description"&gt;
+
+&lt;!-- Responsive Image --&gt;
+&lt;img src="photo.jpg" alt="Description" style="max-width:100%;height:auto;"&gt;
+
+&lt;!-- Figure with Caption --&gt;
+&lt;figure&gt;
+    &lt;img src="chart.png" alt="Sales chart"&gt;
+    &lt;figcaption&gt;Figure 1: Sales growth&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- Video --&gt;
+&lt;video controls width="640"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- Audio --&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+    </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 6</span>
+        <h2>Lists</h2>
+        <pre class="code-showcase"><code>&lt;!-- Unordered --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Nyama Choma&lt;/li&gt;
+    &lt;li&gt;Ugali&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered --&gt;
+&lt;ol&gt;
+    &lt;li&gt;First step&lt;/li&gt;
+    &lt;li&gt;Second step&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Description --&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Structure of web pages&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+    </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 7</span>
+        <h2>Tables</h2>
+        <pre class="code-showcase"><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Brian&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- colspan and rowspan --&gt;
+&lt;td colspan="2"&gt;Spans 2 columns&lt;/td&gt;
+&lt;td rowspan="2"&gt;Spans 2 rows&lt;/td&gt;</code></pre>
+    </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 8</span>
+        <h2>Forms &amp; Input</h2>
+        <pre class="code-showcase"><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    
+    &lt;label for="msg"&gt;Message:&lt;/label&gt;
+    &lt;textarea id="msg" name="message" rows="5"&gt;&lt;/textarea&gt;
+    
+    &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <p><strong>Input Types:</strong> text, email, password, tel, url, number, date, time, checkbox, radio, select, file, color, range, search, hidden.</p>
+    </div>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 9</span>
+        <h2>Semantic HTML</h2>
+        <p>Use meaningful tags instead of <code>&lt;div&gt;</code> for everything:</p>
+        <pre class="code-showcase"><code>&lt;header&gt;    &lt;!-- Page header --&gt;
+&lt;nav&gt;       &lt;!-- Navigation --&gt;
+&lt;main&gt;      &lt;!-- Main content --&gt;
+&lt;article&gt;   &lt;!-- Blog post / article --&gt;
+&lt;section&gt;   &lt;!-- Thematic grouping --&gt;
+&lt;aside&gt;     &lt;!-- Sidebar --&gt;
+&lt;footer&gt;    &lt;!-- Page footer --&gt;</code></pre>
+        <p>Benefits: Better <strong>SEO</strong>, <strong>accessibility</strong>, and <strong>code readability</strong>.</p>
+    </div>
+</section>
+
+<!-- CHAPTER 10 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 10</span>
+        <h2>HTML5 Features</h2>
+        <ul>
+            <li><strong>Canvas API</strong> — Draw graphics and animations</li>
+            <li><strong>Local Storage</strong> — Store data in the browser</li>
+            <li><strong>Geolocation</strong> — Get user's location</li>
+            <li><strong>Drag and Drop</strong> — Interactive elements</li>
+            <li><strong>Web Workers</strong> — Background processing</li>
+            <li><strong>History API</strong> — Manage browser history</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CHAPTER 11 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 11</span>
+        <h2>Accessibility (A11y)</h2>
+        <ul>
+            <li>Use <strong>semantic HTML</strong> — screen readers understand it</li>
+            <li>Always include <strong>alt text</strong> on images</li>
+            <li>Use <strong>ARIA attributes</strong> when needed</li>
+            <li>Ensure <strong>keyboard navigation</strong> works</li>
+            <li>Maintain <strong>color contrast</strong> ratios</li>
+            <li>Add <strong>focus indicators</strong> for interactive elements</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CHAPTER 12 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 12</span>
+        <h2>SEO Best Practices</h2>
+        <ul>
+            <li>Use <strong>descriptive title tags</strong> (under 60 characters)</li>
+            <li>Write compelling <strong>meta descriptions</strong> (under 160 characters)</li>
+            <li>Use <strong>exactly one &lt;h1&gt;</strong> per page</li>
+            <li>Include <strong>alt text</strong> on all images</li>
+            <li>Use <strong>semantic HTML</strong> structure</li>
+            <li>Add <strong>Open Graph tags</strong> for social media</li>
+            <li>Create a <strong>sitemap.xml</strong> for search engines</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CHAPTER 13 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 13</span>
+        <h2>Best Practices</h2>
+        <ul>
+            <li>✅ Use <strong>external CSS</strong> — avoid inline styles</li>
+            <li>✅ Keep your code <strong>properly indented</strong></li>
+            <li>✅ Use <strong>lowercase tag names</strong></li>
+            <li>✅ Always <strong>close your tags</strong></li>
+            <li>✅ Validate your HTML at <strong>validator.w3.org</strong></li>
+            <li>❌ Don't use deprecated tags like <code>&lt;center&gt;</code>, <code>&lt;font&gt;</code></li>
+            <li>❌ Don't use tables for layout — use CSS Grid/Flexbox</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CHAPTER 14 -->
+<section class="section-block">
+    <div class="course-content">
+        <span class="chapter-badge">Chapter 14</span>
+        <h2>Final Project</h2>
+        <h3>Build a Complete Portfolio Website</h3>
+        <p>Apply everything you've learned to create a professional portfolio with:</p>
+        <ul>
+            <li>✅ Semantic HTML5 structure</li>
+            <li>✅ Navigation menu</li>
+            <li>✅ Hero section with call-to-action</li>
+            <li>✅ Image gallery with captions</li>
+            <li>✅ Contact form with validation</li>
+            <li>✅ Responsive design for all devices</li>
+            <li>✅ SEO meta tags</li>
+            <li>✅ Accessible to screen readers</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="section-block" style="text-align:center;border-bottom:none;">
+    <div class="course-content">
+        <h2>🎉 Congratulations!</h2>
+        <p style="font-size:1.2rem;">You've completed HTML5 Complete Mastery. You now have the skills to build professional, accessible, and SEO-friendly websites.</p>
+        <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="/courses/" class="btn btn-primary" style="padding:0.9rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;font-size:1.05rem;">Back to Courses</a>
+            <a href="/playground/" class="btn btn-outline" style="padding:0.9rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;font-size:1.05rem;">Practice in Playground</a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

@@ -1,0 +1,157 @@
+<style>
+.poll-float-btn {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: white;
+    color: #6366f1;
+    border: 2px solid #e5e7eb;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 190px;
+    right: 20px;
+    z-index: 10000;
+}
+.poll-card {
+    display: none;
+    position: fixed;
+    bottom: 245px;
+    right: 20px;
+    width: 280px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    z-index: 10001;
+    overflow: hidden;
+}
+.poll-header {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.poll-body { padding: 0.75rem; max-height: 300px; overflow-y: auto; }
+.poll-opt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    margin-bottom: 0.3rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    color: #1f2937;
+}
+.poll-vote-btn {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #6366f1;
+    border-radius: 4px;
+    white-space: nowrap;
+    background: transparent;
+    cursor: pointer;
+}
+.poll-vote-btn:hover { background: #6366f1; color: white; }
+.poll-vote-btn.voted { 
+    color: #10b981; 
+    border-color: #10b981; 
+    cursor: default;
+    pointer-events: none;
+}
+.poll-bar { height: 4px; background: #e5e7eb; border-radius: 2px; margin-top: 0.3rem; width: 100%; }
+.poll-bar-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; }
+.poll-percent { color: #6366f1; font-size: 0.7rem; font-weight: 600; }
+</style>
+
+<iframe name="hiddenFrame" style="display:none;"></iframe>
+<div id="pollBtn" class="poll-float-btn" onclick="openPollWidget()">📊</div>
+
+<div id="pollCard" class="poll-card">
+    <div class="poll-header">
+        📊 Quick Poll
+        <button onclick="closePollWidget()" style="background:rgba(255,255,255,0.2);color:white;border:none;border-radius:4px;width:22px;height:22px;cursor:pointer;">✕</button>
+    </div>
+    <div class="poll-body" id="pollBody">
+        <p style="color:#9ca3af;text-align:center;font-size:0.8rem;">Loading...</p>
+    </div>
+</div>
+
+<script>
+var hasVoted = false;
+
+function getCSRF() {
+    var el = document.querySelector('[name=csrfmiddlewaretoken]');
+    return el ? el.value : '';
+}
+
+
+function openPollWidget() {
+    document.getElementById('pollCard').style.display = 'block';
+    document.getElementById('pollBtn').style.display = 'none';
+    loadPoll();
+}
+
+function closePollWidget() {
+    document.getElementById('pollCard').style.display = 'none';
+    document.getElementById('pollBtn').style.display = 'flex';
+}
+
+function loadPoll() {
+    fetch('/polls/api/latest/')
+        .then(res => res.json())
+        .then(data => {
+            var body = document.getElementById('pollBody');
+            if (data.poll) {
+                var h = '<p style="color:#1f2937;font-weight:600;margin-bottom:0.5rem;font-size:0.82rem;">' + data.poll.question + '</p>';
+                data.poll.options.forEach(function(opt) {
+                    h += '<div class="poll-opt">';
+                    h += '<span>' + opt.text;
+                    if (hasVoted) {
+                        h += ' <span class="poll-percent">' + opt.percentage + '%</span>';
+                    }
+                    h += '</span>';
+                    if (!hasVoted) {
+                        h += '<form method="POST" action="/polls/vote/' + data.poll.id + '/" target="hiddenFrame" style="display:inline;">';
+                        h += '<input type="hidden" name="csrfmiddlewaretoken" value="' + getCSRF() + '">';
+                        h += '<input type="hidden" name="option_id" value="' + opt.id + '">';
+                        h += '<button type="submit" class="poll-vote-btn" onclick="setTimeout(function(){hasVoted=true;loadPoll();},500)">Vote</button>';
+                        h += '</form>';
+                    } else {
+                        h += '<span class="poll-vote-btn voted">✓</span>';
+                    }
+                    h += '</div>';
+                    if (hasVoted) {
+                        h += '<div class="poll-bar"><div class="poll-bar-fill" style="width:' + opt.percentage + '%;"></div></div>';
+                    }
+                });
+                h += '<p style="color:#9ca3af;font-size:0.7rem;text-align:center;margin-top:0.5rem;">' + data.poll.total_votes + ' votes</p>';
+                if (hasVoted) {
+                    h += '<p style="color:#10b981;font-size:0.7rem;text-align:center;">✅ You voted!</p>';
+                }
+                body.innerHTML = h;
+            } else {
+                body.innerHTML = '<p style="color:#9ca3af;text-align:center;font-size:0.8rem;">No active polls</p>';
+            }
+        });
+}
+
+function markVoted() {
+    hasVoted = true;
+    setTimeout(function() { loadPoll(); }, 1000);
+}
+
+setTimeout(loadPoll, 1500);
+</script>

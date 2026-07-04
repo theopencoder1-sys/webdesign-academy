@@ -1,163 +1,697 @@
 {% extends 'base.html' %}
-{% block title %}JavaScript Essentials - WebDesign Academy{% endblock %}
+{% block title %}JavaScript Complete Mastery{% endblock %}
+{% block extra_head %}
+<style>
+    :root {
+        --text: #ffffff;
+        --text-secondary: #e8e8e8;
+        --heading: #ffffff;
+        --accent: #F7DF1E;
+        --code-bg: rgba(0,0,0,0.5);
+        --code-border: rgba(255,255,255,0.1);
+    }
+    * { box-sizing: border-box; }
+    .course-hero {
+        padding: 4rem 3rem 2rem;
+        background: linear-gradient(135deg, rgba(247,223,30,0.05), rgba(0,0,0,0.3));
+    }
+    .section-block {
+        padding: 3rem 3rem;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .section-block h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--heading);
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--accent);
+        padding-left: 1rem;
+    }
+    .section-block h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin: 2rem 0 0.75rem;
+    }
+    .section-block p {
+        font-size: 1.15rem;
+        line-height: 1.9;
+        color: var(--text-secondary);
+        margin-bottom: 1.25rem;
+        max-width: 100%;
+    }
+    .section-block ul, .section-block ol {
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: var(--text-secondary);
+        margin: 1rem 0 1rem 1.5rem;
+        max-width: 100%;
+    }
+    .section-block li { margin-bottom: 0.5rem; }
+    .section-block strong { color: var(--text); font-weight: 700; }
+    .section-block code {
+        color: #F7DF1E;
+        background: rgba(247,223,30,0.1);
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-family: 'Fira Code', monospace;
+    }
+    .code-showcase {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #e0e0e0;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        width: 100%;
+    }
+    .chapter-badge {
+        display: inline-block;
+        background: rgba(247,223,30,0.15);
+        color: var(--accent);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+    }
+    .badge-free {
+        display: inline-block;
+        background: rgba(46,204,113,0.15);
+        color: #2ecc71;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+    .info-box {
+        background: rgba(247,223,30,0.08);
+        border: 1px solid rgba(247,223,30,0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    .info-box strong { color: var(--accent); }
+    @media (max-width: 768px) {
+        .section-block { padding: 2rem 1rem; }
+        .section-block h2 { font-size: 1.5rem; }
+        .section-block p, .section-block li { font-size: 1rem; }
+        .course-hero { padding: 3rem 1rem 1.5rem; }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
-<div style="background:linear-gradient(135deg,#F7DF1E,#EAB308);padding:3rem 1.5rem;text-align:center;">
-    <h1 style="font-size:2.5rem;font-weight:900;color:#000;">⚡ JavaScript Essentials</h1>
-    <p style="color:rgba(0,0,0,0.8);font-size:1.1rem;">Variables • Functions • DOM • Events • ES6+ • Async • APIs • Projects</p>
-    <span class="badge badge-free" style="font-size:0.9rem;background:rgba(0,0,0,0.2);color:#000;">FREE COURSE</span>
-    <span style="color:rgba(0,0,0,0.7);margin-left:0.5rem;">10 Sections • 4 Hours • 400 XP</span>
+<div class="course-hero">
+    <span class="badge-free">FREE COURSE</span>
+    <span style="color:#a8a6a3;margin-left:0.75rem;">10 Sections • 4 Hours • 400 XP</span>
+    <h1 style="font-size:3.5rem;font-weight:800;line-height:1.1;margin:1rem 0;color:#ffffff;">⚡ JavaScript<br>Complete Mastery</h1>
+    <p style="font-size:1.2rem;color:#d0d0d0;">The definitive guide to JavaScript — from variables to async programming. Every concept explained with real-world examples.</p>
 </div>
 
-<div style="max-width:900px;margin:2rem auto;padding:0 1.5rem;">
-
-<!-- 1. What is JS -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">1. What is JavaScript?</h2>
-    <p style="color:#d1d5db;line-height:1.9;font-size:1.05rem;">JavaScript is the <strong>programming language of the web</strong>. It makes websites interactive, handles user actions, fetches data, and can even run servers (Node.js).</p>
-</div>
-
-<!-- 2. Variables -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">2. Variables & Data Types</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>// Variables (USE THESE!)
-let name = "Brian";       // Can change
-const PI = 3.14159;       // Cannot change (USE THIS MOST!)
-
-// Data Types
-let city = "Nairobi";           // String
-let score = 100;                // Number
-let price = 99.99;              // Float
-let isActive = true;            // Boolean
-let items = ["HTML","CSS","JS"];// Array
-let user = {name:"Brian",age:25};// Object
-let nothing = null;             // Null
-let notDefined;                 // Undefined
-
-// Template Literals (ES6)
-let greeting = `Hello, ${name}! You scored ${score}.`;</code></pre>
+<!-- CHAPTER 1 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 1</span>
+    <h2>What is JavaScript?</h2>
+    <p>JavaScript is the <strong>programming language of the web</strong>. It is what makes websites interactive, dynamic, and alive. While HTML gives structure and CSS gives style, JavaScript gives <strong>behavior</strong>.</p>
+    <p>Created in 1995 by Brendan Eich at Netscape, JavaScript has grown from a simple scripting language to the <strong>most popular programming language in the world</strong>. Today it runs in every browser, on servers (Node.js), mobile apps (React Native), desktop apps (Electron), and even spacecraft (seriously, NASA uses JavaScript).</p>
+    <div class="info-box">
+        <strong>💡 Key Insight:</strong> JavaScript is NOT related to Java despite the similar name. The name was a marketing decision in the 90s. JavaScript is a completely different language with its own unique features and ecosystem.
     </div>
-</div>
+    <h3>Where JavaScript Runs</h3>
+    <ul>
+        <li><strong>Browser (Frontend):</strong> Manipulates web pages, handles user events, fetches data</li>
+        <li><strong>Server (Backend):</strong> Node.js runs JavaScript on servers — APIs, databases, file systems</li>
+        <li><strong>Mobile Apps:</strong> React Native, Ionic, NativeScript</li>
+        <li><strong>Desktop Apps:</strong> Electron (VS Code, Discord, Slack are built with it!)</li>
+        <li><strong>Games:</strong> Browser games, Phaser.js, Three.js for 3D</li>
+        <li><strong>Machine Learning:</strong> TensorFlow.js runs AI models in the browser</li>
+    </ul>
+    <h3>Adding JavaScript to Your Page</h3>
+    <pre class="code-showcase"><code>&lt;!-- Internal JavaScript --&gt;
+&lt;script&gt;
+    console.log("Hello from JavaScript!");
+&lt;/script&gt;
 
-<!-- 3. Functions -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">3. Functions</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>// Function Declaration
-function greet(name) { return `Hello, ${name}!`; }
+&lt;!-- External JavaScript (BEST PRACTICE) --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
 
-// Arrow Function (ES6 - BEST!)
+&lt;!-- Always place scripts at the bottom of &lt;body&gt; --&gt;
+&lt;!-- Or use defer/async attributes --&gt;
+&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 2</span>
+    <h2>Variables &amp; Data Types</h2>
+    <p>Variables are containers for storing data. JavaScript has <strong>three ways</strong> to declare variables, but only two you should actually use.</p>
+    
+    <h3>Variable Declaration</h3>
+    <pre class="code-showcase"><code>// ✅ USE THESE TWO
+let name = "Brian";        // Can be reassigned
+const PI = 3.14159;        // Cannot be reassigned (constant)
+
+// ❌ NEVER USE THIS
+var age = 25;              // Old, problematic, function-scoped</code></pre>
+
+    <div class="info-box">
+        <strong>💡 Rule of Thumb:</strong> Always start with <code>const</code>. Only use <code>let</code> when you know the value will change. Never use <code>var</code>.
+    </div>
+
+    <h3>Primitive Data Types</h3>
+    <pre class="code-showcase"><code>// String — text
+let city = "Nairobi";
+let country = 'Kenya';
+let template = `I live in ${city}, ${country}`; // Template literal
+
+// Number — integers and decimals
+let score = 100;
+let price = 99.99;
+let infinity = Infinity;
+let notANumber = NaN; // Result of invalid math
+
+// Boolean — true or false
+let isLoggedIn = true;
+let isPremium = false;
+
+// Undefined — declared but not assigned
+let x; // undefined
+
+// Null — intentionally empty
+let y = null;
+
+// Symbol — unique identifier (advanced)
+let sym = Symbol("unique");
+
+// BigInt — very large numbers
+let big = 9007199254740991n;</code></pre>
+
+    <h3>Reference Data Types</h3>
+    <pre class="code-showcase"><code>// Array — ordered list
+let colors = ["red", "green", "blue"];
+let mixed = [42, "hello", true, null, {name: "Brian"}];
+
+// Object — key-value pairs
+let user = {
+    name: "Brian",
+    age: 25,
+    city: "Nairobi",
+    isStudent: true,
+    skills: ["HTML", "CSS", "JS"]
+};
+
+// Accessing properties
+console.log(user.name);       // "Brian" (dot notation)
+console.log(user["age"]);     // 25 (bracket notation)
+console.log(user.skills[0]);  // "HTML"</code></pre>
+
+    <h3>Type Checking</h3>
+    <pre class="code-showcase"><code>typeof "Hello"    // "string"
+typeof 42         // "number"
+typeof true       // "boolean"
+typeof undefined  // "undefined"
+typeof null       // "object" (this is a bug in JavaScript!)
+typeof []         // "object"
+typeof {}         // "object"
+typeof console.log // "function"</code></pre>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 3</span>
+    <h2>Operators &amp; Expressions</h2>
+    
+    <h3>Arithmetic Operators</h3>
+    <pre class="code-showcase"><code>let a = 10, b = 3;
+console.log(a + b);  // 13 (addition)
+console.log(a - b);  // 7  (subtraction)
+console.log(a * b);  // 30 (multiplication)
+console.log(a / b);  // 3.333... (division)
+console.log(a % b);  // 1  (remainder/modulo)
+console.log(a ** b); // 1000 (exponentiation)
+a++; // Increment (a becomes 11)
+b--; // Decrement (b becomes 2)</code></pre>
+
+    <h3>Comparison Operators</h3>
+    <pre class="code-showcase"><code>console.log(5 > 3);   // true
+console.log(5 < 3);   // false
+console.log(5 >= 5);  // true
+console.log(5 <= 4);  // false
+console.log(5 == "5");  // true (loose equality — converts type)
+console.log(5 === "5"); // false (strict equality — checks type too!)
+console.log(5 != "5");  // false
+console.log(5 !== "5"); // true</code></pre>
+
+    <div class="info-box">
+        <strong>💡 ALWAYS use === (strict equality)!</strong> <code>==</code> converts types which leads to bugs. <code>===</code> checks both value AND type.
+    </div>
+
+    <h3>Logical Operators</h3>
+    <pre class="code-showcase"><code>// AND (&&) — both must be true
+console.log(true && true);   // true
+console.log(true && false);  // false
+
+// OR (||) — one must be true
+console.log(true || false);  // true
+console.log(false || false); // false
+
+// NOT (!) — reverses
+console.log(!true);  // false
+console.log(!false); // true
+
+// Practical examples
+let age = 20;
+let hasLicense = true;
+if (age >= 18 && hasLicense) {
+    console.log("You can drive!");
+}
+
+let isWeekend = true;
+let isHoliday = false;
+if (isWeekend || isHoliday) {
+    console.log("No work today!");
+}</code></pre>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 4</span>
+    <h2>Conditionals &amp; Control Flow</h2>
+    
+    <h3>if / else if / else</h3>
+    <pre class="code-showcase"><code>let score = 85;
+
+if (score >= 90) {
+    console.log("Grade: A");
+} else if (score >= 80) {
+    console.log("Grade: B");
+} else if (score >= 70) {
+    console.log("Grade: C");
+} else if (score >= 60) {
+    console.log("Grade: D");
+} else {
+    console.log("Grade: F");
+}
+// Output: "Grade: B"</code></pre>
+
+    <h3>Ternary Operator (Shortcut)</h3>
+    <pre class="code-showcase"><code>// Syntax: condition ? valueIfTrue : valueIfFalse
+let age = 20;
+let canVote = age >= 18 ? "Yes" : "No";
+console.log(canVote); // "Yes"
+
+let isLoggedIn = false;
+let greeting = isLoggedIn ? "Welcome back!" : "Please login";
+console.log(greeting); // "Please login"</code></pre>
+
+    <h3>Switch Statement</h3>
+    <pre class="code-showcase"><code>let day = "Monday";
+
+switch(day) {
+    case "Monday":
+        console.log("Start of the week!");
+        break;
+    case "Friday":
+        console.log("Weekend is near!");
+        break;
+    case "Saturday":
+    case "Sunday":
+        console.log("Weekend!");
+        break;
+    default:
+        console.log("Regular day");
+}
+// Don't forget break! Without it, execution "falls through"</code></pre>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 5</span>
+    <h2>Loops</h2>
+    
+    <h3>For Loop</h3>
+    <pre class="code-showcase"><code>// Standard for loop
+for (let i = 0; i < 5; i++) {
+    console.log(`Iteration ${i}`);
+}
+
+// Loop through array
+let fruits = ["apple", "banana", "mango"];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}</code></pre>
+
+    <h3>For...of (Best for Arrays)</h3>
+    <pre class="code-showcase"><code>let colors = ["red", "green", "blue"];
+for (let color of colors) {
+    console.log(color);
+}</code></pre>
+
+    <h3>For...in (For Objects)</h3>
+    <pre class="code-showcase"><code>let user = { name: "Brian", age: 25, city: "Nairobi" };
+for (let key in user) {
+    console.log(`${key}: ${user[key]}`);
+}</code></pre>
+
+    <h3>While &amp; Do...While</h3>
+    <pre class="code-showcase"><code>// While loop
+let count = 0;
+while (count < 5) {
+    console.log(count);
+    count++;
+}
+
+// Do...while (runs at least once)
+let x = 0;
+do {
+    console.log(x);
+    x++;
+} while (x < 5);</code></pre>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 6</span>
+    <h2>Functions Deep Dive</h2>
+    
+    <h3>Function Declaration</h3>
+    <pre class="code-showcase"><code>function greet(name) {
+    return `Hello, ${name}!`;
+}
+console.log(greet("Brian")); // "Hello, Brian!"</code></pre>
+
+    <h3>Arrow Functions (ES6)</h3>
+    <pre class="code-showcase"><code>// Full syntax
+const add = (a, b) => {
+    return a + b;
+};
+
+// Short syntax (single expression)
 const add = (a, b) => a + b;
+
+// Single parameter (no parentheses needed)
 const greet = name => `Hello, ${name}!`;
 
-// Default Parameters
-function calculateFee(amount, rate = 0.01) { return amount * rate; }
+// No parameters
+const sayHello = () => "Hello!";
+</code></pre>
 
-// Callback Functions
-setTimeout(() => { console.log("Done!"); }, 1000);</code></pre>
-    </div>
-</div>
+    <h3>Parameters &amp; Arguments</h3>
+    <pre class="code-showcase"><code>// Default parameters
+function calculateFee(amount, rate = 0.01) {
+    return amount * rate;
+}
+console.log(calculateFee(1000)); // 10 (uses default rate)
 
-<!-- 4. DOM -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">4. DOM Manipulation</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>// Selecting Elements
-const title = document.getElementById("title");
-const buttons = document.querySelectorAll(".btn");
-const firstLink = document.querySelector("a");
+// Rest parameters (...)
+function sum(...numbers) {
+    return numbers.reduce((total, n) => total + n, 0);
+}
+console.log(sum(1, 2, 3, 4, 5)); // 15</code></pre>
 
-// Changing Content
-title.textContent = "New Title!";
-title.innerHTML = "&lt;strong&gt;Bold&lt;/strong&gt;";
-title.style.color = "red";
+    <h3>Callback Functions</h3>
+    <pre class="code-showcase"><code>// A callback is a function passed as an argument
+function processUserInput(name, callback) {
+    const greeting = `Hello, ${name}!`;
+    callback(greeting);
+}
 
-// Creating Elements
-const div = document.createElement("div");
-div.className = "card";
-div.textContent = "I am new!";
-document.body.appendChild(div);
+processUserInput("Brian", function(message) {
+    console.log(message); // "Hello, Brian!"
+});
 
-// Events
-button.addEventListener("click", () => { alert("Clicked!"); });
-form.addEventListener("submit", (e) => { e.preventDefault(); });</code></pre>
-    </div>
-</div>
+// With arrow function
+processUserInput("Brian", (message) => {
+    console.log(message);
+});</code></pre>
+</section>
 
-<!-- 5. Arrays -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">5. Arrays & Array Methods</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>let fruits = ["apple", "banana", "mango"];
+<!-- CHAPTER 7 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 7</span>
+    <h2>DOM Manipulation</h2>
+    <p>The <strong>DOM (Document Object Model)</strong> is a tree representation of your HTML that JavaScript can interact with.</p>
+    
+    <h3>Selecting Elements</h3>
+    <pre class="code-showcase"><code>// By ID (returns single element)
+const header = document.getElementById("header");
 
-// Add/Remove
-fruits.push("orange");      // Add to end
-fruits.pop();               // Remove from end
-fruits.unshift("grape");    // Add to start
-fruits.shift();             // Remove from start
+// By class (returns HTMLCollection — like an array)
+const buttons = document.getElementsByClassName("btn");
 
-// Array Methods (Functional!)
-fruits.forEach(f => console.log(f));
-let upper = fruits.map(f => f.toUpperCase());
-let long = fruits.filter(f => f.length > 5);
-let found = fruits.find(f => f === "mango");
-let hasApple = fruits.includes("apple");
-let total = [1,2,3].reduce((sum, n) => sum + n, 0);</code></pre>
-    </div>
-</div>
+// By tag name
+const paragraphs = document.getElementsByTagName("p");
 
-<!-- 6. Async JS -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;">
-    <h2 style="color:white;font-size:1.8rem;border-bottom:2px solid #F7DF1E;padding-bottom:0.5rem;">6. Async JavaScript (Promises & Fetch)</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;overflow-x:auto;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>// Fetch API
-fetch('https://api.example.com/users')
-    .then(res => res.json())
+// Query Selector (MOST POWERFUL — returns first match)
+const mainTitle = document.querySelector("h1");
+const loginButton = document.querySelector(".btn-primary");
+
+// Query Selector All (returns NodeList — all matches)
+const allLinks = document.querySelectorAll("a");
+const navItems = document.querySelectorAll("nav a");</code></pre>
+
+    <h3>Changing Content</h3>
+    <pre class="code-showcase"><code>// Change text
+document.querySelector("h1").textContent = "New Title!";
+
+// Change HTML (be careful with this!)
+document.querySelector(".content").innerHTML = "&lt;strong&gt;Bold text&lt;/strong&gt;";
+
+// Change attributes
+document.querySelector("img").src = "new-image.jpg";
+document.querySelector("a").href = "https://google.com";
+
+// Change styles
+const box = document.querySelector(".box");
+box.style.backgroundColor = "red";
+box.style.color = "white";
+box.style.padding = "20px";
+box.style.display = "none"; // Hide element</code></pre>
+
+    <h3>Creating &amp; Removing Elements</h3>
+    <pre class="code-showcase"><code>// Create new element
+const newDiv = document.createElement("div");
+newDiv.textContent = "I am new!";
+newDiv.className = "card";
+newDiv.id = "myCard";
+document.body.appendChild(newDiv);
+
+// Remove element
+const oldElement = document.querySelector(".old");
+oldElement.remove();
+
+// Insert before another element
+const parent = document.querySelector(".container");
+const reference = document.querySelector(".reference");
+parent.insertBefore(newDiv, reference);</code></pre>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 8</span>
+    <h2>Events</h2>
+    
+    <h3>Adding Event Listeners</h3>
+    <pre class="code-showcase"><code>// Click event
+const button = document.querySelector("button");
+button.addEventListener("click", function() {
+    alert("Button clicked!");
+});
+
+// Arrow function version
+button.addEventListener("click", () => {
+    console.log("Clicked!");
+});
+
+// Form submit
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); // Stop page from refreshing
+    console.log("Form submitted!");
+});
+
+// Input change
+const input = document.querySelector("input");
+input.addEventListener("input", (e) => {
+    console.log("Current value:", e.target.value);
+});
+
+// Keyboard events
+document.addEventListener("keydown", (e) => {
+    console.log("Key pressed:", e.key);
+    if (e.key === "Escape") {
+        console.log("Escape pressed!");
+    }
+});
+
+// Mouse events
+element.addEventListener("mouseenter", () => {
+    element.style.backgroundColor = "blue";
+});
+element.addEventListener("mouseleave", () => {
+    element.style.backgroundColor = "";
+});</code></pre>
+
+    <h3>Common Events List</h3>
+    <ul>
+        <li><strong>click</strong> — Mouse click</li>
+        <li><strong>dblclick</strong> — Double click</li>
+        <li><strong>submit</strong> — Form submission</li>
+        <li><strong>input</strong> — Input value changes</li>
+        <li><strong>change</strong> — Select/checkbox changes</li>
+        <li><strong>keydown / keyup</strong> — Keyboard keys</li>
+        <li><strong>mouseenter / mouseleave</strong> — Hover</li>
+        <li><strong>scroll</strong> — Page scrolling</li>
+        <li><strong>resize</strong> — Window resizing</li>
+        <li><strong>load</strong> — Page finished loading</li>
+    </ul>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 9</span>
+    <h2>Async JavaScript</h2>
+    
+    <h3>Callbacks (Old School)</h3>
+    <pre class="code-showcase"><code>// Callback hell — avoid this!
+getUser(1, function(user) {
+    getPosts(user.id, function(posts) {
+        getComments(posts[0].id, function(comments) {
+            console.log(comments);
+        });
+    });
+});</code></pre>
+
+    <h3>Promises (Modern)</h3>
+    <pre class="code-showcase"><code>// Creating a promise
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const success = true;
+        if (success) {
+            resolve("Data loaded!");
+        } else {
+            reject("Error loading data");
+        }
+    }, 2000);
+});
+
+// Using promises
+promise
+    .then(data => console.log(data))  // "Data loaded!"
+    .catch(error => console.error(error))
+    .finally(() => console.log("Done!"));</code></pre>
+
+    <h3>Fetch API</h3>
+    <pre class="code-showcase"><code>// GET request
+fetch("https://api.example.com/users")
+    .then(response => response.json())
     .then(data => console.log(data))
-    .catch(err => console.error(err));
+    .catch(error => console.error("Error:", error));
 
-// Async/Await (BEST!)
-async function getUsers() {
+// POST request
+fetch("https://api.example.com/users", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: "Brian",
+        email: "brian@example.com"
+    })
+})
+    .then(response => response.json())
+    .then(data => console.log("Created:", data));</code></pre>
+
+    <h3>Async/Await (The BEST Way)</h3>
+    <pre class="code-showcase"><code>async function getUsers() {
     try {
-        const response = await fetch('/api/users/');
+        const response = await fetch("https://api.example.com/users");
         const data = await response.json();
+        console.log(data);
         return data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
     }
 }
 
-// Promise
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Done!"), 2000);
-});</code></pre>
-    </div>
-</div>
+// Call the function
+getUsers();</code></pre>
+</section>
 
-<!-- 7. Final Project -->
-<div class="card" style="padding:2rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(247,223,30,0.05));border-color:rgba(16,185,129,0.3);">
-    <h2 style="color:#10b981;font-size:1.8rem;">🎯 Build: M-Pesa Calculator</h2>
-    <div style="background:#0a0a0a;border-radius:8px;padding:1rem;">
-        <pre style="color:#e5e7eb;font-size:0.85rem;"><code>&lt;input type="number" id="amount" placeholder="Enter amount"&gt;
-&lt;button onclick="calculate()"&gt;Calculate Fee&lt;/button&gt;
-&lt;p id="result"&gt;&lt;/p&gt;
+<!-- CHAPTER 10 -->
+<section class="section-block">
+    <span class="chapter-badge">Chapter 10</span>
+    <h2>🎯 Real-World Project: M-Pesa Calculator</h2>
+    <p>Build a complete M-Pesa fee calculator that takes an amount and calculates the transaction fee.</p>
+    
+    <pre class="code-showcase"><code>&lt;!-- index.html --&gt;
+&lt;div class="calculator"&gt;
+    &lt;h2&gt;M-Pesa Fee Calculator&lt;/h2&gt;
+    &lt;input type="number" id="amount" placeholder="Enter amount (Ksh)"&gt;
+    &lt;select id="transactionType"&gt;
+        &lt;option value="send"&gt;Send Money&lt;/option&gt;
+        &lt;option value="withdraw"&gt;Withdraw&lt;/option&gt;
+        &lt;option value="paybill"&gt;Pay Bill&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button onclick="calculate()"&gt;Calculate&lt;/button&gt;
+    &lt;div id="result"&gt;&lt;/div&gt;
+&lt;/div&gt;
 
 &lt;script&gt;
 function calculate() {
-    const amount = document.getElementById('amount').value;
-    const fee = amount * 0.01;  // 1% M-Pesa fee
-    const total = Number(amount) + fee;
-    document.getElementById('result').textContent = 
-        `Amount: Ksh ${amount}\nFee: Ksh ${fee}\nTotal: Ksh ${total}`;
+    const amount = Number(document.getElementById("amount").value);
+    const type = document.getElementById("transactionType").value;
+    
+    // M-Pesa fee structure (simplified)
+    const fees = {
+        send: amount <= 100 ? 0 : amount <= 500 ? 7 : amount <= 1000 ? 13 : 
+              amount <= 1500 ? 23 : amount <= 2500 ? 33 : amount <= 3500 ? 53 :
+              amount <= 5000 ? 67 : amount <= 7500 ? 87 : amount <= 10000 ? 97 :
+              amount <= 15000 ? 117 : amount <= 20000 ? 132 : amount <= 25000 ? 152 :
+              amount <= 30000 ? 167 : 187,
+        withdraw: amount <= 100 ? 10 : amount <= 2500 ? 27 : amount <= 5000 ? 47 :
+                  amount <= 10000 ? 67 : amount <= 20000 ? 107 : 167,
+        paybill: 0 // Most Paybill transactions are free
+    };
+    
+    const fee = fees[type] || 0;
+    const total = amount + fee;
+    
+    document.getElementById("result").innerHTML = `
+        &lt;div class="result-card"&gt;
+            &lt;p&gt;Amount: &lt;strong&gt;Ksh ${amount.toLocaleString()}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Fee: &lt;strong&gt;Ksh ${fee.toLocaleString()}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Total: &lt;strong&gt;Ksh ${total.toLocaleString()}&lt;/strong&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    `;
+    
+    // Also log to console for debugging
+    console.log({amount, type, fee, total});
 }
 &lt;/script&gt;</code></pre>
-    </div>
-    <div style="text-align:center;margin-top:1.5rem;padding:1.5rem;background:rgba(16,185,129,0.2);border-radius:8px;">
-        <h3 style="color:#10b981;">🎉 JavaScript Complete!</h3>
-        <p style="color:#d1d5db;">You can now build interactive websites!</p>
-    </div>
-</div>
 
-</div>
+    <div class="info-box">
+        <strong>🇰🇪 Kenya-Specific Knowledge:</strong> Understanding M-Pesa APIs is one of the most valuable skills for Kenyan developers. Every business needs payment integration, and M-Pesa is the #1 method. This knowledge alone can get you freelance work!
+    </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="section-block" style="text-align:center;border-bottom:none;padding:4rem 3rem;">
+    <h2 style="border:none;padding:0;">🎉 JavaScript Complete!</h2>
+    <p style="font-size:1.2rem;">You now have the skills to build interactive, dynamic websites. From DOM manipulation to API calls, you're ready for real projects.</p>
+    <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/courses/" class="btn btn-primary" style="padding:0.9rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;font-size:1.05rem;background:#F7DF1E;color:#000;">Back to Courses</a>
+        <a href="/playground/" class="btn btn-outline" style="padding:0.9rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;font-size:1.05rem;">Practice Now 🎮</a>
+        <a href="/courses/css-full/" class="btn btn-outline" style="padding:0.9rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;font-size:1.05rem;">CSS Course →</a>
+    </div>
+</section>
+
 {% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Upload Material - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:600px;margin:3rem auto;padding:2rem;">
+    <h1 style="font-size:2rem;font-weight:800;color:white;">📤 Upload Course Material</h1>
+    
+    <form method="POST" enctype="multipart/form-data" class="card" style="padding:2rem;margin-top:1rem;">
+        {% csrf_token %}
+        <label style="color:#9ca3af;">Course</label>
+        <select name="course" required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+            <option value="">Select course...</option>
+            {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.title }}</option>
+            {% endfor %}
+        </select>
+        
+        <label style="color:#9ca3af;">Title</label>
+        <input type="text" name="title" placeholder="e.g., HTML Cheat Sheet" required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        
+        <label style="color:#9ca3af;">Type</label>
+        <select name="material_type" style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+            <option value="pdf">PDF Document</option>
+            <option value="video">Video Link</option>
+            <option value="code">Source Code</option>
+            <option value="slides">Presentation Slides</option>
+            <option value="exercise">Exercise File</option>
+            <option value="cheatsheet">Cheat Sheet</option>
+        </select>
+        
+        <label style="color:#9ca3af;">Description</label>
+        <textarea name="description" rows="3" style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;"></textarea>
+        
+        <label style="color:#9ca3af;">File (optional)</label>
+        <input type="file" name="file" style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        
+        <label style="color:#9ca3af;">Video URL (optional)</label>
+        <input type="url" name="video_url" placeholder="https://youtube.com/..." style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        
+        <button type="submit" class="btn btn-primary" style="width:100%;">Upload Material 🚀</button>
+    </form>
+</div>
+{% endblock %}

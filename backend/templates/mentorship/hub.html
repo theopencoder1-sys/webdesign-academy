@@ -1,32 +1,159 @@
 {% extends 'base.html' %}
 {% block title %}PRO Mentorship Hub - WebDesign Academy{% endblock %}
+{% block extra_head %}
+<style>
+    .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .toast {
+        min-width: 280px;
+        max-width: 400px;
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        animation: slideInRight 0.3s ease forwards;
+        cursor: pointer;
+    }
+    .toast.success {
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        color: #10b981;
+    }
+    .toast.error {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #ef4444;
+    }
+    .toast.info {
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        color: #818cf8;
+    }
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+</style>
+{% endblock %}
 {% block content %}
+
 <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
     <h1 style="font-size:2.5rem;font-weight:800;color:white;margin-bottom:1rem;">⭐ PRO Mentorship Hub</h1>
-    <p style="color:#9ca3af;margin-bottom:2rem;">Book mentorship sessions, submit code for review, accelerate your career.</p>
-    
+    <p style="color:#9ca3af;margin-bottom:2rem;">Book 1-on-1 sessions with Dancan Njoro. Get personalized guidance.</p>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Availability Section -->
+    <div class="card" style="padding:2rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(99,102,241,0.05));border-color:rgba(16,185,129,0.3);">
+        <h2 style="color:#10b981;font-size:1.3rem;margin-bottom:1rem;">📅 Dancan's Availability</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1rem;text-align:center;">
+                <p style="color:#10b981;font-weight:700;">🟢 Monday</p>
+                <p style="color:#d1d5db;font-size:0.9rem;">7:00 PM - 9:00 PM</p>
+            </div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1rem;text-align:center;">
+                <p style="color:#10b981;font-weight:700;">🟢 Wednesday</p>
+                <p style="color:#d1d5db;font-size:0.9rem;">7:00 PM - 9:00 PM</p>
+            </div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1rem;text-align:center;">
+                <p style="color:#10b981;font-weight:700;">🟢 Friday</p>
+                <p style="color:#d1d5db;font-size:0.9rem;">7:00 PM - 9:00 PM</p>
+            </div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1rem;text-align:center;">
+                <p style="color:#10b981;font-weight:700;">🟢 Saturday</p>
+                <p style="color:#d1d5db;font-size:0.9rem;">10:00 AM - 2:00 PM</p>
+            </div>
+        </div>
+        <p style="color:#6b7280;font-size:0.8rem;margin-top:1rem;">Sessions are 30 minutes • Via Google Meet • Book at least 24 hours in advance</p>
+    </div>
+
+    <!-- Action Buttons -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
-        <a href="/mentorship/book/" class="card" style="padding:2rem;text-align:center;text-decoration:none;">
+        <a href="/mentorship/book/" class="card" style="padding:2rem;text-align:center;text-decoration:none;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1));border-color:rgba(99,102,241,0.3);">
             <div style="font-size:3rem;">📅</div>
-            <h3 style="color:white;margin:1rem 0;">Book Mentorship Session</h3>
-            <p style="color:#9ca3af;">30-min 1-on-1 with Dancan</p>
+            <h3 style="color:white;margin:1rem 0;">Book a Session</h3>
+            <p style="color:#9ca3af;">Schedule a 30-min 1-on-1 call</p>
         </a>
-        <a href="/mentorship/review/" class="card" style="padding:2rem;text-align:center;text-decoration:none;">
+        <a href="/mentorship/review/" class="card" style="padding:2rem;text-align:center;text-decoration:none;background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(6,182,212,0.1));border-color:rgba(16,185,129,0.3);">
             <div style="font-size:3rem;">🔍</div>
             <h3 style="color:white;margin:1rem 0;">Submit Code for Review</h3>
-            <p style="color:#9ca3af;">Get professional feedback within 48hrs</p>
+            <p style="color:#9ca3af;">Get feedback within 48 hours</p>
         </a>
     </div>
-    
+
+    <!-- WhatsApp Quick Contact -->
+    <div class="card" style="padding:1.5rem;text-align:center;margin-bottom:2rem;background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.3);">
+        <p style="color:#25D366;font-weight:600;">💬 Prefer WhatsApp?</p>
+        <a href="https://wa.me/254791040869" target="_blank" style="color:#25D366;text-decoration:none;font-weight:700;">Chat with Dancan on WhatsApp →</a>
+    </div>
+
     {% if sessions %}
-    <h2 style="color:white;margin-bottom:1rem;">📅 Your Sessions</h2>
+    <h2 style="color:white;margin-bottom:1rem;">📋 Your Sessions</h2>
     {% for s in sessions %}
-    <div class="card" style="padding:1rem;margin-bottom:0.5rem;">
-        <strong style="color:white;">{{ s.topic }}</strong>
-        <span style="color:#9ca3af;"> | {{ s.session_date|date:"M d, Y H:i" }}</span>
-        <span style="background:#1f2937;color:#f59e0b;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;float:right;">{{ s.get_status_display }}</span>
+    <div class="card" style="padding:1rem;margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+            <strong style="color:white;">{{ s.topic }}</strong>
+            <span style="color:#9ca3af;margin-left:1rem;">{{ s.session_date|date:"M d, Y H:i" }}</span>
+        </div>
+        <span style="background:#1f2937;color:#f59e0b;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.75rem;">{{ s.get_status_display }}</span>
     </div>
     {% endfor %}
     {% endif %}
 </div>
+
+<!-- Toast Notification Script -->
+<script>
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+    toast.innerHTML = `<span>${icons[type] || ''}</span> ${message}`;
+    
+    // Click to dismiss
+    toast.addEventListener('click', () => {
+        toast.style.animation = 'slideOutRight 0.3s ease forwards';
+        setTimeout(() => toast.remove(), 300);
+    });
+
+    container.appendChild(toast);
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.style.animation = 'slideOutRight 0.3s ease forwards';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, 5000);
+}
+
+// Display Django messages as toasts
+document.addEventListener('DOMContentLoaded', function() {
+    {% if messages %}
+        {% for message in messages %}
+            showToast("{{ message|escapejs }}", "{{ message.tags|default:'info' }}");
+        {% endfor %}
+    {% endif %}
+});
+</script>
+
 {% endblock %}

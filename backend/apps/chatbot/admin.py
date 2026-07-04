@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import ChatMessage
+from .models import ChatKnowledge
 
-@admin.register(ChatMessage)
-class ChatMessageAdmin(admin.ModelAdmin):
-    list_display = ['user', 'message', 'created_at']
+@admin.register(ChatKnowledge)
+class ChatKnowledgeAdmin(admin.ModelAdmin):
+    list_display = ['keywords', 'priority', 'is_active', 'created_at']
+    list_filter = ['is_active', 'priority']
+    search_fields = ['keywords', 'question_pattern', 'response']

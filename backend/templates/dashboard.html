@@ -1,94 +1,136 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard - WebDesign Academy{% endblock %}
 {% block content %}
-<div style="max-width:1000px;margin:2rem auto;padding:0 1.5rem;">
-    
+
+<div style="max-width:1100px;margin:2rem auto;padding:0 1.5rem;">
+
+    <!-- Welcome + Quick Stats -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
         <div>
-            <h1 style="font-size:2rem;font-weight:800;color:white;">Welcome, {{ user.username }}! 👋</h1>
-            <p style="color:#9ca3af;">Keep the streak alive!</p>
+            <h1 style="font-size:2rem;font-weight:800;color:#f0f0f0;">Welcome back, {{ user.username }}! 👋</h1>
+            <p style="color:#a0a0a0;">🔥 {{ user.streak }}-day streak · ⚡ {{ user.xp }} XP · 🏆 Level {{ user.level }}</p>
         </div>
         <a href="/courses/" class="btn btn-primary">Continue Learning →</a>
     </div>
-    
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:2rem;">
-        <div class="card" style="padding:1.2rem;text-align:center;">
-            <div style="font-size:1.8rem;">🔥</div>
-            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.streak }}</div>
-            <div style="color:#9ca3af;font-size:0.75rem;">Day Streak</div>
-        </div>
-        <div class="card" style="padding:1.2rem;text-align:center;">
-            <div style="font-size:1.8rem;">⚡</div>
-            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.xp }}</div>
-            <div style="color:#9ca3af;font-size:0.75rem;">Total XP</div>
-        </div>
-        <div class="card" style="padding:1.2rem;text-align:center;">
-            <div style="font-size:1.8rem;">📚</div>
-            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ completed_courses }}</div>
-            <div style="color:#9ca3af;font-size:0.75rem;">Courses Done</div>
-        </div>
-        <div class="card" style="padding:1.2rem;text-align:center;">
-            <div style="font-size:1.8rem;">🎨</div>
-            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user_projects }}</div>
-            <div style="color:#9ca3af;font-size:0.75rem;">Projects</div>
-        </div>
-        <div class="card" style="padding:1.2rem;text-align:center;">
-            <div style="font-size:1.8rem;">🏆</div>
-            <div style="font-size:1.8rem;font-weight:800;color:white;">{{ user.earned_badges.count }}</div>
-            <div style="color:#9ca3af;font-size:0.75rem;">Badges</div>
-        </div>
-        {% if user.is_premium %}
-        <div class="card" style="padding:1.2rem;text-align:center;border-color:#f59e0b;">
-            <div style="font-size:1.8rem;">⭐</div>
-            <div style="font-size:1.2rem;font-weight:800;color:#f59e0b;">PRO</div>
-            <div style="color:#f59e0b;font-size:0.75rem;">Member</div>
-        </div>
-        {% endif %}
-    </div>
-    
+
+    <!-- MAIN GRID -->
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;">
-        <div>
-            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
-                <h3 style="color:white;margin-bottom:1rem;">📊 Recent Activity</h3>
-                {% if recent_activities %}
-                {% for activity in recent_activities %}
-                <div style="padding:0.5rem 0.75rem;background:#0a0a0a;border-radius:8px;margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;">
-                    <span style="color:#d1d5db;">{{ activity.description }}</span>
-                    <span style="color:#6b7280;font-size:0.7rem;margin-left:auto;">{{ activity.created_at|timesince }} ago</span>
-                </div>
-                {% endfor %}
-                {% else %}
-                <p style="color:#6b7280;">Start learning to see activity!</p>
-                {% endif %}
-            </div>
-            
+
+        <!-- LEFT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+            <!-- 1. CONTINUE WHERE YOU LEFT OFF -->
+            {% if enrollments %}
             <div class="card" style="padding:1.5rem;">
-                <h3 style="color:white;margin-bottom:1rem;">📚 Your Courses</h3>
-                <a href="/courses/html5-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">🧱 HTML5 <span style="color:#10b981;">FREE</span></a>
-                <a href="/courses/css-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">🎨 CSS <span style="color:#10b981;">FREE</span></a>
-                <a href="/courses/javascript-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;margin-bottom:0.5rem;text-decoration:none;">⚡ JavaScript <span style="color:#10b981;">FREE</span></a>
-                <a href="/courses/tailwind-full/" class="btn btn-outline btn-sm" style="display:flex;justify-content:space-between;text-decoration:none;">🌊 Tailwind {% if user.is_premium %}<span style="color:#10b981;">UNLOCKED</span>{% else %}<span style="color:#f59e0b;">🔒 PRO</span>{% endif %}</a>
-            </div>
-        </div>
-        
-        <div>
-            {% if not user.is_premium %}
-            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1));border-color:rgba(99,102,241,0.3);">
-                <h3 style="color:white;margin-bottom:0.5rem;">🚀 Go Premium</h3>
-                <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:1rem;">Unlock all courses, certificates & more</p>
-                <a href="/pricing/" class="btn btn-primary" style="width:100%;justify-content:center;text-decoration:none;">Upgrade - Ksh 500</a>
+                <h3 style="color:#f0f0f0;font-size:1.1rem;margin-bottom:1rem;">📖 Continue Learning</h3>
+                {% for enrollment in enrollments %}
+                <a href="/courses/{{ enrollment.course.slug }}/" style="display:flex;align-items:center;gap:1rem;padding:1rem;background:rgba(255,255,255,0.03);border-radius:10px;text-decoration:none;margin-bottom:0.5rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📚</div>
+                    <div style="flex:1;">
+                        <p style="color:#f0f0f0;font-weight:600;">{{ enrollment.course.title }}</p>
+                        <div style="height:4px;background:#1f2937;border-radius:2px;margin-top:0.3rem;">
+                            <div style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:2px;width:{{ enrollment.progress_percent }}%;"></div>
+                        </div>
+                    </div>
+                    <span style="color:#6366f1;font-weight:600;">{{ enrollment.progress_percent|floatformat:0 }}%</span>
+                </a>
+                {% endfor %}
             </div>
             {% endif %}
-            
-            {% if payments %}
-            <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;">
-                <h3 style="color:white;margin-bottom:1rem;">💳 M-Pesa Payments</h3>
-                {% for p in payments %}
-                <div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid #1f2937;font-size:0.85rem;">
-                    <span style="color:#10b981;">Ksh {{ p.amount }}</span>
-                    <span style="color:#6b7280;">{{ p.created_at|date:"M d" }}</span>
+
+            <!-- 2. TODAY'S CHALLENGE -->
+            {% if daily_question %}
+            <div class="card" style="padding:1.5rem;background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2);">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
+                    <span style="font-size:1.5rem;">🎯</span>
+                    <h3 style="color:#f0f0f0;font-size:1.1rem;">Today's Challenge (+5 XP)</h3>
                 </div>
-                {% endfor %}
+                <p style="color:#d0d0d0;margin-bottom:1rem;">{{ daily_question.text }}</p>
+                <form method="POST" action="/quiz/take/{{ daily_question.quiz.id }}/" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    {% csrf_token %}
+                    {% for choice in daily_question.choices.all %}
+                    <button type="submit" name="question_{{ daily_question.id }}" value="{{ choice.id }}" style="text-align:left;padding:0.5rem 0.8rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d0d0d0;cursor:pointer;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#6366f1'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                        {{ choice.text }}
+                    </button>
+                    {% endfor %}
+                </form>
+            </div>
+            {% endif %}
+
+            <!-- 3. RECENT ACTIVITY -->
+            <div class="card" style="padding:1.5rem;">
+                <h3 style="color:#f0f0f0;font-size:1.1rem;margin-bottom:1rem;">🕐 Recent Activity</h3>
+                {% if recent_activities %}
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                    {% for activity in recent_activities %}
+                    <div style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem;background:rgba(255,255,255,0.02);border-radius:8px;">
+                        <span>{% if 'completed' in activity.activity_type %}✅{% elif 'badge' in activity.activity_type %}🏆{% elif 'quiz' in activity.activity_type|lower %}🧠{% else %}📝{% endif %}</span>
+                        <span style="color:#d0d0d0;font-size:0.85rem;flex:1;">{{ activity.description }}</span>
+                        <span style="color:#6b7280;font-size:0.75rem;">{{ activity.created_at|timesince }} ago</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p style="color:#6b7280;">Start learning to see your activity here!</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+            <!-- 4. WEEKLY GOAL -->
+            <div class="card" style="padding:1.5rem;text-align:center;">
+                <h3 style="color:#f0f0f0;font-size:1rem;margin-bottom:0.5rem;">📅 Weekly Goal</h3>
+                <div style="font-size:2rem;font-weight:800;color:#6366f1;">{{ lessons_this_week }}/{{ weekly_goal }}</div>
+                <p style="color:#a0a0a0;font-size:0.8rem;">lessons completed</p>
+                <div style="height:6px;background:#1f2937;border-radius:3px;margin-top:0.5rem;">
+                    <div style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:3px;width:{{ weekly_progress }}%;"></div>
+                </div>
+                <p style="color:#10b981;font-size:0.75rem;margin-top:0.3rem;">{% if weekly_progress >= 100 %}Goal completed! 🎉{% else %}{{ weekly_goal|add:lessons_this_week|add:"-0" }} more to go{% endif %}</p>
+            </div>
+
+            <!-- 5. LEADERBOARD POSITION -->
+            <div class="card" style="padding:1.5rem;">
+                <h3 style="color:#f0f0f0;font-size:1rem;margin-bottom:1rem;">🏆 Your Rank: #{{ user_rank }}</h3>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                    {% for u in nearby_users %}
+                    <div style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem;border-radius:6px;{% if u == user %}background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);{% endif %}">
+                        <span style="color:#6b7280;font-size:0.8rem;width:30px;">#{{ forloop.counter|add:user_rank|add:-2 }}</span>
+                        <div style="width:24px;height:24px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.6rem;">{{ u.username|slice:":1" }}</div>
+                        <span style="color:#d0d0d0;font-size:0.8rem;flex:1;">{% if u == user %}<strong>You</strong>{% else %}{{ u.username|slice:":3" }}****{% endif %}</span>
+                        <span style="color:#f59e0b;font-size:0.75rem;">⚡{{ u.xp }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="/leaderboard/" style="color:#6366f1;font-size:0.8rem;text-align:center;display:block;margin-top:0.75rem;">View Full Leaderboard →</a>
+            </div>
+
+            <!-- 6. WHAT'S NEW -->
+            <div class="card" style="padding:1.5rem;">
+                <h3 style="color:#f0f0f0;font-size:1rem;margin-bottom:1rem;">🆕 What's New</h3>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                    {% if new_materials > 0 %}
+                    <a href="/courses/" style="color:#d0d0d0;font-size:0.85rem;text-decoration:none;">📦 {{ new_materials }} new course materials</a>
+                    {% endif %}
+                    {% if new_polls > 0 %}
+                    <a href="/polls/" style="color:#d0d0d0;font-size:0.85rem;text-decoration:none;">📊 {{ new_polls }} new polls</a>
+                    {% endif %}
+                    {% if open_mentorship > 0 %}
+                    <a href="/mentorship/" style="color:#d0d0d0;font-size:0.85rem;text-decoration:none;">⭐ {{ open_mentorship }} mentorship slots open</a>
+                    {% endif %}
+                    {% if not new_materials and not new_polls and not open_mentorship %}
+                    <p style="color:#6b7280;font-size:0.85rem;">Nothing new yet. Check back soon!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- 7. PRO UPSELL -->
+            {% if not user.is_premium %}
+            <div class="card" style="padding:1.5rem;background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.2);text-align:center;">
+                <h3 style="color:#f59e0b;">🚀 Unlock PRO</h3>
+                <p style="color:#a0a0a0;font-size:0.8rem;margin:0.5rem 0;">Full courses · Mentorship · Certificates</p>
+                <a href="/pricing/" class="btn btn-primary btn-sm" style="background:#f59e0b;width:100%;justify-content:center;">Upgrade - Ksh 500</a>
             </div>
             {% endif %}
         </div>

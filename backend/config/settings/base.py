@@ -26,10 +26,16 @@ INSTALLED_APPS = [
     "apps.community.apps.CommunityConfig",
     "apps.mpesa.apps.MpesaConfig",
     "apps.chatbot.apps.ChatbotConfig",
+    "apps.challenges.apps.ChallengesConfig",
+    "apps.mentorship.apps.MentorshipConfig",
+    "apps.analytics.apps.AnalyticsConfig",
+    "apps.materials.apps.MaterialsConfig",
+    "apps.polls.apps.PollsConfig",
     "corsheaders",
 ]
 
 MIDDLEWARE = [
+    'apps.analytics.middleware.PageViewMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

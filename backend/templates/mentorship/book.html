@@ -3,15 +3,109 @@
 {% block content %}
 <div style="max-width:600px;margin:3rem auto;padding:2rem;">
     <h1 style="font-size:2rem;font-weight:800;color:white;">📅 Book Mentorship Session</h1>
-    <form method="POST" class="card" style="padding:2rem;margin-top:1rem;">
+    <p style="color:#9ca3af;margin-bottom:1.5rem;">30-minute 1-on-1 session with Dancan Njoro</p>
+    
+    <div class="card" style="padding:1.5rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(99,102,241,0.05));border-color:rgba(16,185,129,0.3);">
+        <h3 style="color:#10b981;font-size:1rem;margin-bottom:0.75rem;">📅 Available Days</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:0.5rem;text-align:center;font-size:0.85rem;color:#10b981;">Mon<br>7PM-9PM</div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:0.5rem;text-align:center;font-size:0.85rem;color:#10b981;">Wed<br>7PM-9PM</div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:0.5rem;text-align:center;font-size:0.85rem;color:#10b981;">Fri<br>7PM-9PM</div>
+            <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:0.5rem;text-align:center;font-size:0.85rem;color:#10b981;">Sat<br>10AM-2PM</div>
+        </div>
+    </div>
+    
+    <form method="POST" class="card" style="padding:2rem;" onsubmit="return validateForm()">
         {% csrf_token %}
-        <label style="color:#9ca3af;">Topic</label>
-        <input type="text" name="topic" placeholder="Career advice, code help, project review..." required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
-        <label style="color:#9ca3af;">What do you want to discuss?</label>
-        <textarea name="description" rows="3" style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;"></textarea>
-        <label style="color:#9ca3af;">Preferred Date & Time</label>
-        <input type="datetime-local" name="session_date" required style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        <label style="color:#9ca3af;font-size:0.9rem;">Topic</label>
+        <input type="text" name="topic" placeholder="Career advice, code help, project review..." required 
+               style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        
+        <label style="color:#9ca3af;font-size:0.9rem;">What do you want to discuss?</label>
+        <textarea name="description" rows="3" placeholder="Brief description of what you need help with..."
+                  style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;resize:vertical;"></textarea>
+        
+        <label style="color:#9ca3af;font-size:0.9rem;">Select Date & Time</label>
+        <input type="datetime-local" name="session_date" id="session_date" required 
+               style="width:100%;padding:0.85rem;background:#111827;border:1px solid #374151;border-radius:12px;color:white;margin:0.5rem 0 1rem;">
+        <p style="color:#6b7280;font-size:0.75rem;margin-top:-0.5rem;margin-bottom:1rem;">Only Mon, Wed, Fri (7PM-9PM) & Sat (10AM-2PM)</p>
+        
+        <div id="error-message" style="display:none;padding:0.75rem;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;color:#ef4444;margin-bottom:1rem;font-size:0.85rem;"></div>
+        
         <button type="submit" class="btn btn-primary" style="width:100%;">Book Session 🚀</button>
     </form>
 </div>
+
+<script>
+// Set minimum date to tomorrow
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+tomorrow.setHours(0, 0, 0, 0);
+document.getElementById('session_date').min = tomorrow.toISOString().slice(0, 16);
+
+// Set max date to 30 days from now
+const maxDate = new Date();
+maxDate.setDate(maxDate.getDate() + 30);
+document.getElementById('session_date').max = maxDate.toISOString().slice(0, 16);
+
+function validateForm() {
+    const dateInput = document.getElementById('session_date').value;
+    const errorDiv = document.getElementById('error-message');
+    
+    if (!dateInput) {
+        showError('Please select a date and time.');
+        return false;
+    }
+    
+    const selected = new Date(dateInput);
+    const now = new Date();
+    
+    // Check if date is in the past
+    if (selected < now) {
+        showError('❌ Cannot book a date in the past! Please select a future date.');
+        return false;
+    }
+    
+    // Check if less than 24 hours from now
+    const hoursDiff = (selected - now) / (1000 * 60 * 60);
+    if (hoursDiff < 24) {
+        showError('❌ Sessions must be booked at least 24 hours in advance.');
+        return false;
+    }
+    
+    // Check day of week (0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat)
+    const day = selected.getDay();
+    const hour = selected.getHours();
+    
+    // Monday (1), Wednesday (3), Friday (5): 7PM-9PM (19-21)
+    if (day === 1 || day === 3 || day === 5) {
+        if (hour < 19 || hour >= 21) {
+            showError('❌ Mon/Wed/Fri sessions are only available between 7PM - 9PM.');
+            return false;
+        }
+    }
+    // Saturday (6): 10AM-2PM (10-14)
+    else if (day === 6) {
+        if (hour < 10 || hour >= 14) {
+            showError('❌ Saturday sessions are only available between 10AM - 2PM.');
+            return false;
+        }
+    }
+    // Sunday (0), Tuesday (2), Thursday (4) - NOT available
+    else {
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        showError(`❌ ${dayNames[day]} is not available. Sessions are only on Mon, Wed, Fri & Sat.`);
+        return false;
+    }
+    
+    return true;
+}
+
+function showError(msg) {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.textContent = msg;
+    errorDiv.style.display = 'block';
+    setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
+}
+</script>
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Verify Your Email - WebDesign Academy{% endblock %}
+{% block content %}
+<div style="max-width:500px;margin:5rem auto;padding:2rem;text-align:center;">
+    <div style="font-size:5rem;">📧</div>
+    <h1 style="font-size:2rem;font-weight:800;color:white;margin:1rem 0;">Verify Your Email</h1>
+    <p style="color:#9ca3af;font-size:1.1rem;margin-bottom:0.5rem;">We sent a verification link to:</p>
+    <p style="color:#818cf8;font-size:1.2rem;font-weight:600;">{{ email }}</p>
+    
+    <div style="margin:2rem 0;">
+        <a href="{{ gmail_url }}" target="_blank" 
+           style="display:inline-block;padding:1rem 2.5rem;background:#ea4335;color:white;border-radius:12px;text-decoration:none;font-weight:600;font-size:1.1rem;">
+           📧 Open Gmail Now
+        </a>
+    </div>
+    
+    <p style="color:#f59e0b;font-size:0.9rem;">⚠️ You must verify your email before accessing courses.</p>
+    <p style="color:#6b7280;font-size:0.8rem;">Didn't receive it? Check spam folder or <a href="/auth/signup/" style="color:#818cf8;">sign up again</a></p>
+</div>
+
+<script>
+window.open('{{ gmail_url }}', '_blank');
+</script>
+{% endblock %}

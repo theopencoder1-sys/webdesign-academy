@@ -21,7 +21,15 @@
     
     <div class="card" style="padding:2rem;margin-bottom:2rem;">
         <h2 style="color:white;margin-bottom:1.5rem;">✍️ Compose Email</h2>
-        <form method="POST">
+        
+<div style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:12px;padding:1rem;margin-bottom:1.5rem;">
+    <p style="color:#f59e0b;font-weight:600;">⚠️ To send emails, run your LOCAL server and click "Send via Local"</p>
+    <p style="color:#d1d5db;font-size:0.85rem;">1. Open terminal on your laptop</p>
+    <p style="color:#d1d5db;font-size:0.85rem;">2. Run: <code>cd ~/Desktop/webdesign_academy/backend && source venv/bin/activate && python manage.py runserver</code></p>
+    <p style="color:#d1d5db;font-size:0.85rem;">3. Come back here and click Send</p>
+</div>
+
+<form method="POST" onsubmit="sendViaLocal(event)">
             {% csrf_token %}
             <div style="margin-bottom:1rem;">
                 <label style="color:#9ca3af;font-size:0.85rem;">Subject</label>
@@ -71,5 +79,14 @@
         </table>
         </div>
     </div>
+
+    {% if saved_preview %}
+    <div class="card" style="padding:1.5rem;margin-top:1.5rem;">
+        <h3 style="color:#10b981;">📁 Last Saved Email</h3>
+        <pre style="color:#d1d5db;font-size:0.8rem;max-height:300px;overflow-y:auto;background:#0a0a0a;padding:1rem;border-radius:8px;margin-top:1rem;">{{ saved_preview }}</pre>
+        <p style="color:#f59e0b;margin-top:0.5rem;">📋 Copy this and paste into Gmail to send!</p>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}
