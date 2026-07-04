@@ -1,5 +1,145 @@
 {% extends 'base.html' %}
-{% block title %}CSS Mastery - WebDesign Academy{% endblock %}
+{% block title %}CSS Mastery - WebDesign Academy
+
+<!-- DEEP DIVE: Key CSS Concept -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Core Principle</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Separate Style from Content</h2>
+<p>
+    The driving problem behind CSS is simple: early HTML allowed you to override browser defaults with attributes like <code>&lt;table border="2" bordercolor="black"&gt;</code>, but this became unmanageable. CSS solves this by separating <strong>what to display</strong> (HTML content) from <strong>how to display it</strong> (formatting information in .css files).
+</p>
+<p>
+    This gives you the <strong>DRY Principle</strong> (Don't Repeat Yourself): define style information once and reuse it everywhere. Want to change the company's brand colour? Update one line in your CSS file, not every single HTML tag.
+</p>
+
+<!-- DEEP DIVE: CSS Rules -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Anatomy of a Rule</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">How CSS Rules Work</h2>
+<p>Every style sheet contains one or more <strong>CSS Rules</strong>. Each rule has:</p>
+<div class="code-showcase">
+<code>body {
+    font-family: Tahoma, Arial, sans-serif;   /* Declaration */
+    color: black;                              /* Property: Value */
+    background: white;
+    margin: 8px;
+}
+/* ^^^^^^ Selector   ^^^^^^^^^^^^^^^^^^^^^^^ Declaration Block */</code>
+</div>
+
+<!-- DEEP DIVE: Selector Types -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Selector Reference</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Every Way to Target an Element</h2>
+<div class="code-showcase">
+<code>/* By Tag Name */
+h1 { color: red; }                    /* Targets &lt;h1&gt; */
+
+/* By Class Attribute */
+.large { font-size: 16pt; }           /* Targets class="large" */
+p.large { font-weight: bold; }         /* Targets &lt;p class="large"&gt; only */
+
+/* By Element ID */
+#p20 { font-weight: bold; }           /* Targets id="p20" */</code>
+</div>
+
+<!-- DEEP DIVE: Pseudo Selectors -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Interactive Selectors</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Pseudo Selectors</h2>
+<div class="code-showcase">
+<code>/* Hover - when mouse is over the element */
+p:hover, a:hover {
+    background-color: yellow;
+}
+
+/* Link States */
+a:link { color: blue; }      /* Unvisited link */
+a:visited { color: green; }  /* Visited link */</code>
+</div>
+
+<!-- DEEP DIVE: Box Model Detail -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Box Model Deep Dive</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">The CSS Box Model</h2>
+<p>Every element is a rectangular box. Understanding this is <strong>the most important concept in CSS layout</strong>.</p>
+<div class="code-showcase">
+<code>Total element width = 
+    width + 
+    left padding + right padding + 
+    left border + right border + 
+    left margin + right margin
+
+/* Margin and Padding are TRANSPARENT */</code>
+</div>
+
+<!-- DEEP DIVE: Units -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Measurement Reference</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">CSS Distance Units</h2>
+<table style="width:100%; border-collapse: collapse; color: #c0c0c0; margin: 2rem 0;">
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <th style="text-align: left; padding: 0.75rem; color: #f0f0f0;">Absolute</th>
+        <th style="text-align: left; padding: 0.75rem; color: #f0f0f0;">Relative</th>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>2px</code> — pixels</td>
+        <td style="padding: 0.75rem;"><code>2em</code> — 2× element's font size</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>1mm</code> — millimetres</td>
+        <td style="padding: 0.75rem;"><code>3rem</code> — 3× root element's font size</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>2cm</code> — centimetres</td>
+        <td style="padding: 0.75rem;"></td>
+    </tr>
+    <tr>
+        <td style="padding: 0.75rem;"><code>3pt</code> — printer points (1/72 inch)</td>
+        <td style="padding: 0.75rem;"></td>
+    </tr>
+</table>
+
+<!-- DEEP DIVE: Position -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Positioning Guide</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">The position Property</h2>
+<div class="code-showcase">
+<code>position: static;   /* Default — in document flow */
+position: relative; /* Offset from normal position via top/right/bottom/left */
+position: fixed;    /* Fixed to screen (doesn't scroll) */
+position: absolute; /* Relative to nearest positioned ancestor */</code>
+</div>
+<p>Fixed position (0,0) is the <strong>top-left corner</strong> of the screen.</p>
+
+<!-- DEEP DIVE: Visibility -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Visibility Control</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Show and Hide Elements</h2>
+<div class="code-showcase">
+<code>display: none;      /* Element REMOVED from layout entirely */
+display: inline;    /* Acts like <span> */
+display: block;     /* Acts like <div> */
+display: flex;      /* Flex container */
+display: grid;      /* Grid container */
+
+visibility: hidden; /* Hidden but SPACE STILL HELD */
+visibility: visible;/* Normal */</code>
+</div>
+<div class="note-box"><strong>💡 KEY NOTE:</strong> Use <code>display: none</code> when you want the element GONE. Use <code>visibility: hidden</code> when you want to hide it but keep the layout space.</div>
+
+<!-- DEEP DIVE: Inheritance -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Advanced Concept</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Inheritance & Specificity</h2>
+<p>Some properties (like <code>font-size</code>) are <strong>inherited</strong> from parent elements. Others (like <code>border</code>) are not.</p>
+<p>When multiple rules match an element, the <strong>most specific rule wins</strong>:</p>
+<div class="code-showcase">
+<code>span { color: red; }        /* Less specific */
+span.test { color: green; }  /* More specific — WINS */</code>
+</div>
+
+<!-- DEEP DIVE: Real World CSS -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Pro Tips</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">CSS in the Real World</h2>
+<p>
+    Professional developers use <strong>CSS preprocessors</strong> (like Less, Sass) to add variables and functions, making large stylesheets easier to maintain. 
+    <strong>Composition</strong> can be tricky — it's sometimes hard to figure out which rule from which stylesheet is causing issues. 
+    Use browser DevTools (F12) to inspect and debug!
+</p>
+
+{% endblock %}
 {% block content %}
 
 <div style="background:linear-gradient(135deg,#1572B6,#06B6D4);padding:3rem 1.5rem;text-align:center;">
@@ -222,4 +362,144 @@ transform: translate(50px, -20px); transform: skew(10deg);</code></pre>
 </div>
 
 </div>
+
+
+<!-- DEEP DIVE: Key CSS Concept -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Core Principle</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Separate Style from Content</h2>
+<p>
+    The driving problem behind CSS is simple: early HTML allowed you to override browser defaults with attributes like <code>&lt;table border="2" bordercolor="black"&gt;</code>, but this became unmanageable. CSS solves this by separating <strong>what to display</strong> (HTML content) from <strong>how to display it</strong> (formatting information in .css files).
+</p>
+<p>
+    This gives you the <strong>DRY Principle</strong> (Don't Repeat Yourself): define style information once and reuse it everywhere. Want to change the company's brand colour? Update one line in your CSS file, not every single HTML tag.
+</p>
+
+<!-- DEEP DIVE: CSS Rules -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Anatomy of a Rule</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">How CSS Rules Work</h2>
+<p>Every style sheet contains one or more <strong>CSS Rules</strong>. Each rule has:</p>
+<div class="code-showcase">
+<code>body {
+    font-family: Tahoma, Arial, sans-serif;   /* Declaration */
+    color: black;                              /* Property: Value */
+    background: white;
+    margin: 8px;
+}
+/* ^^^^^^ Selector   ^^^^^^^^^^^^^^^^^^^^^^^ Declaration Block */</code>
+</div>
+
+<!-- DEEP DIVE: Selector Types -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Selector Reference</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Every Way to Target an Element</h2>
+<div class="code-showcase">
+<code>/* By Tag Name */
+h1 { color: red; }                    /* Targets &lt;h1&gt; */
+
+/* By Class Attribute */
+.large { font-size: 16pt; }           /* Targets class="large" */
+p.large { font-weight: bold; }         /* Targets &lt;p class="large"&gt; only */
+
+/* By Element ID */
+#p20 { font-weight: bold; }           /* Targets id="p20" */</code>
+</div>
+
+<!-- DEEP DIVE: Pseudo Selectors -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Interactive Selectors</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Pseudo Selectors</h2>
+<div class="code-showcase">
+<code>/* Hover - when mouse is over the element */
+p:hover, a:hover {
+    background-color: yellow;
+}
+
+/* Link States */
+a:link { color: blue; }      /* Unvisited link */
+a:visited { color: green; }  /* Visited link */</code>
+</div>
+
+<!-- DEEP DIVE: Box Model Detail -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Box Model Deep Dive</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">The CSS Box Model</h2>
+<p>Every element is a rectangular box. Understanding this is <strong>the most important concept in CSS layout</strong>.</p>
+<div class="code-showcase">
+<code>Total element width = 
+    width + 
+    left padding + right padding + 
+    left border + right border + 
+    left margin + right margin
+
+/* Margin and Padding are TRANSPARENT */</code>
+</div>
+
+<!-- DEEP DIVE: Units -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Measurement Reference</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">CSS Distance Units</h2>
+<table style="width:100%; border-collapse: collapse; color: #c0c0c0; margin: 2rem 0;">
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <th style="text-align: left; padding: 0.75rem; color: #f0f0f0;">Absolute</th>
+        <th style="text-align: left; padding: 0.75rem; color: #f0f0f0;">Relative</th>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>2px</code> — pixels</td>
+        <td style="padding: 0.75rem;"><code>2em</code> — 2× element's font size</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>1mm</code> — millimetres</td>
+        <td style="padding: 0.75rem;"><code>3rem</code> — 3× root element's font size</td>
+    </tr>
+    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <td style="padding: 0.75rem;"><code>2cm</code> — centimetres</td>
+        <td style="padding: 0.75rem;"></td>
+    </tr>
+    <tr>
+        <td style="padding: 0.75rem;"><code>3pt</code> — printer points (1/72 inch)</td>
+        <td style="padding: 0.75rem;"></td>
+    </tr>
+</table>
+
+<!-- DEEP DIVE: Position -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Positioning Guide</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">The position Property</h2>
+<div class="code-showcase">
+<code>position: static;   /* Default — in document flow */
+position: relative; /* Offset from normal position via top/right/bottom/left */
+position: fixed;    /* Fixed to screen (doesn't scroll) */
+position: absolute; /* Relative to nearest positioned ancestor */</code>
+</div>
+<p>Fixed position (0,0) is the <strong>top-left corner</strong> of the screen.</p>
+
+<!-- DEEP DIVE: Visibility -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Visibility Control</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Show and Hide Elements</h2>
+<div class="code-showcase">
+<code>display: none;      /* Element REMOVED from layout entirely */
+display: inline;    /* Acts like <span> */
+display: block;     /* Acts like <div> */
+display: flex;      /* Flex container */
+display: grid;      /* Grid container */
+
+visibility: hidden; /* Hidden but SPACE STILL HELD */
+visibility: visible;/* Normal */</code>
+</div>
+<div class="note-box"><strong>💡 KEY NOTE:</strong> Use <code>display: none</code> when you want the element GONE. Use <code>visibility: hidden</code> when you want to hide it but keep the layout space.</div>
+
+<!-- DEEP DIVE: Inheritance -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Advanced Concept</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">Inheritance & Specificity</h2>
+<p>Some properties (like <code>font-size</code>) are <strong>inherited</strong> from parent elements. Others (like <code>border</code>) are not.</p>
+<p>When multiple rules match an element, the <strong>most specific rule wins</strong>:</p>
+<div class="code-showcase">
+<code>span { color: red; }        /* Less specific */
+span.test { color: green; }  /* More specific — WINS */</code>
+</div>
+
+<!-- DEEP DIVE: Real World CSS -->
+<span style="color:#0055ff;font-weight:600;text-transform:uppercase;font-size:0.8rem;letter-spacing:0.05em;">Pro Tips</span>
+<h2 style="font-size:3rem;font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:2rem;color:#f0f0f0;">CSS in the Real World</h2>
+<p>
+    Professional developers use <strong>CSS preprocessors</strong> (like Less, Sass) to add variables and functions, making large stylesheets easier to maintain. 
+    <strong>Composition</strong> can be tricky — it's sometimes hard to figure out which rule from which stylesheet is causing issues. 
+    Use browser DevTools (F12) to inspect and debug!
+</p>
+
 {% endblock %}
